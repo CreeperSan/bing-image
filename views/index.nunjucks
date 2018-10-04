@@ -1,0 +1,60 @@
+{% extends 'views/base/base.nunjucks' %}
+
+{% block title %}Bing 壁纸{% endblock %}
+
+{% block head_res %}
+    <link rel="stylesheet" href="/css/index/index.css"/>
+    <script src="/lib/vue/vue.js"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="content-div" id="app">
+
+        <div class="img-div">
+
+            <div class="img-item-div" v-for="tmpItem in imageList">
+                <img class="img-item-img" src="https://cn.bing.com//az/hprichbg/rb/TheLongWalk_ZH-CN11094733779_320x240.jpg" />
+                <div class="img-item-text-div">
+                    <span class="img-item-text-title">{% raw %} {{ tmpItem.title }} {% endraw %}</span>  
+                    <span class="img-item-text-location">{% raw %} {{ tmpItem.location }} {% endraw %}</span>  
+                    <span class="img-item-text-time">{% raw %} {{ tmpItem.time }} {% endraw %}</span>  
+                </div>
+            </div>
+            
+            {# <div class="img-item-div">
+                <img class="img-item-img" src="https://cn.bing.com//az/hprichbg/rb/TheLongWalk_ZH-CN11094733779_320x240.jpg" />
+                <div class="img-item-text-div">
+                    <span class="img-item-text-title">【今日中秋节】桨声灯影里的秦淮河</span>  
+                    <span class="img-item-text-location">美国加利福尼亚州</span>  
+                    <span class="img-item-text-time">2018/06/02</span>  
+                </div>
+            </div> #}
+
+        </div>
+
+        <div class="action-div">
+
+
+            <button v-show="state == STATE_IDLE" class="action-load-more-button">加载更多</button>
+
+            <div v-show="state == STATE_IDLE" class="action-jump-div">
+                <span class="action-jump-text">跳转至</span>
+                <input class="action-jump-input" type="text" placeholder="日期 / 条目"/>
+                <button class="action-jump-action-button">Go!</button>
+            </div>
+
+            <img v-show="state == STATE_LOADING" class="action-loading-img" src="/images/logo_header.png"/>
+
+            <div v-show="state == STATE_FINISH" class="action-bottom-div">
+                <div class="action-bottom-diver"></div>
+                <span class="action-bottom-text">已经到底了</span>
+                <div class="action-bottom-diver"></div>
+            </div>
+
+        </div>
+
+    </div>
+    
+    <script src="/js/index/index.js"></script>
+{% endblock %}

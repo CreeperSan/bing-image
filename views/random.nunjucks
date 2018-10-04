@@ -1,0 +1,27 @@
+{% extends 'views/base/base.nunjucks' %}
+
+{% block title %}必应壁纸 - 随便看看{% endblock %}
+
+{% block body %}
+
+<div style="background:#eee;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+
+    <div style="max-width:1280px;width:80%;margin:3em 0;padding:0;position:relative;display:box;">
+        <img style="width:100%;height:100%;" src="https://cn.bing.com/az/hprichbg/rb/TheLongWalk_ZH-CN11094733779_1920x1080.jpg" />
+        <div style="width:94%;display:flex;flex-direction:column;bottom:3px;padding:3%;background:rgba(0,0,0,0.5);position:absolute;">
+            <span style="color:lightgray;">asdadasd</span>
+            <span style="color:lightgray;">asdadasd</span>
+            <span style="color:lightgray;">asdadasd</span>
+        </div>
+    </div>
+
+    <div style="display:flex;flex-direction:row;align-items:center;justify-content:center;margin-bottom:3em;">
+        <img style="width:3em;height:3em:border-radius:3em;background:pink;margin:0 3em;" src="/images/logo_header.png"/>
+        <img style="width:3em;height:3em:border-radius:3em;background:pink;margin:0 3em;" src="/images/logo_header.png"/>
+        <img style="width:3em;height:3em:border-radius:3em;background:pink;margin:0 3em;" src="/images/logo_header.png"/>
+    </div>
+
+
+</div>
+
+{% endblock %}

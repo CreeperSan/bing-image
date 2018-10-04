@@ -1,0 +1,76 @@
+{% extends 'views/base/base.nunjucks' %}
+
+{% block title %}必应壁纸 - 排行榜{% endblock %}
+
+{% block head_res %}
+    <link rel="stylesheet" href="/css/rank/rank.css"/>
+    <script src="/lib/vue/vue.js"></script>
+    <script src="/lib/axios/axios.js"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="content-div" id="rank-app">
+
+    <div class="rank-div" v-for="(rank, index) in rankList">
+        <span class="rank-title">{% raw %} {{ rank.rank.title }} {% endraw %}</span>
+        <div class="rank-item-root-div">
+            <div class="rank-item-div" v-on:click="toNewWebsite(rankItem.link)" v-for="(rankItem, rankIndex) in rank.rank.items">
+                <div class="rank-item-prefix-div">
+                    <img class="rank-item-prefix-icon" v-bind:src="getSerialNumberIconUrl(rankIndex)"/>
+                    <span class="rank-item-prefix-text">{% raw %} {{ rankItem.name }} {% endraw %}</span>
+                </div>
+                <span class="rank-item-number">12680</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+    <script>
+        const REQUEST_PREFIX = "/rank"
+
+        var rankApp = new Vue({
+            el : '#rank-app',
+            data : {
+                rankList : []
+            },
+            mounted : function(){
+                axios.post(REQUEST_PREFIX+'/').then(function(response){
+                    if(response.data.flag == 200){
+                        rankApp.rankList = response.data.data
+                    }else{
+                        setFail('获取下载列表失败')
+                    }
+                    console.log(response.data)
+                }).catch(function(err){
+                    setFail('获取下载列表连接失败')
+                })
+            },
+            methods : {
+                getSerialNumberIconUrl : function(num){
+                    switch(num){
+                        case 0 : return '/icon/ic_number_1.png'
+                        case 1 : return '/icon/ic_number_2.png'
+                        case 2 : return '/icon/ic_number_3.png'
+                        case 3 : return '/icon/ic_number_4.png'
+                        case 4 : return '/icon/ic_number_5.png'
+                        case 5 : return '/icon/ic_number_6.png'
+                        case 6 : return '/icon/ic_number_7.png'
+                        case 7 : return '/icon/ic_number_8.png'
+                        case 8 : return '/icon/ic_number_9.png'
+                        case 9 : return '/icon/ic_number_10.png'
+                        default : return '/icon/ic_number_extra.png'
+                    }
+                },
+                toNewWebsite(url){
+                    window.open(url)
+                }
+            }
+        })
+    </script>
+    
+
+{% endblock %}
+

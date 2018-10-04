@@ -1,0 +1,4 @@
+.header-desktop-div{ width:92%;height:4em;display:flex;flex-direction:row;align-items:center;justify-content:space-between;background:white;padding:0 4%;box-shadow:0 0 6px #999;z-index: 999; }
+.header-desktop-logo{ height:90%;padding: 5% 0; }
+.header-desktop-page-div{ display:flex;flex-direction:row;align-items:center; }
+.header-desktop-page-text{ padding:1em;text-decoration:none;color:gray; }
