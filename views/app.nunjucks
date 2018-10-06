@@ -1,3 +1,23 @@
 {% extends 'views/base/base.nunjucks' %}
 
 {% block title %}必应壁纸 - APP{% endblock %}
+
+{% block head_res %}
+    <link rel="stylesheet" href="/css/app/app.css"/>
+{% endblock %}
+
+{% block body %}
+
+    <div class="content-div">
+        <img class="content-img-phone" src="/images/app_phone_1.png"/>
+        <div class="content-description-div">
+            <span class="content-text-title">Bing壁纸</span>
+            <span class="content-text-subtitle">就只是Bing壁纸</span>
+            <div class="content-button-group">
+                <img src="">
+                <button class="content-button-download content-button-android">敬请期待</button>
+                <button class="content-button-download content-button-ios">敬请期待</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

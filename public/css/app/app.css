@@ -1,0 +1,10 @@
+
+.content-div{ display: flex;flex-direction: row;justify-content: center;align-items: center;width: 90%;height: 100%;padding: 5%;background-color: #eee; }
+.content-img-phone{ margin-top: 3em;width: 30%; }
+.content-description-div{ display: flex;flex-direction: column;align-items: center;margin-left:1em;padding: 1em;width: 60%; }
+.content-text-title{ font-size: 3em;margin: 2em 0 0 0;font-weight: 200; }
+.content-text-subtitle{ font-size: 2em;margin: 8px 0 0 0;font-weight: 200; }
+.content-button-group{ display: flex;flex-direction: row;justify-content: center;align-items: center;padding: 1em }
+.content-button-download{ margin: 1em;padding: 1em 3em;border-radius: 6em;outline: none;font-size: 1em }
+.content-button-android{ background-color: limegreen;color: white; }
+.content-button-ios{ background-color: azure;color: black; }
