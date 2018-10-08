@@ -10,21 +10,23 @@ const KEY_BING_IMAGE_COPYRIGHT = "copyright";
 const KEY_BING_IMAGE_PATH = "path";
 const KEY_BING_IMAGE_TITLE = 'title';
 const KEY_BING_IMAGE_LOCATION = 'location';
+const KEY_BING_IMAGE_JSON = 'json';
 
 const SQL_BING_CREATE_TABLE = 'create table if not exists '+TABLE_BING_IMAGE+'(' +
     KEY_BING_IMAGE_ID + ' int not null primary key auto_increment ,' +
     KEY_BING_IMAGE_YEAR + ' int not null ,' +
     KEY_BING_IMAGE_MONTH + ' int not null ,' +
     KEY_BING_IMAGE_DAY + ' int not null ,' +
-    KEY_BING_IMAGE_COPYRIGHT + ' text not null ,' +
-    KEY_BING_IMAGE_PATH + ' text,' +
-    KEY_BING_IMAGE_TITLE + ' text,' +
-    KEY_BING_IMAGE_LOCATION + ' text' +
+    KEY_BING_IMAGE_COPYRIGHT + ' varchar(1024) not null ,' +
+    KEY_BING_IMAGE_PATH + ' varchar(1024) not null,' +
+    KEY_BING_IMAGE_TITLE + ' varchar(1024) not null,' +
+    KEY_BING_IMAGE_LOCATION + ' varchar(1024) not null,' +
+    KEY_BING_IMAGE_JSON + ' text not null' +
     ')';
 
 const SQL_BING_INSERT = 'insert into '+TABLE_BING_IMAGE+'(' +
-    KEY_BING_IMAGE_YEAR+','+KEY_BING_IMAGE_MONTH+','+KEY_BING_IMAGE_DAY+','+KEY_BING_IMAGE_COPYRIGHT+','+KEY_BING_IMAGE_PATH+','+KEY_BING_IMAGE_TITLE+','+KEY_BING_IMAGE_LOCATION+
-    ') values(?,?,?,?,?,?,?)';
+    KEY_BING_IMAGE_YEAR+','+KEY_BING_IMAGE_MONTH+','+KEY_BING_IMAGE_DAY+','+KEY_BING_IMAGE_COPYRIGHT+','+KEY_BING_IMAGE_PATH+','+KEY_BING_IMAGE_TITLE+','+KEY_BING_IMAGE_LOCATION+','+KEY_BING_IMAGE_JSON+
+    ') values(?,?,?,?,?,?,?,?)';
 
 
 let db = null;
@@ -82,10 +84,10 @@ function openConnection() {
  * @param location
  * @returns {Promise<any>}
  */
-async function insertBing(year, month, day, copyright, path='-', title='-', location='-') {
+function insertBing(year, month, day, copyright, path, title, location, json) {
     return new Promise((resolve, reject) => {
         if (db){
-            db.query(SQL_BING_INSERT, [year, month, day, copyright, path, title, location], (err, result) => {
+            db.query(SQL_BING_INSERT, [year, month, day, copyright, path, title, location, json], (err, result) => {
                 if (err){
                     console.log(SQL_BING_INSERT);
                     console.log('【必应壁纸】插入数据失败');
@@ -114,7 +116,8 @@ const database = {
         this.isInit = true;
     },
     // 添加/更新结果
-    addResult: function () {
+    addResult: async function (year, month, day, copyright, path='-', title='-', location='-', json) {
+        await insertBing(year, month, day, copyright, path, title, location, json)
     }
 
 };
