@@ -28,7 +28,7 @@
     <div class="footer-div">
         <span class="footer-text">本站所有壁纸均来自 <a style="color:#ccc;" href="https://cn.bing.com" target="_blank">Bing搜索</a> </span>
         <img class="footer-bing-logo" src="/images/logo_bing_yellow.png"/>
-        <span class="footer-text-small">Copyright © 2018 CreeperSan</span>
+        <span class="footer-text-small">Copyright © 2018 <a style="color: #ccc;" href="http://creepersan.com">CreeperSan</a></span>
     </div>
 </body>
 </html>

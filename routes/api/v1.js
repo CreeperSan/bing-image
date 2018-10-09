@@ -34,10 +34,18 @@ async function httpGet(url){
   })
 }
 
+
+
 /**
  * 下面才是路由处理
  */
 
+
+/**
+ * 请求地址:   /url-current
+ * 链接功能:   即刻获取必应现在的背景图片信息（从Bing服务器转发）
+ * 请求参数:   无
+ */
 router.get('/url-current', async (ctx, next) => {
     try{
         let getStr = await httpGet(URL_BING_IMAGE);
@@ -54,9 +62,64 @@ router.get('/url-current', async (ctx, next) => {
     }
 });
 
+/**
+ * 请求地址:   /img-current
+ * 链接功能:   即刻获取必应现在的背景图片文件（从Bing服务器转发）， 可以直接用在img标签里面
+ * 请求参数:   无
+ */
 router.get('/img-current', async (ctx, next) => {
     const tmpImgUrl = URL_BING_PREFIX + JSON.parse(await httpGet(URL_BING_IMAGE)).images[0].url;
     ctx.body = request(tmpImgUrl)
 });
+
+
+/**
+ * 请求地址:   /img
+ * 链接功能:   获取服务器中最新的必应背景图片文件， 可以直接用在img标签里面
+ * 请求参数:   无
+ */
+router.get('/img',async (ctx, next) => {
+
+})
+
+/**
+ * 请求地址:   /url
+ * 链接功能:   获取服务器中必应背景图片URL（ 瀑布流 ）
+ * 请求参数:   count 返回的图片数量
+ *            start 开始的日期
+ *            size  获取的图片尺寸
+ */
+router.get('/url', async (ctx, next) => {
+
+})
+
+/**
+ * 请求地址:   /url-page
+ * 链接功能:   获取服务器中必应背景图片URL（ 分页 )
+ * 请求参数:   count 返回的图片数量
+ *            start 开始的日期
+ *            size  获取的图片尺寸
+ */
+router.get('/url', async (ctx, next) => {
+
+})
+
+/**
+ * 请求地址:   /rank_name
+ * 链接功能:   获取服务器中排行榜名称列表
+ * 请求参数:   无
+ */
+
+/**
+ * 请求地址:   /rank
+ * 链接功能:   获取服务器中排行榜
+ * 请求参数:   无
+ */
+
+/**
+ * 请求地址:   /random
+ * 链接功能:   获取服务器中随机一个图片信息
+ * 请求参数:   无
+ */
 
 module.exports = router;

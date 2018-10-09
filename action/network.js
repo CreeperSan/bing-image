@@ -4,7 +4,7 @@ const path = require('path');
 const request = require('request');
 
 
-const URL_BING = 'http://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=7';
+const URL_BING = (days=1) => { return 'http://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n='+days; }
 const URL_IMAGE = 'http://cn.bing.com';
 
 const IMAGE_SIZE = [
@@ -66,12 +66,12 @@ async function httpGetImage(url, name, imgjson) {
 
 
 const network = {
-    refreshBingImg: async (downloadCompleteCallback) => {
-        const result = JSON.parse(await httpGet(URL_BING));
+    refreshBingImg: async (days=1, downloadCompleteCallback) => {
+        const result = JSON.parse(await httpGet(URL_BING(days)));
         result.images.forEach(( async (imgValue, key, parent) => {
             IMAGE_SIZE.forEach((async (value, index, array) => {
                 let tmpUrl = URL_IMAGE + imgValue.urlbase+'_'+value+'.jpg';
-                // await httpGetImage(tmpUrl, value, imgValue)
+                await httpGetImage(tmpUrl, value, imgValue)
             }));
             downloadCompleteCallback(imgValue)
         }))

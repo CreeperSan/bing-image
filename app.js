@@ -49,17 +49,20 @@ app.use(router_document.routes(), router_document.allowedMethods());
 app.use(router_rank.routes(), router_rank.allowedMethods());
 app.use(router_about.routes(), router_about.allowedMethods());
 
-// Init
+/**
+ *  定时任务
+ */
+// 初始化定时任务，并且获取7天的必应壁纸
 if (!bingAction.isInit()){
     bingAction.init()
 }
+// 设置为每天 00:00:05 获取一次必应壁纸
+const getBindImageSchedule = nodeSchedule.scheduleJob('5 0 0 * * *', () => {
+    // console.log(new Date() + '   v'+bingAction.version)
+    bingAction.refreshTodayBingImage();
+});
 
-// Schedule
-// const getBindImageSchedule = nodeSchedule.scheduleJob('0,5,10,15,20,25,30,35,40,45,50,55 * * * * *', () => {
-//     console.log(new Date() + '   v'+bingAction.version)
-// });
-//
-// console.log(nodeSchedule.scheduledJobs);
+console.log(nodeSchedule.scheduledJobs);
 
 // error-handling
 app.on('error', (err, ctx) => {
