@@ -7,7 +7,7 @@ const bodyparser = require('koa-bodyparser');
 const logger = require('koa-logger');
 const nunjucks = require('nunjucks');
 const nodeSchedule = require('node-schedule');
-const bingAction = require('./action/bing');
+const bingAction = require('./lib/bing');
 
 const router_index = require('./routes/index');
 const router_api_v1 = require('./routes/api/v1');
@@ -58,7 +58,6 @@ if (!bingAction.isInit()){
 }
 // 设置为每天 00:00:05 获取一次必应壁纸
 const getBindImageSchedule = nodeSchedule.scheduleJob('5 0 0 * * *', () => {
-    // console.log(new Date() + '   v'+bingAction.version)
     bingAction.refreshTodayBingImage();
 });
 

@@ -13,12 +13,12 @@
 <div class="content-div" id="rank-app">
 
     <div class="rank-div" v-for="(rank, index) in rankList">
-        <span class="rank-title">{% raw %} {{ rank.rank.title }} {% endraw %}</span>
+        <span class="rank-title">{% raw %} {{ rank.title }} {% endraw %}</span>
         <div class="rank-item-root-div">
-            <div class="rank-item-div" v-on:click="toNewWebsite(rankItem.link)" v-for="(rankItem, rankIndex) in rank.rank.items">
+            <div class="rank-item-div" v-on:click="toNewWebsite(rankItem.link)" v-for="(rankItem, rankIndex) in rank.items">
                 <div class="rank-item-prefix-div">
                     <img class="rank-item-prefix-icon" v-bind:src="getSerialNumberIconUrl(rankIndex)"/>
-                    <span class="rank-item-prefix-text">{% raw %} {{ rankItem.name }} {% endraw %}</span>
+                    <span class="rank-item-prefix-text">{% raw %} {{ rankItem.title }} {% endraw %}</span>
                 </div>
                 <span class="rank-item-number">12680</span>
             </div>
@@ -29,7 +29,8 @@
 
 
     <script>
-        const REQUEST_PREFIX = "/rank"
+        // const REQUEST_PREFIX = "/rank"
+        const URL_GET_ALL_RANK = "/api/v1/rank"
 
         var rankApp = new Vue({
             el : '#rank-app',
@@ -37,16 +38,23 @@
                 rankList : []
             },
             mounted : function(){
-                axios.post(REQUEST_PREFIX+'/').then(function(response){
-                    if(response.data.flag == 200){
-                        rankApp.rankList = response.data.data
-                    }else{
-                        setFail('获取下载列表失败')
-                    }
-                    console.log(response.data)
-                }).catch(function(err){
-                    setFail('获取下载列表连接失败')
+                axios.get(URL_GET_ALL_RANK).then((response)=>{
+                    console.log(response.data.data.ranks)
+                    rankApp.rankList = response.data.data.ranks;
+                }).catch((err) => {
+                    alert('获取所有排行榜出错\n'+err)
                 })
+
+                // axios.post(REQUEST_PREFIX+'/').then(function(response){
+                //     if(response.data.flag == 200){
+                //         rankApp.rankList = response.data.data
+                //     }else{
+                //         setFail('获取下载列表失败')
+                //     }
+                //     console.log(response.data)
+                // }).catch(function(err){
+                //     setFail('获取下载列表连接失败')
+                // })
             },
             methods : {
                 getSerialNumberIconUrl : function(num){

@@ -4,6 +4,7 @@
 
 {% block head_res %}
     <link rel="stylesheet" href="/css/index/index.css"/>
+    <script src="/lib/axios/axios.js"></script>
     <script src="/lib/vue/vue.js"></script>
 {% endblock %}
 
@@ -13,40 +14,29 @@
 
         <div class="img-div">
 
-            <div class="img-item-div" v-for="tmpItem in imageList">
-                <img class="img-item-img" src="https://cn.bing.com//az/hprichbg/rb/TheLongWalk_ZH-CN11094733779_320x240.jpg" />
+            <div class="img-item-div" v-for="image in imageList">
+                <img class="img-item-img" {% raw %} v-bind:src="image.thumbnailImge" {% endraw %} />
                 <div class="img-item-text-div">
-                    <span class="img-item-text-title">{% raw %} {{ tmpItem.title }} {% endraw %}</span>  
-                    <span class="img-item-text-location">{% raw %} {{ tmpItem.location }} {% endraw %}</span>  
-                    <span class="img-item-text-time">{% raw %} {{ tmpItem.time }} {% endraw %}</span>  
+                    <span class="img-item-text-title">{% raw %} {{ image.title }} {% endraw %}</span>
+                    <span class="img-item-text-location">{% raw %} {{ image.location }} {% endraw %}</span>
+                    <span class="img-item-text-time">{% raw %} {{ getTimeFromImage(image) }} {% endraw %}</span>
                 </div>
             </div>
-            
-            {# <div class="img-item-div">
-                <img class="img-item-img" src="https://cn.bing.com//az/hprichbg/rb/TheLongWalk_ZH-CN11094733779_320x240.jpg" />
-                <div class="img-item-text-div">
-                    <span class="img-item-text-title">【今日中秋节】桨声灯影里的秦淮河</span>  
-                    <span class="img-item-text-location">美国加利福尼亚州</span>  
-                    <span class="img-item-text-time">2018/06/02</span>  
-                </div>
-            </div> #}
 
         </div>
 
         <div class="action-div">
 
+            <img id="actionLoading" class="action-loading-img" src="/images/logo_header.png"/>
 
-            <button v-show="state == STATE_IDLE" class="action-load-more-button">加载更多</button>
-
-            <div v-show="state == STATE_IDLE" class="action-jump-div">
+            <div id="actionJump" class="action-jump-div">
+                还有分页的 ...
                 <span class="action-jump-text">跳转至</span>
                 <input class="action-jump-input" type="text" placeholder="日期 / 条目"/>
                 <button class="action-jump-action-button">Go!</button>
             </div>
 
-            <img v-show="state == STATE_LOADING" class="action-loading-img" src="/images/logo_header.png"/>
-
-            <div v-show="state == STATE_FINISH" class="action-bottom-div">
+            <div id="actionFinish" class="action-bottom-div">
                 <div class="action-bottom-diver"></div>
                 <span class="action-bottom-text">已经到底了</span>
                 <div class="action-bottom-diver"></div>
@@ -56,5 +46,64 @@
 
     </div>
     
-    <script src="/js/index/index.js"></script>
+    {#<script src="/js/index/index.js"></script>#}
+    <script>
+        const STATE_LOADABLE = 0;
+        const STATE_LOADING = 1;
+        const STATE_FINISH = 2;
+        const STATE_FAIL = 3;
+
+        function setState(state){
+            document.getElementById('actionJump').style.display = 'none';
+            document.getElementById('actionLoading').style.display = 'none';
+            document.getElementById('actionFinish').style.display = 'none';
+            switch (state) {
+                case STATE_LOADABLE:{
+                    document.getElementById('actionJump').style.display = 'flex';
+                    break;
+                }
+                case STATE_LOADING:{
+                    document.getElementById('actionJump').style.display = 'flex';
+                    document.getElementById('actionLoading').style.display = 'flex';
+                    break;
+                }
+                case STATE_FAIL:{
+                    document.getElementById('actionJump').style.display = 'flex';
+                    document.getElementById('actionLoading').style.display = 'flex';
+                    break;
+                }
+                case STATE_FINISH:{
+                    document.getElementById('actionFinish').style.display = 'flex';
+                    break;
+                }
+            }
+        }
+
+        setState(STATE_LOADING)
+
+        var imgApp = new Vue({
+            el : '#app',
+            data : {
+                imageList : []
+            },
+            mounted : function(){
+                axios.get('/api/v1/url').then((response) => {
+                    if (response.data.flag == 200){
+
+                    } else{
+                        setState(STATE_FAIL)
+                    }
+                    imgApp.imageList = response.data.data
+                    console.log(imgApp.imageList)
+                }).catch((err) => {
+                    setState(STATE_FAIL)
+                })
+            },
+            methods : {
+                getTimeFromImage(image){
+                    return image.year+'/'+image.month+'/'+image.day
+                }
+            }
+        })
+    </script>
 {% endblock %}
