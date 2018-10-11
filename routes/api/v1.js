@@ -127,6 +127,7 @@ function urlGetTodayID(){
 }
 router.get('/url', async (ctx, next) => {
     const requestParam = ctx.request.query;
+    console.log(requestParam)
     if (!requestParam.count){ requestParam.count = 12 }
     if (!requestParam.start){ requestParam.start = urlGetTodayID() }
     if (!requestParam.size){ requestParam.size = SIZE_1920x1080.toString()+','+SIZE_320x240.toString(); }

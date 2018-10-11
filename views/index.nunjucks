@@ -10,11 +10,19 @@
 
 {% block body %}
 
+    <style>
+        .index-jump-page-div{ margin: 12px 0;display:flex;flex-wrap: nowrap;align-items: center;justify-content: space-around; }
+        .index-jump-button{ padding: 4px 6px;border: 0;border-radius: 100em;outline: 0;margin: 4px; }
+        .index-jump-button-clickable{ background: darkseagreen;color: white;cursor: pointer; }
+        .index-jump-button-unclickable{ background: lightgray;color: gray;cursor: auto; }
+    </style>
+
+
     <div class="content-div" id="app">
 
         <div class="img-div">
 
-            <div class="img-item-div" v-for="image in imageList">
+            <div class="img-item-div" v-for="image in imageList" v-on:click="onImageItemDivClick(image)">
                 <img class="img-item-img" {% raw %} v-bind:src="image.thumbnailImge" {% endraw %} />
                 <div class="img-item-text-div">
                     <span class="img-item-text-title">{% raw %} {{ image.title }} {% endraw %}</span>
@@ -27,13 +35,20 @@
 
         <div class="action-div">
 
-            <img id="actionLoading" class="action-loading-img" src="/images/logo_header.png"/>
+            <img id="actionLoading" class="action-loading-img" src="/icon/ic_loading_gray.gif"/>
 
             <div id="actionJump" class="action-jump-div">
-                还有分页的 ...
-                <span class="action-jump-text">跳转至</span>
-                <input class="action-jump-input" type="text" placeholder="日期 / 条目"/>
-                <button class="action-jump-action-button">Go!</button>
+
+                <div class="index-jump-page-div">
+                    <button class="index-jump-button index-jump-button-clickable">←</button>
+                    <button class="index-jump-button index-jump-button-unclickable">22</button>
+                    <button class="index-jump-button index-jump-button-clickable">→</button>
+                </div>
+                <div>
+                    <span class="action-jump-text">跳转至</span>
+                    <input class="action-jump-input" type="text" placeholder="页码"/>
+                    <button class="action-jump-action-button">Go!</button>
+                </div>
             </div>
 
             <div id="actionFinish" class="action-bottom-div">
@@ -64,7 +79,6 @@
                 }
                 case STATE_LOADING:{
                     document.getElementById('actionJump').style.display = 'flex';
-                    document.getElementById('actionLoading').style.display = 'flex';
                     break;
                 }
                 case STATE_FAIL:{
@@ -87,13 +101,16 @@
                 imageList : []
             },
             mounted : function(){
-                axios.get('/api/v1/url').then((response) => {
+                axios.get('/api/v1/url',{
+                    params : {
+                        count : 3
+                    }
+                }).then((response) => {
                     if (response.data.flag == 200){
-
+                        imgApp.imageList = response.data.data
                     } else{
                         setState(STATE_FAIL)
                     }
-                    imgApp.imageList = response.data.data
                     console.log(imgApp.imageList)
                 }).catch((err) => {
                     setState(STATE_FAIL)
@@ -102,8 +119,69 @@
             methods : {
                 getTimeFromImage(image){
                     return image.year+'/'+image.month+'/'+image.day
+                },
+                onImageItemDivClick(image){
+                    showView(true);
+                    setupViewContent(image.bing_url, image.title, image.location, imgApp.getTimeFromImage(image))
                 }
             }
         })
+    </script>
+{% endblock %}
+
+{% block global %}
+
+    <style>
+        .index-view-root-div{ position: fixed;z-index: 99999;width: 100%;height: 100%;background: url(/bing-image/2018/10/03/1920x1080.jpg) center;background-size: cover; }
+        .index-view-content-div{ width: 92%;bottom: 0px;position: absolute;display: flex;flex-direction: row;color: white;justify-content: space-between;align-items: center;background: rgba(0,0,0,0.5);padding: 1em 4%; }
+        .index-view-content-text-div{ display: flex;flex-direction: column;flex: 1; }
+        .index-view-content-text-title{ line-height: 1.6em;font-size: 1.5em; }
+        .index-view-content-text-location{ line-height: 1.6em; }
+        .index-view-content-extra{ line-height: 1.6em; }
+        .index-view-action-div{ display: flex;flex-direction: row;align-items: center }
+        .index-view-action-download{ background: green;margin: 0 16px 0 0;padding: 6px;height:56px;width:56px;border-radius: 100em;outline: none;border: 0px;cursor: pointer; }
+        .index-view-action-download-icon{ width: 30px;height: 30px; }
+        .index-view-close-button{ position:absolute;top: 0;right: 0;background: rgba(127,127,127,0.8);margin: 24px;outline: none;border-radius: 100em;padding: 0;border: 0;cursor: pointer;width: 52px;height: 52px; }
+        .index-view-close-button-icon{ width: 48px;height: 48px; }
+    </style>
+
+    <div id="viewRootDiv" class="index-view-root-div" style="display: none;">
+        <div class="index-view-content-div">
+            <div class="index-view-content-text-div">
+                <span id="viewTitle" class="index-view-content-text-title">-</span>
+                <span id="viewLocation" class="index-view-content-text-location">-</span>
+                <span id="viewExtra" class="index-view-content-extra">-</span>
+            </div>
+            <div class="index-view-action-div">
+                <button class="index-view-action-download"><img src="/icon/ic_download_white.png" class="index-view-action-download-icon"></button>
+            </div>
+        </div>
+        <button class="index-view-close-button" onclick="onViewCloseClick()"><img class="index-view-close-button-icon" src="/icon/ic_close_white.png"></button>
+    </div>
+
+    <script>
+
+        function setupViewContent(imgUrl, title, loaction, extra) {
+            document.getElementById('viewRootDiv').style.background = 'url('+imgUrl+') center';
+            document.getElementById('viewTitle').innerText = title;
+            document.getElementById('viewLocation').innerText = loaction;
+            document.getElementById('viewExtra').innerText = extra;
+        }
+
+        function showView(state) {
+            if (state){
+                document.getElementById('viewRootDiv').style.display = 'block'
+            } else{
+                document.getElementById('viewRootDiv').style.display = 'none'
+            }
+        }
+
+        function onViewCloseClick() {
+            showView(false)
+        }
+
+        function onViewDownloadClick() {
+
+        }
     </script>
 {% endblock %}
