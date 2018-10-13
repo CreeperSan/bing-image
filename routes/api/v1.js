@@ -126,13 +126,20 @@ function urlGetTodayID(){
     return year.toString()+month.toString()+day.toString();
 }
 router.get('/url', async (ctx, next) => {
+    let returnObject = {}
     const requestParam = ctx.request.query;
     console.log(requestParam)
     if (!requestParam.count){ requestParam.count = 12 }
-    if (!requestParam.start){ requestParam.start = urlGetTodayID() }
+    if (!requestParam.page){ requestParam.page = 1; }
     if (!requestParam.size){ requestParam.size = SIZE_1920x1080.toString()+','+SIZE_320x240.toString(); }
-    const queryData = await database.getBingInfo( requestParam.start, requestParam.count )
-    ctx.body = createResponse(CODE_SUCCESS, queryData)
+    const queryData = await database.getBingInfo( requestParam.page, requestParam.count )
+    let tmpLineCount = await database.getBingImageCount()
+    if (tmpLineCount.success){
+        tmpLineCount = tmpLineCount.result[0]['count(_id)']
+        returnObject.itemCount = tmpLineCount
+    }
+    returnObject.imgList = queryData
+    ctx.body = createResponse(CODE_SUCCESS, returnObject)
 
 })
 
@@ -143,7 +150,7 @@ router.get('/url', async (ctx, next) => {
  *            start 开始的日期
  *            size  获取的图片尺寸
  */
-router.get('/url', async (ctx, next) => {
+router.get('/url-page', async (ctx, next) => {
 })
 
 /**
@@ -227,5 +234,13 @@ router.get('/rank', async (ctx, next) => {
  * 链接功能:   获取服务器中随机一个图片信息
  * 请求参数:   无
  */
+router.get('/random', async (ctx, next) => {
+    let requestCount = parseInt(ctx.request.query.count)
+    if (!requestCount) { requestCount = 1 }
+
+    const databaseResult = await database.getRandomImage(requestCount)
+    ctx.body = createResponse(CODE_SUCCESS, databaseResult.result)
+})
+
 
 module.exports = router;

@@ -2,26 +2,79 @@
 
 {% block title %}必应壁纸 - 随便看看{% endblock %}
 
+{% block head_res %}
+    <script src="/lib/axios/axios.js"></script>
+    <script src="/lib/vue/vue.js"></script>
+{% endblock %}
+
 {% block body %}
 
-<div style="background:#eee;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+    <style>
+        .body-content-root-div{ background:#eee;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center; }
+        .body-content-img-div{ max-width:1280px;width:80%;margin:3em 0;padding:0;position:relative;display:block; }
+        .body-content-img-img{ width:100%;height:100%;box-shadow: gray 0 0 6px; }
+        .body-content-img-info-div{ width:94%;display:flex;flex-direction:column;bottom:6px;padding:3%;background:rgba(0,0,0,0.5);position:absolute; }
+        .body-content-img-info-title{ color:lightgray; }
+        .body-content-img-info-location{ color:lightgray; }
+        .body-content-img-info-extra{ color:lightgray; }
+        .body-content-action-div{ display:flex;flex-direction:row;align-items:center;justify-content:center;margin-bottom:3em; }
+        .body-content-action-button{ width:3em;height:3em;border-radius:3em;background:pink;margin:0 3em;padding: 1em; }
+    </style>
 
-    <div style="max-width:1280px;width:80%;margin:3em 0;padding:0;position:relative;display:box;">
-        <img style="width:100%;height:100%;" src="https://cn.bing.com/az/hprichbg/rb/TheLongWalk_ZH-CN11094733779_1920x1080.jpg" />
-        <div style="width:94%;display:flex;flex-direction:column;bottom:3px;padding:3%;background:rgba(0,0,0,0.5);position:absolute;">
-            <span style="color:lightgray;">asdadasd</span>
-            <span style="color:lightgray;">asdadasd</span>
-            <span style="color:lightgray;">asdadasd</span>
+    <div class="body-content-root-div" id="randomApp">
+
+        <div class="body-content-img-div">
+            <img class="body-content-img-img" id="randomBigImage" v-bind:src="imgUrl"/>
+            <div class="body-content-img-info-div">
+                <span class="body-content-img-info-title" id="randomTitle">{% raw %}{{ imgTitle }}{% endraw %}</span>
+                <span class="body-content-img-info-location" id="randomLocation">{% raw %}{{ imgLocation }}{% endraw %}</span>
+                <span class="body-content-img-info-extra" id="randomExtra">{% raw %}{{ imgExtra }}{% endraw %}</span>
+            </div>
         </div>
+
+        <div class="body-content-action-div">
+            <img class="body-content-action-button" src="/icon/ic_download_white.png"/>
+            <img class="body-content-action-button" src="/icon/ic_refresh_white.png" onclick="randomApp.getAndLoadRandomImage()"/>
+        </div>
+
     </div>
 
-    <div style="display:flex;flex-direction:row;align-items:center;justify-content:center;margin-bottom:3em;">
-        <img style="width:3em;height:3em:border-radius:3em;background:pink;margin:0 3em;" src="/images/logo_header.png"/>
-        <img style="width:3em;height:3em:border-radius:3em;background:pink;margin:0 3em;" src="/images/logo_header.png"/>
-        <img style="width:3em;height:3em:border-radius:3em;background:pink;margin:0 3em;" src="/images/logo_header.png"/>
-    </div>
+    <script>
+        let randomApp = new Vue({
+            el: '#randomApp',
+            mounted: function () {
+                this.getAndLoadRandomImage()
+            },
+            data() {
+                return {
+                    imgTitle: '',
+                    imgLocation: '',
+                    imgExtra: '',
+                    imgUrl: 'https://cn.bing.com/az/hprichbg/rb/TheLongWalk_ZH-CN11094733779_1920x1080.jpg'
+                }
+            },
+            methods: {
+                getAndLoadRandomImage: function () {
+                    const self = this;
+                    axios.get('/api/v1/random').then((response) => {
+                        if (response.status == 200) {
+                            const tmpRandomData = response.data.data[0]
+                            if (tmpRandomData) {
+                                self.imgTitle = tmpRandomData.title
+                                self.imgLocation = tmpRandomData.location
+                                self.imgExtra = tmpRandomData._id
+                                self.imgUrl = tmpRandomData.path
+                            }
+                        } else {
 
-
-</div>
+                        }
+                        console.log(response)
+                    }).catch((err) => {
+                        console.log(err)
+                    })
+                }
+            }
+        })
+    </script>
 
 {% endblock %}

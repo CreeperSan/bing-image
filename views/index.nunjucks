@@ -12,15 +12,14 @@
 
     <style>
         .index-jump-page-div{ margin: 12px 0;display:flex;flex-wrap: nowrap;align-items: center;justify-content: space-around; }
-        .index-jump-button{ padding: 4px 6px;border: 0;border-radius: 100em;outline: 0;margin: 4px; }
-        .index-jump-button-clickable{ background: darkseagreen;color: white;cursor: pointer; }
-        .index-jump-button-unclickable{ background: lightgray;color: gray;cursor: auto; }
+        .index-jump-button-div { background: gray;height: 36px;width: 36px;display: flex;justify-content: center;align-items: center;border-radius: 36px;color: white;margin: 6px; }
+        .clickable { cursor: pointer }
     </style>
 
 
     <div class="content-div" id="app">
 
-        <div class="img-div">
+        <div class="img-div" id="actionImageList">
 
             <div class="img-item-div" v-for="image in imageList" v-on:click="onImageItemDivClick(image)">
                 <img class="img-item-img" {% raw %} v-bind:src="image.thumbnailImge" {% endraw %} />
@@ -40,14 +39,20 @@
             <div id="actionJump" class="action-jump-div">
 
                 <div class="index-jump-page-div">
-                    <button class="index-jump-button index-jump-button-clickable">←</button>
-                    <button class="index-jump-button index-jump-button-unclickable">22</button>
-                    <button class="index-jump-button index-jump-button-clickable">→</button>
+                    <div class="index-jump-button-div clickable" v-on:click="onPrevPageClick()" id="indexJumpPrev">
+                        <img src="/icon/ic_prev_white.png" style="width: 60%;height: 60%;">
+                    </div>
+                    <div class="index-jump-button-div" style="width: 82px">
+                        <span >{% raw %}{{ page }} / {{ pageTotal }}{% endraw %}</span>
+                    </div>
+                    <div class="index-jump-button-div clickable" v-on:click="onNextPageClick()" id="indexJumpNext">
+                        <img src="/icon/ic_right_white.png" style="width: 60%;height: 60%;">
+                    </div>
                 </div>
                 <div>
                     <span class="action-jump-text">跳转至</span>
-                    <input class="action-jump-input" type="text" placeholder="页码"/>
-                    <button class="action-jump-action-button">Go!</button>
+                    <input class="action-jump-input" id="indexPageInput" type="number" placeholder="页码"/>
+                    <button class="action-jump-action-button" v-on:click="onPageClick()">Go!</button>
                 </div>
             </div>
 
@@ -72,13 +77,16 @@
             document.getElementById('actionJump').style.display = 'none';
             document.getElementById('actionLoading').style.display = 'none';
             document.getElementById('actionFinish').style.display = 'none';
+            document.getElementById('actionImageList').style.display = 'none';
             switch (state) {
                 case STATE_LOADABLE:{
                     document.getElementById('actionJump').style.display = 'flex';
+                    document.getElementById('actionImageList').style.display = 'flex';
                     break;
                 }
                 case STATE_LOADING:{
                     document.getElementById('actionJump').style.display = 'flex';
+                    document.getElementById('actionLoading').style.display = 'flex';
                     break;
                 }
                 case STATE_FAIL:{
@@ -93,28 +101,42 @@
             }
         }
 
-        setState(STATE_LOADING)
+        function showPrevButton(isShow){
+            if (isShow){
+                document.getElementById('indexJumpPrev').style.display = 'flex'
+            } else {
+                document.getElementById('indexJumpPrev').style.display = 'none'
+            }
+        }
 
-        var imgApp = new Vue({
+        function showNextButton(isShow){
+            if (isShow){
+                document.getElementById('indexJumpNext').style.display = 'flex'
+            } else {
+                document.getElementById('indexJumpNext').style.display = 'none'
+            }
+        }
+
+        async function delay(ms) {
+            return new Promise(((resolve, reject) => {
+                setTimeout(()=>{
+                    resolve()
+                } ,ms)
+            }))
+        }
+
+        const imgApp = new Vue({
             el : '#app',
             data : {
-                imageList : []
+                imageList : [],
+                page : 1,
+                pageCount : 12,
+                pageTotal : 1,
+                isLoading : false
             },
             mounted : function(){
-                axios.get('/api/v1/url',{
-                    params : {
-                        count : 3
-                    }
-                }).then((response) => {
-                    if (response.data.flag == 200){
-                        imgApp.imageList = response.data.data
-                    } else{
-                        setState(STATE_FAIL)
-                    }
-                    console.log(imgApp.imageList)
-                }).catch((err) => {
-                    setState(STATE_FAIL)
-                })
+                this.getAndRefreshData();
+                this.onRefreshPageButton();
             },
             methods : {
                 getTimeFromImage(image){
@@ -122,7 +144,69 @@
                 },
                 onImageItemDivClick(image){
                     showView(true);
-                    setupViewContent(image.bing_url, image.title, image.location, imgApp.getTimeFromImage(image))
+                    setupViewContent(this.getLocalImage(image), image.title, image.location, imgApp.getTimeFromImage(image))
+                },
+                async getAndRefreshData(){
+                    const self = this;
+                    self.isLoading = true;
+                    setState(STATE_LOADING)
+                    axios.get('/api/v1/url?page='+this.page+'&count='+this.pageCount).then((response) => {
+                        if (response.data.flag == 200){
+                            const tmpData = response.data.data
+                            console.log(tmpData)
+                            self.imageList = tmpData.imgList
+                            self.pageTotal = Math.ceil(tmpData.itemCount / self.pageCount)
+                            setState(STATE_LOADABLE)
+                        } else {
+                            setState(STATE_FAIL)
+                        }
+                        self.isLoading = false;
+                        self.onRefreshPageButton();
+                    }).catch((err) => {
+                        setState(STATE_FAIL)
+                        self.isLoading = false;
+                        self.onRefreshPageButton();
+                    })
+                },
+                onNextPageClick(){
+                    if (this.page < this.pageTotal && this.page > 0){
+                        this.page += 1;
+                        this.onRefreshPageButton()
+                        this.getAndRefreshData()
+                    }
+                },
+                onPrevPageClick(){
+                    if (this.page <= this.pageTotal && this.page > 1){
+                        this.page -= 1;
+                        this.onRefreshPageButton()
+                        this.getAndRefreshData()
+                    }
+                },
+                onRefreshPageButton(){
+                    showPrevButton(this.page > 1)
+                    showNextButton(this.page < this.pageTotal)
+                    if (this.page < 1){
+                        this.page = 1;
+                    }
+                    if (this.page > this.pageTotal) {
+                        this.page = this.pageTotal
+                    }
+                },
+                onPageClick(){
+                    let pageNum = document.getElementById('indexPageInput').value
+                    if (!pageNum) { pageNum = 1 }
+                    parseInt(pageNum)
+                    this.page = pageNum
+                    this.getAndRefreshData()
+                },
+                getLocalImage(image){
+                    let tmpMonth = image.month
+                    let tmpDay = image.day
+
+                    if (tmpMonth < 10){ tmpMonth='0'+tmpMonth.toString() }
+                    if (tmpDay < 10){ tmpDay='0'+tmpDay.toString() }
+
+                    return '/bing-image/'+image.year+'/'+tmpMonth+'/'+tmpDay+'/1920x1080.jpg'
                 }
             }
         })
@@ -180,8 +264,5 @@
             showView(false)
         }
 
-        function onViewDownloadClick() {
-
-        }
     </script>
 {% endblock %}

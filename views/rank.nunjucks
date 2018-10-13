@@ -29,7 +29,6 @@
 
 
     <script>
-        // const REQUEST_PREFIX = "/rank"
         const URL_GET_ALL_RANK = "/api/v1/rank"
 
         var rankApp = new Vue({
