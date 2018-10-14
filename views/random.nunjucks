@@ -19,6 +19,10 @@
         .body-content-img-info-extra{ color:lightgray; }
         .body-content-action-div{ display:flex;flex-direction:row;align-items:center;justify-content:center;margin-bottom:3em; }
         .body-content-action-button{ width:3em;height:3em;border-radius:3em;background:pink;margin:0 3em;padding: 1em; }
+        .body-content-download-div{  }
+        .body-content-download-title{ text-align: center; }
+        .body-content-download-item-div{ display: flex;flex-direction: row;justify-content: center;align-items: center;max-width: 80%;flex-wrap: wrap;margin: auto; }
+        .body-content-download-item{ margin: 6px 12px;text-decoration: none;border: 1px solid;padding: 3px 12px;border-radius: 100em;  }
     </style>
 
     <div class="body-content-root-div" id="randomApp">
@@ -35,6 +39,30 @@
         <div class="body-content-action-div">
             <img class="body-content-action-button" src="/icon/ic_download_white.png"/>
             <img class="body-content-action-button" src="/icon/ic_refresh_white.png" onclick="randomApp.getAndLoadRandomImage()"/>
+        </div>
+        <div class="body-content-download-div">
+            <p class="body-content-download-title">按照指定分辨率下载图片</p>
+            <div class="body-content-download-item-div">
+                <a class="body-content-download-item" href="">1920 × 1200</a>
+                <a class="body-content-download-item" href="">1920 × 1080</a>
+                <a class="body-content-download-item" href="">1366 × 768</a>
+                <a class="body-content-download-item" href="">1280 × 768</a>
+                <a class="body-content-download-item" href="">1280 × 720</a>
+                <a class="body-content-download-item" href="">1080 × 1920</a>
+                <a class="body-content-download-item" href="">1024 × 768</a>
+                <a class="body-content-download-item" href="">800 × 600</a>
+                <a class="body-content-download-item" href="">800 × 480</a>
+                <a class="body-content-download-item" href="">768 × 1366</a>
+                <a class="body-content-download-item" href="">768 × 1280</a>
+                <a class="body-content-download-item" href="">720 × 1280</a>
+                <a class="body-content-download-item" href="">640 × 480</a>
+                <a class="body-content-download-item" href="">480 × 800</a>
+                <a class="body-content-download-item" href="">480 × 640</a>
+                <a class="body-content-download-item" href="">400 × 240</a>
+                <a class="body-content-download-item" href="">320 × 240</a>
+                <a class="body-content-download-item" href="">240 × 400</a>
+                <a class="body-content-download-item" href="">240 × 320</a>
+            </div>
         </div>
 
     </div>
