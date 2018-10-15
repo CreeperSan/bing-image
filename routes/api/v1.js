@@ -1,7 +1,9 @@
 const router = require('koa-router')();
 const request = require('request');
+const fs = require('fs')
 
 const database = require(process.cwd()+'/lib/database');
+const screenResoluction = require(process.cwd()+'/lib/screen-resolution');
 
 router.prefix('/api/v1');
 
@@ -60,7 +62,9 @@ const SIZE_480x640      = 16
 const SIZE_240x400      = 17
 const SIZE_240x320      = 18
 
-
+const sizeList = [SIZE_1920X1200, SIZE_1920x1080, SIZE_1366x726, SIZE_1280x720, SIZE_1024x768, SIZE_800x600, SIZE_800x480,
+    SIZE_640x480, SIZE_400x240, SIZE_320x240, SIZE_1080x1920, SIZE_768x1366, SIZE_768x1280,
+    SIZE_720x1280, SIZE_480x800, SIZE_480x640, SIZE_240x400, SIZE_240x320]
 
 
 /**
@@ -242,5 +246,27 @@ router.get('/random', async (ctx, next) => {
     ctx.body = createResponse(CODE_SUCCESS, databaseResult.result)
 })
 
+/**
+ * 请求地址:   /random
+ * 链接功能:   获取服务器中随机一个图片信息
+ * 请求参数:   date 图片日期 eg:20180403
+ *            size 图片尺寸 eg:1  默认是1080p，具体表格参照上面常量定义
+ */
+router.get('/download', async (ctx, next) => {
+    let requestParam = ctx.request.query
+    let tmpDate = requestParam.date
+    let tmpSize = requestParam.size
+
+    if (!tmpSize) { tmpSize = SIZE_1920x1080 }
+
+    if (!tmpDate || !(tmpSize in sizeList)){
+        ctx.status = 400
+    }else{
+        const tmpYear = tmpDate.substr(0, 4);
+        const tmpMonth = tmpDate.substr(4, 2);
+        const tmpDay = tmpDate.substr(6, 2);
+        fs.existsSync()
+    }
+})
 
 module.exports = router;

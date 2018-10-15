@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2fcac69a-6837-4c4d-9a39-e84ff4a62160" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/screen-resolution.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/v1.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/v1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/random.nunjucks" beforeDir="false" afterPath="$PROJECT_DIR$/views/random.nunjucks" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,8 +22,8 @@
         <counts>
           <entry key="project.closed" value="10" />
           <entry key="project.open.time.2" value="5" />
-          <entry key="project.open.time.3" value="5" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.open.time.3" value="6" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -29,9 +31,9 @@
           <entry key="css" value="235" />
           <entry key="gitignore" value="21" />
           <entry key="html" value="5" />
-          <entry key="js" value="7032" />
+          <entry key="js" value="8156" />
           <entry key="json" value="10" />
-          <entry key="nunjucks" value="7390" />
+          <entry key="nunjucks" value="7401" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -39,9 +41,9 @@
           <entry key="CSS" value="235" />
           <entry key="HTML" value="5" />
           <entry key="JSON" value="10" />
-          <entry key="JavaScript" value="7032" />
+          <entry key="JavaScript" value="8156" />
           <entry key="PLAIN_TEXT" value="21" />
-          <entry key="Twig" value="7390" />
+          <entry key="Twig" value="7401" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -51,7 +53,7 @@
           <entry key="gitignore" value="1" />
           <entry key="html" value="1" />
           <entry key="jpg" value="45" />
-          <entry key="js" value="23" />
+          <entry key="js" value="25" />
           <entry key="json" value="1" />
           <entry key="nunjucks" value="11" />
         </counts>
@@ -62,7 +64,7 @@
           <entry key="HTML" value="1" />
           <entry key="Image" value="46" />
           <entry key="JSON" value="1" />
-          <entry key="JavaScript" value="23" />
+          <entry key="JavaScript" value="25" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Twig" value="11" />
         </counts>
@@ -72,10 +74,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/random.nunjucks">
+        <entry file="file://$PROJECT_DIR$/routes/api/v1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="34">
+              <caret line="2" column="24" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+              <folding>
+                <element signature="n#!!block;n#rankCreateRankObject#0" />
+                <element signature="e#4389#6629#0" />
+                <element signature="e#6741#6984#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/screen-resolution.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1088">
+              <caret line="64" column="59" selection-start-line="64" selection-start-column="59" selection-end-line="64" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -130,11 +146,12 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/views/base/base.nunjucks" />
         <option value="$PROJECT_DIR$/views/rank.nunjucks" />
-        <option value="$PROJECT_DIR$/routes/api/v1.js" />
         <option value="$PROJECT_DIR$/lib/database.js" />
         <option value="$PROJECT_DIR$/public/css/index/index.css" />
         <option value="$PROJECT_DIR$/views/index.nunjucks" />
         <option value="$PROJECT_DIR$/views/random.nunjucks" />
+        <option value="$PROJECT_DIR$/lib/screen-resolution.js" />
+        <option value="$PROJECT_DIR$/routes/api/v1.js" />
       </list>
     </option>
   </component>
@@ -177,6 +194,11 @@
             <path>
               <item name="bing-image" type="b2602c69:ProjectViewProjectNode" />
               <item name="bing-image" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bing-image" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bing-image" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -212,42 +234,12 @@
               <item name="bing-image" type="462c0819:PsiDirectoryNode" />
               <item name="2018" type="462c0819:PsiDirectoryNode" />
               <item name="10" type="462c0819:PsiDirectoryNode" />
-              <item name="10" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bing-image" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bing-image" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="icon" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bing-image" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bing-image" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bing-image" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bing-image" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="index" type="462c0819:PsiDirectoryNode" />
+              <item name="03" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="bing-image" type="b2602c69:ProjectViewProjectNode" />
               <item name="bing-image" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bing-image" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bing-image" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bing-image" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bing-image" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -333,11 +325,12 @@
       <workItem from="1539351049762" duration="2514000" />
       <workItem from="1539393748464" duration="13646000" />
       <workItem from="1539437780787" duration="4857000" />
+      <workItem from="1539616955153" duration="1825000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67680000" />
+    <option name="totallyTimeSpent" value="69505000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -352,13 +345,13 @@
     <frame x="0" y="23" width="1920" height="981" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17377567" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17377567" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3295838" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3295838" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3982002" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -379,7 +372,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bing_img/2018/09/00/1024x768.jpg" />
     <entry file="file://$PROJECT_DIR$/bing_img/2018/09/00/800x480.jpg" />
     <entry file="file://$PROJECT_DIR$/bing_img/2018/09/00/768x1280.jpg" />
     <entry file="file://$PROJECT_DIR$/bing_img/2018/09/00/480x640.jpg" />
@@ -503,16 +495,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api/v1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="134" column="41" selection-start-line="134" selection-start-column="41" selection-end-line="134" selection-end-column="41" />
-          <folding>
-            <element signature="n#!!block;n#rankCreateRankObject#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/database.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="501">
@@ -522,8 +504,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/random.nunjucks">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="13">
+          <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screen-resolution.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="64" column="59" selection-start-line="64" selection-start-column="59" selection-end-line="64" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api/v1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="24" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+          <folding>
+            <element signature="n#!!block;n#rankCreateRankObject#0" />
+            <element signature="e#4389#6629#0" />
+            <element signature="e#6741#6984#0" />
+          </folding>
         </state>
       </provider>
     </entry>
