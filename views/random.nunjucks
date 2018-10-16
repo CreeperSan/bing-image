@@ -3,33 +3,16 @@
 {% block title %}必应壁纸 - 随便看看{% endblock %}
 
 {% block head_res %}
+    <link rel="stylesheet" href="/css/random/random.css" />
     <script src="/lib/axios/axios.js"></script>
     <script src="/lib/vue/vue.js"></script>
 {% endblock %}
 
 {% block body %}
-
-    <style>
-        .body-content-root-div{ background:#eee;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center; }
-        .body-content-img-div{ max-width:1280px;width:80%;margin:3em 0;padding:0;position:relative;display:block; }
-        .body-content-img-img{ width:100%;height:100%;box-shadow: gray 0 0 6px; }
-        .body-content-img-info-div{ width:94%;display:flex;flex-direction:column;bottom:6px;padding:3%;background:rgba(0,0,0,0.5);position:absolute; }
-        .body-content-img-info-title{ color:lightgray; }
-        .body-content-img-info-location{ color:lightgray; }
-        .body-content-img-info-extra{ color:lightgray; }
-        .body-content-action-div{ display:flex;flex-direction:row;align-items:center;justify-content:center;margin-bottom:3em; }
-        .body-content-action-button{ width:3em;height:3em;border-radius:3em;background:pink;margin:0 3em;padding: 1em; }
-        .body-content-download-div{ margin: 16px 0; }
-        .body-content-download-title{ text-align: center; }
-        .body-content-download-item-div{ display: flex;flex-direction: row;justify-content: center;align-items: center;max-width: 80%;flex-wrap: wrap;margin: auto; }
-        .body-content-download-item{ margin: 6px 12px;text-decoration: none;border: 1px solid;padding: 3px 12px;border-radius: 100em;  }
-    </style>
-
     <div class="body-content-root-div" id="randomApp">
 
-        <div class="body-content-img-div">
-            <img class="body-content-img-img" id="randomBigImage" v-bind:src="imgUrl"/>
-            <div class="body-content-img-info-div">
+        <div id="randomImageView" class="body-content-img-div" >
+            <div class="body-content-img-info-div" id="randomImage">
                 <span class="body-content-img-info-title" id="randomTitle">{% raw %}{{ imgTitle }}{% endraw %}</span>
                 <span class="body-content-img-info-location" id="randomLocation">{% raw %}{{ imgLocation }}{% endraw %}</span>
                 <span class="body-content-img-info-extra" id="randomExtra">{% raw %}{{ imgExtra }}{% endraw %}</span>
@@ -37,72 +20,35 @@
         </div>
 
         <div class="body-content-action-div">
-            <img class="body-content-action-button" src="/icon/ic_download_white.png"/>
+            <a v-bind:href="getImageDownloadLink()"><img class="body-content-action-button" src="/icon/ic_download_white.png"/></a>
             <img class="body-content-action-button" src="/icon/ic_refresh_white.png" onclick="randomApp.getAndLoadRandomImage()"/>
         </div>
         <div class="body-content-download-div">
             <p class="body-content-download-title">按照指定分辨率下载图片</p>
             <div class="body-content-download-item-div">
-                <a class="body-content-download-item" href="">1920 × 1200</a>
-                <a class="body-content-download-item" href="">1920 × 1080</a>
-                <a class="body-content-download-item" href="">1366 × 768</a>
-                <a class="body-content-download-item" href="">1280 × 768</a>
-                <a class="body-content-download-item" href="">1280 × 720</a>
-                <a class="body-content-download-item" href="">1080 × 1920</a>
-                <a class="body-content-download-item" href="">1024 × 768</a>
-                <a class="body-content-download-item" href="">800 × 600</a>
-                <a class="body-content-download-item" href="">800 × 480</a>
-                <a class="body-content-download-item" href="">768 × 1366</a>
-                <a class="body-content-download-item" href="">768 × 1280</a>
-                <a class="body-content-download-item" href="">720 × 1280</a>
-                <a class="body-content-download-item" href="">640 × 480</a>
-                <a class="body-content-download-item" href="">480 × 800</a>
-                <a class="body-content-download-item" href="">480 × 640</a>
-                <a class="body-content-download-item" href="">400 × 240</a>
-                <a class="body-content-download-item" href="">320 × 240</a>
-                <a class="body-content-download-item" href="">240 × 400</a>
-                <a class="body-content-download-item" href="">240 × 320</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 00 )">1920 × 1200</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 01 )">1920 × 1080</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 02 )">1366 × 768</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 03 )">1280 × 720</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 04 )">1024 × 768</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 05 )">800 × 600</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 06 )">800 × 480</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 07 )">640 × 480</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 08 )">400 × 240</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 09 )">320 × 240</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 10 )">1080 × 1920</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 11 )">768 × 1366</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 12 )">768 × 1280</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 13 )">720 × 1280</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 14 )">480 × 800</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 15 )">480 × 640</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 16 )">240 × 400</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 17 )">240 × 320</a>
             </div>
         </div>
 
     </div>
 
-    <script>
-        let randomApp = new Vue({
-            el: '#randomApp',
-            mounted: function () {
-                this.getAndLoadRandomImage()
-            },
-            data() {
-                return {
-                    imgTitle: '',
-                    imgLocation: '',
-                    imgExtra: '',
-                    imgUrl: 'https://cn.bing.com/az/hprichbg/rb/TheLongWalk_ZH-CN11094733779_1920x1080.jpg'
-                }
-            },
-            methods: {
-                getAndLoadRandomImage: function () {
-                    const self = this;
-                    axios.get('/api/v1/random').then((response) => {
-                        if (response.status == 200) {
-                            const tmpRandomData = response.data.data[0]
-                            if (tmpRandomData) {
-                                self.imgTitle = tmpRandomData.title
-                                self.imgLocation = tmpRandomData.location
-                                self.imgExtra = tmpRandomData._id
-                                self.imgUrl = tmpRandomData.path
-                            }
-                        } else {
-
-                        }
-                        console.log(response)
-                    }).catch((err) => {
-                        console.log(err)
-                    })
-                }
-            }
-        })
-    </script>
+    <script src="/js/random/random.js"></script>
 
 {% endblock %}

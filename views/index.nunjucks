@@ -10,13 +10,6 @@
 
 {% block body %}
 
-    <style>
-        .index-jump-page-div{ margin: 12px 0;display:flex;flex-wrap: nowrap;align-items: center;justify-content: space-around; }
-        .index-jump-button-div { background: gray;height: 36px;width: 36px;display: flex;justify-content: center;align-items: center;border-radius: 36px;color: white;margin: 6px; }
-        .clickable { cursor: pointer }
-    </style>
-
-
     <div class="content-div" id="app">
 
         <div class="img-div" id="actionImageList">
@@ -49,11 +42,11 @@
                         <img src="/icon/ic_right_white.png" style="width: 60%;height: 60%;">
                     </div>
                 </div>
-                <div>
-                    <span class="action-jump-text">跳转至</span>
-                    <input class="action-jump-input" id="indexPageInput" type="number" placeholder="页码"/>
-                    <button class="action-jump-action-button" v-on:click="onPageClick()">Go!</button>
-                </div>
+                {#<div>#}
+                    {#<span class="action-jump-text">跳转至</span>#}
+                    {#<input class="action-jump-input" id="indexPageInput" type="number" placeholder="页码"/>#}
+                    {#<button class="action-jump-action-button" v-on:click="onPageClick()">Go!</button>#}
+                {#</div>#}
             </div>
 
             <div id="actionFinish" class="action-bottom-div">
@@ -66,169 +59,10 @@
 
     </div>
     
-    {#<script src="/js/index/index.js"></script>#}
-    <script>
-        const STATE_LOADABLE = 0;
-        const STATE_LOADING = 1;
-        const STATE_FINISH = 2;
-        const STATE_FAIL = 3;
-
-        function setState(state){
-            document.getElementById('actionJump').style.display = 'none';
-            document.getElementById('actionLoading').style.display = 'none';
-            document.getElementById('actionFinish').style.display = 'none';
-            document.getElementById('actionImageList').style.display = 'none';
-            switch (state) {
-                case STATE_LOADABLE:{
-                    document.getElementById('actionJump').style.display = 'flex';
-                    document.getElementById('actionImageList').style.display = 'flex';
-                    break;
-                }
-                case STATE_LOADING:{
-                    document.getElementById('actionJump').style.display = 'flex';
-                    document.getElementById('actionLoading').style.display = 'flex';
-                    break;
-                }
-                case STATE_FAIL:{
-                    document.getElementById('actionJump').style.display = 'flex';
-                    document.getElementById('actionLoading').style.display = 'flex';
-                    break;
-                }
-                case STATE_FINISH:{
-                    document.getElementById('actionFinish').style.display = 'flex';
-                    break;
-                }
-            }
-        }
-
-        function showPrevButton(isShow){
-            if (isShow){
-                document.getElementById('indexJumpPrev').style.display = 'flex'
-            } else {
-                document.getElementById('indexJumpPrev').style.display = 'none'
-            }
-        }
-
-        function showNextButton(isShow){
-            if (isShow){
-                document.getElementById('indexJumpNext').style.display = 'flex'
-            } else {
-                document.getElementById('indexJumpNext').style.display = 'none'
-            }
-        }
-
-        async function delay(ms) {
-            return new Promise(((resolve, reject) => {
-                setTimeout(()=>{
-                    resolve()
-                } ,ms)
-            }))
-        }
-
-        const imgApp = new Vue({
-            el : '#app',
-            data : {
-                imageList : [],
-                page : 1,
-                pageCount : 12,
-                pageTotal : 1,
-                isLoading : false
-            },
-            mounted : function(){
-                this.getAndRefreshData();
-                this.onRefreshPageButton();
-            },
-            methods : {
-                getTimeFromImage(image){
-                    return image.year+'/'+image.month+'/'+image.day
-                },
-                onImageItemDivClick(image){
-                    showView(true);
-                    setupViewContent(this.getLocalImage(image), image.title, image.location, imgApp.getTimeFromImage(image))
-                },
-                async getAndRefreshData(){
-                    const self = this;
-                    self.isLoading = true;
-                    setState(STATE_LOADING)
-                    axios.get('/api/v1/url?page='+this.page+'&count='+this.pageCount).then((response) => {
-                        if (response.data.flag == 200){
-                            const tmpData = response.data.data
-                            console.log(tmpData)
-                            self.imageList = tmpData.imgList
-                            self.pageTotal = Math.ceil(tmpData.itemCount / self.pageCount)
-                            setState(STATE_LOADABLE)
-                        } else {
-                            setState(STATE_FAIL)
-                        }
-                        self.isLoading = false;
-                        self.onRefreshPageButton();
-                    }).catch((err) => {
-                        setState(STATE_FAIL)
-                        self.isLoading = false;
-                        self.onRefreshPageButton();
-                    })
-                },
-                onNextPageClick(){
-                    if (this.page < this.pageTotal && this.page > 0){
-                        this.page += 1;
-                        this.onRefreshPageButton()
-                        this.getAndRefreshData()
-                    }
-                },
-                onPrevPageClick(){
-                    if (this.page <= this.pageTotal && this.page > 1){
-                        this.page -= 1;
-                        this.onRefreshPageButton()
-                        this.getAndRefreshData()
-                    }
-                },
-                onRefreshPageButton(){
-                    showPrevButton(this.page > 1)
-                    showNextButton(this.page < this.pageTotal)
-                    if (this.page < 1){
-                        this.page = 1;
-                    }
-                    if (this.page > this.pageTotal) {
-                        this.page = this.pageTotal
-                    }
-                },
-                onPageClick(){
-                    let pageNum = document.getElementById('indexPageInput').value
-                    if (!pageNum) { pageNum = 1 }
-                    parseInt(pageNum)
-                    this.page = pageNum
-                    this.getAndRefreshData()
-                },
-                getLocalImage(image){
-                    let tmpMonth = image.month
-                    let tmpDay = image.day
-
-                    if (tmpMonth < 10){ tmpMonth='0'+tmpMonth.toString() }
-                    if (tmpDay < 10){ tmpDay='0'+tmpDay.toString() }
-
-                    return '/bing-image/'+image.year+'/'+tmpMonth+'/'+tmpDay+'/1920x1080.jpg'
-                }
-            }
-        })
-    </script>
+    <script src="/js/index/index.js"></script>
 {% endblock %}
 
 {% block global %}
-
-    <style>
-        .index-view-root-div{ position: fixed;z-index: 99999;width: 100%;height: 100%;background: url(/bing-image/2018/10/03/1920x1080.jpg) center;background-size: cover; }
-        .index-view-content-div{ width: 92%;bottom: 0px;position: absolute;display: flex;flex-direction: row;color: white;justify-content: space-between;align-items: center;background: rgba(0,0,0,0.5);padding: 1em 4%; }
-        .index-view-content-text-div{ display: flex;flex-direction: column;flex: 1; }
-        .index-view-content-text-title{ line-height: 1.6em;font-size: 1.5em; }
-        .index-view-content-text-location{ line-height: 1.6em; }
-        .index-view-content-extra{ line-height: 1.6em; }
-        .index-view-action-div{ display: flex;flex-direction: row;align-items: center }
-        .index-view-action-download{ background: green;margin: 0 16px 0 0;padding: 6px;height:56px;width:56px;border-radius: 100em;outline: none;border: 0px;cursor: pointer; }
-        .index-view-action-download-icon{ width: 30px;height: 30px; }
-        .index-view-close-button{ position:absolute;top: 0;right: 0;background: rgba(127,127,127,0.8);margin: 24px;outline: none;border-radius: 100em;padding: 0;border: 0;cursor: pointer;width: 52px;height: 52px; }
-        .index-view-close-button-icon{ width: 48px;height: 48px; }
-    </style>
-
     <div id="viewRootDiv" class="index-view-root-div" style="display: none;">
         <div class="index-view-content-div">
             <div class="index-view-content-text-div">
@@ -237,32 +71,30 @@
                 <span id="viewExtra" class="index-view-content-extra">-</span>
             </div>
             <div class="index-view-action-div">
-                <button class="index-view-action-download"><img src="/icon/ic_download_white.png" class="index-view-action-download-icon"></button>
+                <button class="index-view-action-download" onclick="downloadBigImage()"><img src="/icon/ic_download_white.png" class="index-view-action-download-icon"></button>
+                <select id="imageSizeSelect">
+                    <option value ="0">1920 × 1200</option>
+                    <option value ="1" selected>1920 × 1080</option>
+                    <option value ="2">1366 × 768</option>
+                    <option value ="3">1280 × 720</option>
+                    <option value ="4">1024 × 768</option>
+                    <option value ="5">800 × 600</option>
+                    <option value ="6">800 × 480</option>
+                    <option value ="7">640 × 480</option>
+                    <option value ="8">400 × 240</option>
+                    <option value ="9">320 × 240</option>
+                    <option value ="10">1080 × 1920</option>
+                    <option value ="11">768 × 1366</option>
+                    <option value ="12">768 × 1280</option>
+                    <option value ="13">720 × 1280</option>
+                    <option value ="14">480 × 800</option>
+                    <option value ="15">480 × 640</option>
+                    <option value ="16">240 × 400</option>
+                    <option value ="17">240 × 320</option>
+                </select>
             </div>
         </div>
         <button class="index-view-close-button" onclick="onViewCloseClick()"><img class="index-view-close-button-icon" src="/icon/ic_close_white.png"></button>
     </div>
 
-    <script>
-
-        function setupViewContent(imgUrl, title, loaction, extra) {
-            document.getElementById('viewRootDiv').style.background = 'url('+imgUrl+') center';
-            document.getElementById('viewTitle').innerText = title;
-            document.getElementById('viewLocation').innerText = loaction;
-            document.getElementById('viewExtra').innerText = extra;
-        }
-
-        function showView(state) {
-            if (state){
-                document.getElementById('viewRootDiv').style.display = 'block'
-            } else{
-                document.getElementById('viewRootDiv').style.display = 'none'
-            }
-        }
-
-        function onViewCloseClick() {
-            showView(false)
-        }
-
-    </script>
 {% endblock %}

@@ -1,0 +1,9 @@
+.doc-div{ display: flex;flex-direction: column;width: 60%;margin: auto; }
+.doc-warming{ padding: 12px 30px;margin: 16px;border-radius: 100px;background: mediumvioletred;color: white; }
+.doc-part-div{ border-radius: 16px;padding: 16px;display: flex;flex-direction: column;margin: 16px 0;background-color: white;box-shadow: 0 0 12px #ddd; }
+.doc-part-title{  }
+.doc-part-url{ color:gray }
+.doc-part-description{  }
+.doc-part-param-request{  }
+.doc-part-param-result{  }
+.doc-part-param-example{  }

@@ -1,3 +1,4 @@
+const path = require('fs');
 const Koa = require('koa');
 const app = new Koa();
 const views = require('koa-views');
@@ -7,6 +8,7 @@ const bodyparser = require('koa-bodyparser');
 const logger = require('koa-logger');
 const nunjucks = require('nunjucks');
 const nodeSchedule = require('node-schedule');
+
 const bingAction = require('./lib/bing');
 
 const router_index = require('./routes/index');

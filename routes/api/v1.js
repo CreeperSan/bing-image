@@ -3,7 +3,7 @@ const request = require('request');
 const fs = require('fs')
 
 const database = require(process.cwd()+'/lib/database');
-const screenResoluction = require(process.cwd()+'/lib/screen-resolution');
+const ScreenResoluction = require(process.cwd()+'/lib/screen-resolution');
 
 router.prefix('/api/v1');
 
@@ -37,35 +37,6 @@ async function httpGet(url){
     })
   })
 }
-
-
-/**
- *  一些有关请求参数的常量
- */
-
-const SIZE_1920X1200    = 0
-const SIZE_1920x1080    = 1
-const SIZE_1366x726     = 2
-const SIZE_1280x720     = 3
-const SIZE_1024x768     = 4
-const SIZE_800x600      = 6
-const SIZE_800x480      = 7
-const SIZE_640x480      = 8
-const SIZE_400x240      = 9
-const SIZE_320x240      = 10
-const SIZE_1080x1920    = 11
-const SIZE_768x1366     = 12
-const SIZE_768x1280     = 13
-const SIZE_720x1280     = 14
-const SIZE_480x800      = 15
-const SIZE_480x640      = 16
-const SIZE_240x400      = 17
-const SIZE_240x320      = 18
-
-const sizeList = [SIZE_1920X1200, SIZE_1920x1080, SIZE_1366x726, SIZE_1280x720, SIZE_1024x768, SIZE_800x600, SIZE_800x480,
-    SIZE_640x480, SIZE_400x240, SIZE_320x240, SIZE_1080x1920, SIZE_768x1366, SIZE_768x1280,
-    SIZE_720x1280, SIZE_480x800, SIZE_480x640, SIZE_240x400, SIZE_240x320]
-
 
 /**
  * 下面才是路由处理
@@ -135,7 +106,7 @@ router.get('/url', async (ctx, next) => {
     console.log(requestParam)
     if (!requestParam.count){ requestParam.count = 12 }
     if (!requestParam.page){ requestParam.page = 1; }
-    if (!requestParam.size){ requestParam.size = SIZE_1920x1080.toString()+','+SIZE_320x240.toString(); }
+    if (!requestParam.size){ requestParam.size = ScreenResoluction.SIZE_1920x1080.toString()+','+ScreenResoluction.SIZE_320x240.toString(); }
     const queryData = await database.getBingInfo( requestParam.page, requestParam.count )
     let tmpLineCount = await database.getBingImageCount()
     if (tmpLineCount.success){
@@ -145,16 +116,6 @@ router.get('/url', async (ctx, next) => {
     returnObject.imgList = queryData
     ctx.body = createResponse(CODE_SUCCESS, returnObject)
 
-})
-
-/**
- * 请求地址:   /url-page
- * 链接功能:   获取服务器中必应背景图片URL（ 分页 )
- * 请求参数:   count 返回的图片数量
- *            start 开始的日期
- *            size  获取的图片尺寸
- */
-router.get('/url-page', async (ctx, next) => {
 })
 
 /**
@@ -250,22 +211,31 @@ router.get('/random', async (ctx, next) => {
  * 请求地址:   /random
  * 链接功能:   获取服务器中随机一个图片信息
  * 请求参数:   date 图片日期 eg:20180403
- *            size 图片尺寸 eg:1  默认是1080p，具体表格参照上面常量定义
+ *            size 图片尺寸 eg:1  默认是1080p，具体表格参照ScreenResoltion常量定义
  */
-router.get('/download', async (ctx, next) => {
+router.get('/download/:imgID', async (ctx, next) => {
     let requestParam = ctx.request.query
-    let tmpDate = requestParam.date
+    let tmpDate = ctx.params.imgID.toString()
     let tmpSize = requestParam.size
 
-    if (!tmpSize) { tmpSize = SIZE_1920x1080 }
+    if (tmpDate.endsWith('.jpg')){ tmpDate = tmpDate.substr(0, tmpDate.indexOf('.jpg')) }
+    console.log(tmpDate+'  '+tmpDate.length+'   '+ScreenResoluction.isSizeLegal(tmpSize))
 
-    if (!tmpDate || !(tmpSize in sizeList)){
+    if (!tmpSize) { tmpSize = ScreenResoluction.SIZE_1920x1080 }
+
+    if (!tmpDate || tmpDate.length!=8 || !ScreenResoluction.isSizeLegal(tmpSize)){
         ctx.status = 400
     }else{
         const tmpYear = tmpDate.substr(0, 4);
         const tmpMonth = tmpDate.substr(4, 2);
         const tmpDay = tmpDate.substr(6, 2);
-        fs.existsSync()
+        const tmpPath = process.cwd()+'/public/bing-image/'+tmpYear+'/'+tmpMonth+'/'+tmpDay+'/'+ScreenResoluction.getSizeName(tmpSize)+'.jpg'
+        console.log('下载图片 ： '+tmpPath)
+        if (fs.existsSync(tmpPath).toString()){
+            ctx.body = fs.createReadStream(tmpPath)
+        } else{
+            ctx.status = 404
+        }
     }
 })
 

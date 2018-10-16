@@ -17,8 +17,8 @@
         <img class="header-desktop-logo" src="/images/logo_header.png" />
         <div class="header-desktop-page-div">
             <a href="/" class="header-desktop-page-text">首页</a>
-            <a href="/app" class="header-desktop-page-text">APP</a>
-            <a href="/rank" class="header-desktop-page-text">排行榜</a>
+            {#<a href="/app" class="header-desktop-page-text">APP</a>#}
+            {#<a href="/rank" class="header-desktop-page-text">排行榜</a>#}
             <a href="/random" class="header-desktop-page-text">随便看看</a>
             <a href="/document" class="header-desktop-page-text">API文档</a>
             <a href="/about" class="header-desktop-page-text">关于</a>

@@ -1,3 +1,60 @@
 {% extends 'views/base/base.nunjucks' %}
 
 {% block title %}必应壁纸 - API文档{% endblock %}
+
+{% block head_res %}
+    <link rel="stylesheet" href="/css/document/document.css" />
+{% endblock %}
+
+{% block body %}
+
+    <div class="doc-div">
+        <span class="doc-warming">注目！API后面还有更改，请注意！</span>
+
+        <div class="doc-part-div">
+            <span class="doc-part-title">获取必应图片地址</span>
+            <span class="doc-part-url"> /api/v1/img-current </span>
+            <span class="doc-part-description"> 请求说明 ： 获取必应url相关信息 </span>
+            <span class="doc-part-param-request">参数说明 ： 待补充</span>
+            <span class="doc-part-param-result">返回数据 ： 待补充</span>
+            <span class="doc-part-param-example">请求例子 ： 待补充</span>
+        </div>
+
+        <div class="doc-part-div">
+            <span class="doc-part-title">获取必应图片</span>
+            <span class="doc-part-url"> /api/v1/img </span>
+            <span class="doc-part-description"> 请求说明 ： 获取必应图片 </span>
+            <span class="doc-part-param-request">参数说明 ： 待补充</span>
+            <span class="doc-part-param-result">返回数据 ： 待补充</span>
+            <span class="doc-part-param-example">请求例子 ： 待补充</span>
+        </div>
+
+        <div class="doc-part-div">
+            <span class="doc-part-title">随机获取必应图片信息</span>
+            <span class="doc-part-url"> /api/v1/random </span>
+            <span class="doc-part-description"> 请求说明 ： 获取随机必应图片</span>
+            <span class="doc-part-param-request">参数说明 ： 待补充</span>
+            <span class="doc-part-param-result">返回数据 ： 待补充</span>
+            <span class="doc-part-param-example">请求例子 ： 待补充</span>
+        </div>
+
+        <div class="doc-part-div">
+            <span class="doc-part-title">获取必应图片</span>
+            <span class="doc-part-url"> /api/v1/download/ </span>
+            <span class="doc-part-description"> 请求说明 ： 获取必应图片</span>
+            <span class="doc-part-param-request">参数说明 ： 待补充</span>
+            <span class="doc-part-param-result">返回数据 ： 待补充</span>
+            <span class="doc-part-param-example">请求例子 ： 待补充</span>
+        </div>
+
+        <div class="doc-part-div">
+            <span class="doc-part-title">获取必应图片地址【实时】</span>
+            <span class="doc-part-url"> /api/v1/url </span>
+            <span class="doc-part-description"> 请求说明 ： 获取必应url相关信息【慢】 </span>
+            <span class="doc-part-param-request">参数说明 ： 待补充</span>
+            <span class="doc-part-param-result">返回数据 ： 待补充</span>
+            <span class="doc-part-param-example">请求例子 ： 待补充</span>
+        </div>
+    </div>
+
+{% endblock %}
