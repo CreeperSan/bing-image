@@ -1,0 +1,15 @@
+{% extends 'views/base/base.nunjucks' %}
+
+{% block title %}必应壁纸 - {{ title }}{% endblock %}
+
+{% block head_res %}
+    <style>
+        .view-div{  }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="view-div">
+
+    </div>
+{% endblock %}

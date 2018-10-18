@@ -1,0 +1,12 @@
+{% extends 'views/base/base.nunjucks' %}
+
+{% block title %}必应壁纸 - 图片找不到了  (QへQ ){% endblock %}
+
+{% block head_res %}
+{% endblock %}
+
+{% block body %}
+    <div class="view-div">
+        404
+    </div>
+{% endblock %}

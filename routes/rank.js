@@ -1,6 +1,6 @@
-const router = require('koa-router')()
+const router = require('koa-router')();
 
-router.prefix('/rank')
+router.prefix('/rank');
 
 /**
  * 其他函数
@@ -8,7 +8,7 @@ router.prefix('/rank')
 
 router.get('/', async (ctx, next) => {
     await ctx.render('rank')
-})
+});
 
 
-module.exports = router
+module.exports = router;

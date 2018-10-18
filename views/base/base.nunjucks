@@ -34,9 +34,7 @@
     </div>
 
     <script>
-        window.onresize = () => {
-            console.log(document.getElementById('bodyRootDiv'))
-        }
+        window.onresize = () => {}
     </script>
     {% block global %}{% endblock %}
 </body>

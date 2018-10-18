@@ -2,13 +2,16 @@ const LOCATION_CHINA_MAINLAND   = 'zh-cn';
 const LOCATION_JAPAN            = 'ja-jp';
 
 module.exports = {
+    // Const
+    LOCATION_CHINA_MAINLAND     : LOCATION_CHINA_MAINLAND,
+    LOCATION_JAPAN              : LOCATION_JAPAN,
 
     // Database Config
-    DATABASE_HOST       : 'localhost',
-    DATABASE_USER       : 'creepersan',
-    DATABASE_PASSWORD   : '12345678',
-    DATABASE_NAME       : 'BingImage',
+    database_host               : 'localhost',
+    database_user               : 'creepersan',
+    database_password           : '12345678',
+    database_name               : 'BingImage',
 
     // Application Config
-    APP_LOCATION        : LOCATION_CHINA_MAINLAND
+    app_location                : LOCATION_CHINA_MAINLAND
 };
