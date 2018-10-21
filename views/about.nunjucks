@@ -19,6 +19,14 @@
         <hr/>
         <span class="version-title">更新日志</span>
         <div class="version-div">
+            <span>Beta 0.2.0 <span class="version-time">2018.10.21</span> </span>
+            <ul>
+                <li>独立图片查看页面</li>
+                <li>修复获取随机图片有几率会返回重复图片的Bug</li>
+                <li>修复获取随机图片API的一个Bug</li>
+                <li>修复日本地区下获取图片信息出错的问题</li>
+            </ul>
+
             <span>Beta 0.1.0 <span class="version-time">2018.10.16</span> </span>
             <ul>
                 <li>首个版本</li>

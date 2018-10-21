@@ -58,17 +58,17 @@
             methods : {
                 getSerialNumberIconUrl : function(num){
                     switch(num){
-                        case 0 : return '/icon/ic_number_1.png'
-                        case 1 : return '/icon/ic_number_2.png'
-                        case 2 : return '/icon/ic_number_3.png'
-                        case 3 : return '/icon/ic_number_4.png'
-                        case 4 : return '/icon/ic_number_5.png'
-                        case 5 : return '/icon/ic_number_6.png'
-                        case 6 : return '/icon/ic_number_7.png'
-                        case 7 : return '/icon/ic_number_8.png'
-                        case 8 : return '/icon/ic_number_9.png'
-                        case 9 : return '/icon/ic_number_10.png'
-                        default : return '/icon/ic_number_extra.png'
+                        case 0 : return '/icon/ic_number_1.png';
+                        case 1 : return '/icon/ic_number_2.png';
+                        case 2 : return '/icon/ic_number_3.png';
+                        case 3 : return '/icon/ic_number_4.png';
+                        case 4 : return '/icon/ic_number_5.png';
+                        case 5 : return '/icon/ic_number_6.png';
+                        case 6 : return '/icon/ic_number_7.png';
+                        case 7 : return '/icon/ic_number_8.png';
+                        case 8 : return '/icon/ic_number_9.png';
+                        case 9 : return '/icon/ic_number_10.png';
+                        default : return '/icon/ic_number_extra.png';
                     }
                 },
                 toNewWebsite(url){

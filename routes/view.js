@@ -29,8 +29,27 @@ router.get('/:id', async (ctx, next) => {
         const item = queryResult.result[0];
         console.log(item);
 
+        let tmpYear;
+        let tmpMonth;
+        let tmpDay;
+        try {
+            tmpYear = item.year;
+            tmpMonth = item.month;
+            if (tmpMonth < 10){ tmpMonth = '0'+tmpMonth.toString() }
+            tmpDay = item.day;
+            if (tmpDay < 10){ tmpDay = '0'+tmpDay.toString() }
+        }catch (e) {
+            tmpYear = '2018';
+            tmpMonth = '10';
+            tmpDay = '20';
+        }
+
         await ctx.render('view', {
-            title : item.title
+            title : item.title,
+            location : item.location,
+            author : item.author,
+            image_url : '/bing-image/'+tmpYear+'/'+tmpMonth+'/'+tmpDay+'/1920x1080.jpg',
+            image_date : item._id
         });
     }else{
         await ctx.render('view-404');

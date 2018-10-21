@@ -35,15 +35,16 @@ let randomApp = new Vue({
     methods: {
         getAndLoadRandomImage: function () {
             const self = this;
-            axios.get('/api/v1/random').then((response) => {
-                if (response.status == 200) {
+            axios.get('/api/v1/random?id='+self.imgID).then((response) => {
+                if (response.status === 200) {
+                    console.log(response.data);
                     const tmpRandomData = response.data.data[0];
                     if (tmpRandomData) {
                         self.imgTitle = tmpRandomData.title;
                         self.imgLocation = tmpRandomData.location;
-                        self.imgExtra = tmpRandomData._id;
-                        self.imgID = tmpRandomData._id;
-                        self.imgUrl = tmpRandomData.path;
+                        self.imgExtra = tmpRandomData.author;
+                        self.imgID = tmpRandomData.date;
+                        self.imgUrl = tmpRandomData.img_url;
 
                         document.getElementById('randomImageView').style.background = 'url('+self.getImageDownloadLink(self.imgID)+') center center';
                         document.getElementById('randomImageView').style.backgroundSize = 'cover';
@@ -63,9 +64,6 @@ let randomApp = new Vue({
                 }
             }catch (e) {}
             return '/api/v1/download/'+this.imgID+'.jpg';
-        },
-        getBigImageUrl(){
-
         }
     }
-})
+});

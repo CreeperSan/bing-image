@@ -2,21 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2fcac69a-6837-4c4d-9a39-e84ff4a62160" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/routes/view.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/view-404.nunjucks" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/view.nunjucks" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/base/base_view.nunjucks" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/bing.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bing.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/network.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/network.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/about.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/about.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/random.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/random.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/rank.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/rank.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/base/base.nunjucks" beforeDir="false" afterPath="$PROJECT_DIR$/views/base/base.nunjucks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/random/random.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/random/random.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/index/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/random/random.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/random/random.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/v1.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/v1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/about.nunjucks" beforeDir="false" afterPath="$PROJECT_DIR$/views/about.nunjucks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.nunjucks" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.nunjucks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/random.nunjucks" beforeDir="false" afterPath="$PROJECT_DIR$/views/random.nunjucks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/rank.nunjucks" beforeDir="false" afterPath="$PROJECT_DIR$/views/rank.nunjucks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/view.nunjucks" beforeDir="false" afterPath="$PROJECT_DIR$/views/view.nunjucks" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,54 +29,55 @@
     <session id="-854804341">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="14" />
+          <entry key="project.closed" value="17" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.2" value="6" />
-          <entry key="project.open.time.3" value="8" />
-          <entry key="project.opened" value="15" />
+          <entry key="project.open.time.3" value="10" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="331" />
+          <entry key="css" value="335" />
           <entry key="gitignore" value="21" />
           <entry key="html" value="5" />
-          <entry key="js" value="11147" />
+          <entry key="js" value="12846" />
           <entry key="json" value="10" />
-          <entry key="nunjucks" value="9917" />
+          <entry key="nunjucks" value="11910" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="331" />
+          <entry key="CSS" value="335" />
           <entry key="HTML" value="5" />
           <entry key="JSON" value="10" />
-          <entry key="JavaScript" value="11147" />
+          <entry key="JavaScript" value="12846" />
           <entry key="PLAIN_TEXT" value="21" />
-          <entry key="Twig" value="9917" />
+          <entry key="Twig" value="11910" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="8" />
+          <entry key="css" value="10" />
           <entry key="gif" value="1" />
           <entry key="gitignore" value="1" />
           <entry key="html" value="1" />
           <entry key="jpg" value="45" />
-          <entry key="js" value="53" />
+          <entry key="js" value="63" />
           <entry key="json" value="4" />
-          <entry key="nunjucks" value="29" />
+          <entry key="nunjucks" value="36" />
+          <entry key="png" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="8" />
+          <entry key="CSS" value="10" />
           <entry key="HTML" value="1" />
-          <entry key="Image" value="46" />
+          <entry key="Image" value="48" />
           <entry key="JSON" value="4" />
-          <entry key="JavaScript" value="53" />
+          <entry key="JavaScript" value="63" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Twig" value="29" />
+          <entry key="Twig" value="36" />
         </counts>
       </usages-collector>
     </session>
@@ -88,17 +87,95 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/database.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="200" column="59" lean-forward="true" selection-start-line="200" selection-start-column="59" selection-end-line="200" selection-end-column="59" />
+            <state relative-caret-position="306">
+              <caret line="200" column="9" lean-forward="true" selection-start-line="200" selection-start-column="9" selection-end-line="200" selection-end-column="9" />
+              <folding>
+                <element signature="n#!!doc;n#checkDatabaseTable#0" />
+                <element signature="n#!!block;n#checkDatabaseTable#0" />
+                <element signature="e#2282#2565#0" />
+                <element signature="e#2345#2558#0" />
+                <element signature="e#2367#2548#0" />
+                <element signature="e#2570#2642#0" />
+                <element signature="n#!!doc;n#openConnection#0" />
+                <element signature="n#!!block;n#openConnection#0" />
+                <element signature="e#2707#2936#0" />
+                <element signature="e#2733#2929#0" />
+                <element signature="e#2755#2852#0" />
+                <element signature="e#2857#2919#0" />
+                <element signature="e#2969#3135#0" />
+                <element signature="n#!!doc;n#insertBing#0" />
+                <element signature="n#!!block;n#insertBing#0" />
+                <element signature="e#3453#4059#0" />
+                <element signature="e#3470#3966#0" />
+                <element signature="e#3599#3955#0" />
+                <element signature="e#3625#3781#0" />
+                <element signature="e#3786#3888#0" />
+                <element signature="e#3971#4053#0" />
+                <element signature="n#!!block;n#createPromiseResolve#0" />
+                <element signature="n#!!block;n#query#0" />
+                <element signature="e#4261#4677#0" />
+                <element signature="e#4278#4586#0" />
+                <element signature="e#4330#4575#0" />
+                <element signature="e#4356#4453#0" />
+                <element signature="e#4458#4561#0" />
+                <element signature="e#4590#4671#0" />
+                <element signature="n#!!block;n#numFormat#0" />
+                <element signature="e#4726#4767#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/index/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="249">
+              <caret line="119" column="30" lean-forward="true" selection-start-line="119" selection-start-column="30" selection-end-line="119" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/view.js">
+        <entry file="file://$PROJECT_DIR$/views/index.nunjucks">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+            <state relative-caret-position="142">
+              <caret line="17" column="87" selection-start-line="17" selection-start-column="87" selection-end-line="17" selection-end-column="87" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/random.nunjucks">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="95" selection-start-line="17" selection-start-column="87" selection-end-line="17" selection-end-column="95" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/random/random.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="41" selection-start-line="41" selection-end-line="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/random.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="39" selection-start-column="39" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/random/random.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -106,8 +183,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api/v1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="215" column="28" selection-start-line="215" selection-start-column="23" selection-end-line="215" selection-end-column="28" />
+            <state relative-caret-position="241">
+              <caret line="102" column="30" lean-forward="true" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
               <folding>
                 <element signature="n#!!doc;n#createResponse#0" />
                 <element signature="n#!!block;n#createResponse#0" />
@@ -118,52 +195,22 @@
                 <element signature="e#819#874#0" />
                 <element signature="e#884#903#0" />
                 <element signature="e#906#989#0" />
+                <element signature="e#1038#1516#0" />
+                <element signature="e#1047#1445#0" />
+                <element signature="e#1201#1437#0" />
+                <element signature="e#1453#1514#0" />
                 <element signature="e#1520#1618#0" />
+                <element signature="e#1667#1801#0" />
                 <element signature="e#1806#1886#0" />
                 <element signature="e#1926#1930#0" />
                 <element signature="n#!!doc;n#urlGetTodayID#0" />
-                <element signature="n#!!block;n#urlGetTodayID#0" />
-                <element signature="e#2501#3243#0" />
-                <element signature="e#3032#3145#0" />
+                <element signature="e#3369#3586#0" />
                 <element signature="n#!!doc;n#rankCreateRankObject#0" />
                 <element signature="n#!!block;n#rankCreateRankObject#0" />
+                <element signature="e#3800#6040#0" />
+                <element signature="e#6153#6815#0" />
+                <element signature="e#7022#8003#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/view-404.nunjucks">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5">
-              <caret line="49" column="58" lean-forward="true" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/rank.nunjucks">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="61" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/view.nunjucks">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -179,12 +226,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>SIZElst</find>
-      <find>.jpg</find>
-      <find>'图片ID'</find>
-      <find>+'?size='+screenResolution</find>
-      <find>id=&quot;app</find>
-      <find>start</find>
       <find>body-content-img-img</find>
       <find>style=&quot;background: url(/bing-image/2018/10/15/640x480.jpg) center;&quot;</find>
       <find>div</find>
@@ -209,6 +250,12 @@
       <find>console</find>
       <find>imgID</find>
       <find>SQL_BING_QUERY</find>
+      <find>onImageItemDivClick</find>
+      <find>imgUr</find>
+      <find>excl</find>
+      <find>getImageDownloadLink</find>
+      <find>getRandomImage</find>
+      <find>urlGetTodayID</find>
     </findStrings>
     <replaceStrings>
       <replace>this.imgID</replace>
@@ -231,19 +278,11 @@
         <option value="$PROJECT_DIR$/action/network.js" />
         <option value="$PROJECT_DIR$/action/database.js" />
         <option value="$PROJECT_DIR$/action/bing.js" />
-        <option value="$PROJECT_DIR$/views/rank.nunjucks" />
         <option value="$PROJECT_DIR$/lib/screen-resolution.js" />
         <option value="$PROJECT_DIR$/public/css/index/index.css" />
-        <option value="$PROJECT_DIR$/public/js/index/index.js" />
-        <option value="$PROJECT_DIR$/views/index.nunjucks" />
         <option value="$PROJECT_DIR$/public/css/about/about.css" />
-        <option value="$PROJECT_DIR$/views/about.nunjucks" />
-        <option value="$PROJECT_DIR$/public/css/random/random.css" />
-        <option value="$PROJECT_DIR$/routes/api/v1.js" />
-        <option value="$PROJECT_DIR$/views/random.nunjucks" />
         <option value="$PROJECT_DIR$/public/css/document/document.css" />
         <option value="$PROJECT_DIR$/views/document.nunjucks" />
-        <option value="$PROJECT_DIR$/public/js/random/random.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/package-lock.json" />
         <option value="$PROJECT_DIR$/public/lib/vue/vue.js" />
@@ -256,11 +295,20 @@
         <option value="$PROJECT_DIR$/routes/random.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/routes/rank.js" />
-        <option value="$PROJECT_DIR$/views/view.nunjucks" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/views/view-404.nunjucks" />
-        <option value="$PROJECT_DIR$/lib/database.js" />
+        <option value="$PROJECT_DIR$/views/rank.nunjucks" />
+        <option value="$PROJECT_DIR$/views/base/base_view.nunjucks" />
         <option value="$PROJECT_DIR$/routes/view.js" />
+        <option value="$PROJECT_DIR$/views/view.nunjucks" />
+        <option value="$PROJECT_DIR$/views/about.nunjucks" />
+        <option value="$PROJECT_DIR$/public/css/random/random.css" />
+        <option value="$PROJECT_DIR$/views/random.nunjucks" />
+        <option value="$PROJECT_DIR$/public/js/random/random.js" />
+        <option value="$PROJECT_DIR$/routes/api/v1.js" />
+        <option value="$PROJECT_DIR$/lib/database.js" />
+        <option value="$PROJECT_DIR$/public/js/index/index.js" />
+        <option value="$PROJECT_DIR$/views/index.nunjucks" />
       </list>
     </option>
   </component>
@@ -293,6 +341,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -303,7 +352,18 @@
             <path>
               <item name="bing-image" type="b2602c69:ProjectViewProjectNode" />
               <item name="bing-image" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bing-image" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bing-image" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bing-image" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bing-image" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="icon" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="bing-image" type="b2602c69:ProjectViewProjectNode" />
@@ -327,16 +387,21 @@
               <item name="bing-image" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="bing-image" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bing-image" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="base" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SearchEverywhereHistoryKey" value="databas&#9;FILE&#9;file:///Users/creepersan/project/bing-image/lib/database.js&#10;api&#9;FILE&#9;file:///Users/creepersan/project/bing-image/routes/api&#10;app&#9;FILE&#9;file:///Users/creepersan/project/bing-image/app.js&#10;index&#9;FILE&#9;file:///Users/creepersan/project/bing-image/views/index.nunjucks&#10;rando&#9;FILE&#9;file:///Users/creepersan/project/bing-image/views/random.nunjucks&#10;random&#9;FILE&#9;file:///Users/creepersan/project/bing-image/views/random.nunjucks&#10;v1&#9;FILE&#9;file:///Users/creepersan/project/bing-image/routes/api/v1.js&#10;ind&#9;FILE&#9;file:///Users/creepersan/project/bing-image/views/index.nunjucks&#10;rank&#9;FILE&#9;file:///Users/creepersan/project/bing-image/views/rank.nunjucks&#10;networ&#9;FILE&#9;file:///Users/creepersan/project/bing-image/action/network.js&#10;database&#9;FILE&#9;file:///Users/creepersan/project/bing-image/action/database.js&#10;bing&#9;FILE&#9;file:///Users/creepersan/project/bing-image/action/bing.js" />
+    <property name="SearchEverywhereHistoryKey" value="index&#9;FILE&#9;file:///Users/creepersan/project/bing-image/views/index.nunjucks&#10;rand&#9;FILE&#9;file:///Users/creepersan/project/bing-image/routes/random.js&#10;random&#9;FILE&#9;file:///Users/creepersan/project/bing-image/public/js/random/random.js&#10;api&#9;FILE&#9;file:///Users/creepersan/project/bing-image/routes/api&#10;abou&#9;FILE&#9;file:///Users/creepersan/project/bing-image/views/about.nunjucks&#10;view&#9;FILE&#9;file:///Users/creepersan/project/bing-image/routes/view.js&#10;basecss&#9;FILE&#9;file:///Users/creepersan/project/bing-image/public/css/base/base.css&#10;databas&#9;FILE&#9;file:///Users/creepersan/project/bing-image/lib/database.js&#10;app&#9;FILE&#9;file:///Users/creepersan/project/bing-image/app.js&#10;rando&#9;FILE&#9;file:///Users/creepersan/project/bing-image/views/random.nunjucks&#10;v1&#9;FILE&#9;file:///Users/creepersan/project/bing-image/routes/api/v1.js&#10;ind&#9;FILE&#9;file:///Users/creepersan/project/bing-image/views/index.nunjucks&#10;rank&#9;FILE&#9;file:///Users/creepersan/project/bing-image/views/rank.nunjucks&#10;networ&#9;FILE&#9;file:///Users/creepersan/project/bing-image/action/network.js&#10;database&#9;FILE&#9;file:///Users/creepersan/project/bing-image/action/database.js&#10;bing&#9;FILE&#9;file:///Users/creepersan/project/bing-image/action/bing.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.10.0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -417,12 +482,14 @@
       <workItem from="1539692324826" duration="10437000" />
       <workItem from="1539704521108" duration="1374000" />
       <workItem from="1539781551746" duration="3746000" />
-      <workItem from="1539868358055" duration="6446000" />
+      <workItem from="1539868358055" duration="9957000" />
+      <workItem from="1540038112229" duration="11615000" />
+      <workItem from="1540093843310" duration="4454000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92883000" />
+    <option name="totallyTimeSpent" value="112463000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -443,7 +510,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3295838" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3295838" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3982002" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -464,9 +531,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bing_img/2018/10/07/1366x768.jpg" />
-    <entry file="file://$PROJECT_DIR$/bing_img/2018/10/07/1920x1080.jpg" />
-    <entry file="file://$PROJECT_DIR$/bing_img/2018/10/07/1920x1200.jpg" />
     <entry file="file://$PROJECT_DIR$/bing_img/2018/10/07/800x480.jpg" />
     <entry file="file://$PROJECT_DIR$/bing_img/2018/10/07/768x1366.jpg" />
     <entry file="file://$PROJECT_DIR$/bing_img/2018/10/06/480x640.jpg" />
@@ -507,13 +571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/about.nunjucks">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="20" lean-forward="true" selection-start-line="5" selection-start-column="20" selection-end-line="6" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/about/about.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -521,31 +578,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.nunjucks">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-65">
-          <caret line="35" column="66" lean-forward="true" selection-start-line="35" selection-start-column="66" selection-end-line="35" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/random/random.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="119" selection-start-line="2" selection-start-column="119" selection-end-line="2" selection-end-column="119" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/document/document.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/random.nunjucks">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -560,20 +596,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/random/random.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/index/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="4" selection-start-column="4" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -608,13 +630,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/base/base.nunjucks">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="37" column="13" lean-forward="true" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/app.nunjucks">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -626,20 +641,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="39" selection-start-column="39" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/random.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="39" selection-start-column="39" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -667,24 +668,111 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/base/base_view.nunjucks">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="38" lean-forward="true" selection-start-line="8" selection-start-column="38" selection-end-line="9" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/rank.nunjucks">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="61" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/base/base.nunjucks">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="36" lean-forward="true" selection-end-line="40" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/icon/ic_download_white.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="4" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/view-404.nunjucks">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="49" column="58" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/base/base.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/view.nunjucks">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+        <state relative-caret-position="-23">
+          <caret line="23" column="188" selection-start-line="23" selection-start-column="188" selection-end-line="23" selection-end-column="188" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/about.nunjucks">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="26" column="43" lean-forward="true" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/random.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="39" selection-start-column="39" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/random/random.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/random.nunjucks">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="95" selection-start-line="17" selection-start-column="87" selection-end-line="17" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/random/random.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api/v1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="215" column="28" selection-start-line="215" selection-start-column="23" selection-end-line="215" selection-end-column="28" />
+        <state relative-caret-position="241">
+          <caret line="102" column="30" lean-forward="true" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
           <folding>
             <element signature="n#!!doc;n#createResponse#0" />
             <element signature="n#!!block;n#createResponse#0" />
@@ -695,44 +783,76 @@
             <element signature="e#819#874#0" />
             <element signature="e#884#903#0" />
             <element signature="e#906#989#0" />
+            <element signature="e#1038#1516#0" />
+            <element signature="e#1047#1445#0" />
+            <element signature="e#1201#1437#0" />
+            <element signature="e#1453#1514#0" />
             <element signature="e#1520#1618#0" />
+            <element signature="e#1667#1801#0" />
             <element signature="e#1806#1886#0" />
             <element signature="e#1926#1930#0" />
             <element signature="n#!!doc;n#urlGetTodayID#0" />
-            <element signature="n#!!block;n#urlGetTodayID#0" />
-            <element signature="e#2501#3243#0" />
-            <element signature="e#3032#3145#0" />
+            <element signature="e#3369#3586#0" />
             <element signature="n#!!doc;n#rankCreateRankObject#0" />
             <element signature="n#!!block;n#rankCreateRankObject#0" />
+            <element signature="e#3800#6040#0" />
+            <element signature="e#6153#6815#0" />
+            <element signature="e#7022#8003#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/view-404.nunjucks">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5">
-          <caret line="49" column="58" lean-forward="true" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/database.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="200" column="59" lean-forward="true" selection-start-line="200" selection-start-column="59" selection-end-line="200" selection-end-column="59" />
+        <state relative-caret-position="306">
+          <caret line="200" column="9" lean-forward="true" selection-start-line="200" selection-start-column="9" selection-end-line="200" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!doc;n#checkDatabaseTable#0" />
+            <element signature="n#!!block;n#checkDatabaseTable#0" />
+            <element signature="e#2282#2565#0" />
+            <element signature="e#2345#2558#0" />
+            <element signature="e#2367#2548#0" />
+            <element signature="e#2570#2642#0" />
+            <element signature="n#!!doc;n#openConnection#0" />
+            <element signature="n#!!block;n#openConnection#0" />
+            <element signature="e#2707#2936#0" />
+            <element signature="e#2733#2929#0" />
+            <element signature="e#2755#2852#0" />
+            <element signature="e#2857#2919#0" />
+            <element signature="e#2969#3135#0" />
+            <element signature="n#!!doc;n#insertBing#0" />
+            <element signature="n#!!block;n#insertBing#0" />
+            <element signature="e#3453#4059#0" />
+            <element signature="e#3470#3966#0" />
+            <element signature="e#3599#3955#0" />
+            <element signature="e#3625#3781#0" />
+            <element signature="e#3786#3888#0" />
+            <element signature="e#3971#4053#0" />
+            <element signature="n#!!block;n#createPromiseResolve#0" />
+            <element signature="n#!!block;n#query#0" />
+            <element signature="e#4261#4677#0" />
+            <element signature="e#4278#4586#0" />
+            <element signature="e#4330#4575#0" />
+            <element signature="e#4356#4453#0" />
+            <element signature="e#4458#4561#0" />
+            <element signature="e#4590#4671#0" />
+            <element signature="n#!!block;n#numFormat#0" />
+            <element signature="e#4726#4767#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/view.js">
+    <entry file="file://$PROJECT_DIR$/public/js/index/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        <state relative-caret-position="249">
+          <caret line="119" column="30" lean-forward="true" selection-start-line="119" selection-start-column="30" selection-end-line="119" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.nunjucks">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="17" column="87" selection-start-line="17" selection-start-column="87" selection-end-line="17" selection-end-column="87" />
         </state>
       </provider>
     </entry>

@@ -1,15 +1,73 @@
-{% extends 'views/base/base.nunjucks' %}
+{% extends 'views/base/base_view.nunjucks' %}
 
 {% block title %}必应壁纸 - {{ title }}{% endblock %}
 
-{% block head_res %}
+
+{% block head_style %}
     <style>
-        .view-div{  }
+        html,body{ width: 100%;height: 100%; }
+
+        .view-div{ width: 100%;height: 100%; }
+        .view-top-div{ background: url({{ image_url }}) center center;background-size: cover;height: 100%;width: 100%;position: fixed; }
+        .view-action-div{ position: fixed;top: 0;width: 94%;padding: 26px 3%; }
+        .view-content-div{ position: fixed;bottom: 0;display: flex;flex-direction: row;width: 90%;background-color: rgba(0,0,0,0.5);padding: 32px 5%;align-items: center; }
+        .view-content-text-div{ display: flex;flex-direction: column;flex: 1;color: white; }
+        .view-content-text-text{ max-lines: 1; }
+        .view-content-action-div{ display: flex;flex-direction: column;justify-content: center;align-items: center; }
     </style>
 {% endblock %}
 
 {% block body %}
-    <div class="view-div">
-
+    <div class="view-div" id="view-app">
+        <div class="view-top-div"></div>
+        <div class="view-action-div">
+            <button id="viewBackButton" onclick="onBackClick()" style="padding: 8px 36px;border-radius: 100px;background-color: white;border: 0;color:#018000;outline: none;cursor: pointer;">关闭</button>
+        </div>
+        <div class="view-content-div">
+            <div class="view-content-text-div">
+                <span class="view-content-text-text">{{ title }}</span>
+                <span class="view-content-text-text">{{ location }}</span>
+                <span class="view-content-text-text">{{ author }}</span>
+            </div>
+            <div class="view-content-action-div">
+                <a onclick="onImageDownloadButtonClick()" style="cursor: pointer;"><img style="height: 36px;background-color: #018000;padding: 16px;border-radius: 100px;margin: 12px;" src="/icon/ic_download_white.png"></a>
+                <select id="downloadSelect" style="padding: 6px 16px;background-color: white;outline: none;">
+                    <option class="selectedOption" value="0">1920 × 1200</option>
+                    <option class="selectedOption" value="1" selected>1920 × 1080</option>
+                    <option class="selectedOption" value="2">1366 × 768</option>
+                    <option class="selectedOption" value="3">1280 × 720</option>
+                    <option class="selectedOption" value="4">1024 × 768</option>
+                    <option class="selectedOption" value="5">800 × 600</option>
+                    <option class="selectedOption" value="6">800 × 480</option>
+                    <option class="selectedOption" value="7">640 × 480</option>
+                    <option class="selectedOption" value="8">400 × 240</option>
+                    <option class="selectedOption" value="9">320 × 240</option>
+                    <option class="selectedOption" value="10">1080 × 1920</option>
+                    <option class="selectedOption" value="11">768 × 1366</option>
+                    <option class="selectedOption" value="12">768 × 1280</option>
+                    <option class="selectedOption" value="13">720 × 1280</option>
+                    <option class="selectedOption" value="14">480 × 800</option>
+                    <option class="selectedOption" value="15">480 × 640</option>
+                    <option class="selectedOption" value="16">240 × 400</option>
+                    <option class="selectedOption" value="17">240 × 320</option>
+                </select>
+            </div>
+        </div>
     </div>
+
+    <script>
+
+        var imageDate = '{{ image_date }}';
+
+
+        function onImageDownloadButtonClick() {
+            const downloadSizeValue = document.getElementById('downloadSelect').value;
+            location.href = '/api/v1/download/'+imageDate+'.jpg?size='+downloadSizeValue;
+        }
+
+        function onBackClick() {
+            window.close();
+        }
+
+    </script>
 {% endblock %}

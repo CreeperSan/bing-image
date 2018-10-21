@@ -82,7 +82,7 @@ router.get('/img-current', async (ctx, next) => {
  */
 router.get('/img',async (ctx, next) => {
 
-})
+});
 
 /**
  * 请求地址:   /url
@@ -91,32 +91,23 @@ router.get('/img',async (ctx, next) => {
  *            start 开始的日期        * 默认为服务器时间
  *            size  获取的图片尺寸     * 默认为 1920*1080 和 320*240
  */
-function urlGetTodayID(){
-    const tmpDate = new Date();
-    let year = tmpDate.getFullYear();
-    let month = tmpDate.getMonth()+1;
-    let day = tmpDate.getDate();
-    if (month < 10){ month = '0'+month.toString(); }
-    if (day < 10){ day = '0'+day.toString(); }
-    return year.toString()+month.toString()+day.toString();
-}
 router.get('/url', async (ctx, next) => {
-    let returnObject = {}
+    let returnObject = {};
     const requestParam = ctx.request.query;
-    console.log(requestParam)
+    console.log(requestParam);
     if (!requestParam.count){ requestParam.count = 12 }
     if (!requestParam.page){ requestParam.page = 1; }
     if (!requestParam.size){ requestParam.size = ScreenResoluction.SIZE_1920x1080.toString()+','+ScreenResoluction.SIZE_320x240.toString(); }
-    const queryData = await database.getBingInfo( requestParam.page, requestParam.count )
-    let tmpLineCount = await database.getBingImageCount()
+    const queryData = await database.getBingInfo( requestParam.page, requestParam.count );
+    let tmpLineCount = await database.getBingImageCount();
     if (tmpLineCount.success){
-        tmpLineCount = tmpLineCount.result[0]['count(_id)']
-        returnObject.itemCount = tmpLineCount
+        tmpLineCount = tmpLineCount.result[0]['count(_id)'];
+        returnObject.itemCount = tmpLineCount;
     }
-    returnObject.imgList = queryData
+    returnObject.imgList = queryData;
     ctx.body = createResponse(CODE_SUCCESS, returnObject)
 
-})
+});
 
 /**
  * 请求地址:   /rank_name
@@ -133,7 +124,7 @@ router.get('/rank_name', async (ctx, next) => {
             name : '编辑推荐排行榜'
         }]
     })
-})
+});
 
 /**
  * 请求地址:   /rank
@@ -192,7 +183,7 @@ router.get('/rank', async (ctx, next) => {
     ctx.body = createResponse(CODE_SUCCESS, {
         ranks : returnRanks
     });
-})
+});
 
 /**
  * 请求地址:   /random
@@ -200,12 +191,27 @@ router.get('/rank', async (ctx, next) => {
  * 请求参数:   无
  */
 router.get('/random', async (ctx, next) => {
-    let requestCount = parseInt(ctx.request.query.count)
-    if (!requestCount) { requestCount = 1 }
+    let requestCount;
+    let requestID;
 
-    const databaseResult = await database.getRandomImage(requestCount)
-    ctx.body = createResponse(CODE_SUCCESS, databaseResult.result)
-})
+    try {
+        requestCount = parseInt(ctx.request.query.count);
+        requestID = ctx.request.query.id;
+    }catch (e) {
+        requestCount = 1;
+        requestID = '19700101';
+    }
+
+    if (!requestCount) { requestCount = 1; }
+    if (requestCount >= 8) { requestCount = 8; }
+    if (requestID===undefined || isNaN(requestID) || requestID==null){ requestID='19700101'; }
+
+    const databaseResult = await database.getRandomImage(requestCount, requestID);
+
+    console.log(databaseResult);
+
+    ctx.body = createResponse(CODE_SUCCESS, databaseResult);
+});
 
 /**
  * 请求地址:   /random
@@ -214,12 +220,12 @@ router.get('/random', async (ctx, next) => {
  *            size 图片尺寸 eg:1  默认是1080p，具体表格参照ScreenResoltion常量定义
  */
 router.get('/download/:imgID', async (ctx, next) => {
-    let requestParam = ctx.request.query
-    let tmpDate = ctx.params.imgID.toString()
-    let tmpSize = requestParam.size
+    let requestParam = ctx.request.query;
+    let tmpDate = ctx.params.imgID.toString();
+    let tmpSize = requestParam.size;
 
     if (tmpDate.endsWith('.jpg')){ tmpDate = tmpDate.substr(0, tmpDate.indexOf('.jpg')) }
-    console.log(tmpDate+'  '+tmpDate.length+'   '+ScreenResoluction.isSizeLegal(tmpSize))
+    console.log(tmpDate+'  '+tmpDate.length+'   '+ScreenResoluction.isSizeLegal(tmpSize));
 
     if (!tmpSize) { tmpSize = ScreenResoluction.SIZE_1920x1080 }
 
@@ -229,14 +235,14 @@ router.get('/download/:imgID', async (ctx, next) => {
         const tmpYear = tmpDate.substr(0, 4);
         const tmpMonth = tmpDate.substr(4, 2);
         const tmpDay = tmpDate.substr(6, 2);
-        const tmpPath = process.cwd()+'/public/bing-image/'+tmpYear+'/'+tmpMonth+'/'+tmpDay+'/'+ScreenResoluction.getSizeName(tmpSize)+'.jpg'
-        console.log('下载图片 ： '+tmpPath)
+        const tmpPath = process.cwd()+'/public/bing-image/'+tmpYear+'/'+tmpMonth+'/'+tmpDay+'/'+ScreenResoluction.getSizeName(tmpSize)+'.jpg';
+        console.log('下载图片 ： '+tmpPath);
         if (fs.existsSync(tmpPath).toString()){
-            ctx.body = fs.createReadStream(tmpPath)
+            ctx.body = fs.createReadStream(tmpPath);
         } else{
-            ctx.status = 404
+            ctx.status = 404;
         }
     }
-})
+});
 
 module.exports = router;

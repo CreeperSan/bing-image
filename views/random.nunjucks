@@ -20,8 +20,14 @@
         </div>
 
         <div class="body-content-action-div">
-            <a v-bind:href="getImageDownloadLink()"><img class="body-content-action-button" src="/icon/ic_download_white.png"/></a>
-            <img class="body-content-action-button" src="/icon/ic_refresh_white.png" onclick="randomApp.getAndLoadRandomImage()"/>
+            <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                <img onclick="location.href=randomApp.getImageDownloadLink()" class="body-content-action-button" src="/icon/ic_download_white.png"/>
+                <span style="margin-top: 6px;">下载</span>
+            </div>
+            <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+                <img class="body-content-action-button" src="/icon/ic_refresh_white.png" onclick="randomApp.getAndLoadRandomImage()"/>
+                <span style="margin-top: 6px;">换一张</span>
+            </div>
         </div>
         <div class="body-content-download-div">
             <p class="body-content-download-title">按照指定分辨率下载图片</p>

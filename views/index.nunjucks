@@ -15,11 +15,12 @@
         <div class="img-div" id="actionImageList">
 
             <div class="img-item-div" v-for="image in imageList" v-on:click="onImageItemDivClick(image)">
-                <img class="img-item-img" {% raw %} v-bind:src="image.thumbnailImge" {% endraw %} />
+                <img class="img-item-img" {% raw %} v-bind:src="image.img_url_thumbnail" {% endraw %} />
                 <div class="img-item-text-div">
                     <span class="img-item-text-title">{% raw %} {{ image.title }} {% endraw %}</span>
                     <span class="img-item-text-location">{% raw %} {{ image.location }} {% endraw %}</span>
-                    <span class="img-item-text-time">{% raw %} {{ getTimeFromImage(image) }} {% endraw %}</span>
+                    {#<span class="img-item-text-time">{% raw %} {{ getTimeFromImage(image) }} {% endraw %}</span>#}
+                    <span class="img-item-text-time">{% raw %} {{ image.img_url }} {% endraw %}</span>
                 </div>
             </div>
 
@@ -42,11 +43,6 @@
                         <img src="/icon/ic_right_white.png" style="width: 60%;height: 60%;">
                     </div>
                 </div>
-                {#<div>#}
-                    {#<span class="action-jump-text">跳转至</span>#}
-                    {#<input class="action-jump-input" id="indexPageInput" type="number" placeholder="页码"/>#}
-                    {#<button class="action-jump-action-button" v-on:click="onPageClick()">Go!</button>#}
-                {#</div>#}
             </div>
 
             <div id="actionFinish" class="action-bottom-div">
@@ -60,41 +56,4 @@
     </div>
     
     <script src="/js/index/index.js"></script>
-{% endblock %}
-
-{% block global %}
-    <div id="viewRootDiv" class="index-view-root-div" style="display: none;">
-        <div class="index-view-content-div">
-            <div class="index-view-content-text-div">
-                <span id="viewTitle" class="index-view-content-text-title">-</span>
-                <span id="viewLocation" class="index-view-content-text-location">-</span>
-                <span id="viewExtra" class="index-view-content-extra">-</span>
-            </div>
-            <div class="index-view-action-div">
-                <button class="index-view-action-download" onclick="downloadBigImage()"><img src="/icon/ic_download_white.png" class="index-view-action-download-icon"></button>
-                <select id="imageSizeSelect">
-                    <option value ="0">1920 × 1200</option>
-                    <option value ="1" selected>1920 × 1080</option>
-                    <option value ="2">1366 × 768</option>
-                    <option value ="3">1280 × 720</option>
-                    <option value ="4">1024 × 768</option>
-                    <option value ="5">800 × 600</option>
-                    <option value ="6">800 × 480</option>
-                    <option value ="7">640 × 480</option>
-                    <option value ="8">400 × 240</option>
-                    <option value ="9">320 × 240</option>
-                    <option value ="10">1080 × 1920</option>
-                    <option value ="11">768 × 1366</option>
-                    <option value ="12">768 × 1280</option>
-                    <option value ="13">720 × 1280</option>
-                    <option value ="14">480 × 800</option>
-                    <option value ="15">480 × 640</option>
-                    <option value ="16">240 × 400</option>
-                    <option value ="17">240 × 320</option>
-                </select>
-            </div>
-        </div>
-        <button class="index-view-close-button" onclick="onViewCloseClick()"><img class="index-view-close-button-icon" src="/icon/ic_close_white.png"></button>
-    </div>
-
 {% endblock %}

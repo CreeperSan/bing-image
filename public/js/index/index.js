@@ -63,30 +63,29 @@ const imgApp = new Vue({
     },
     methods : {
         getTimeFromImage(image){
-            return image.year+'/'+image.month+'/'+image.day
+            return image.year+'/'+image.month+'/'+image.day;
         },
         onImageItemDivClick(image){
-            this.bigImageID = image.id
-            showView(true);
-            setupViewContent(this.getLocalImage(image), image.title, image.location, imgApp.getTimeFromImage(image))
+            this.bigImageID = image.id;
+            window.open('/view/'+image.id);
         },
         async getAndRefreshData(){
             const self = this;
             self.isLoading = true;
-            setState(STATE_LOADING)
+            setState(STATE_LOADING);
             axios.get('/api/v1/url?page='+this.page+'&count='+this.pageCount).then((response) => {
                 if (response.data.flag == 200){
-                    const tmpData = response.data.data
-                    self.imageList = tmpData.imgList
-                    self.pageTotal = Math.ceil(tmpData.itemCount / self.pageCount)
-                    setState(STATE_LOADABLE)
+                    const tmpData = response.data.data;
+                    self.imageList = tmpData.imgList;
+                    self.pageTotal = Math.ceil(tmpData.itemCount / self.pageCount);
+                    setState(STATE_LOADABLE);
                 } else {
-                    setState(STATE_FAIL)
+                    setState(STATE_FAIL);
                 }
                 self.isLoading = false;
                 self.onRefreshPageButton();
             }).catch((err) => {
-                setState(STATE_FAIL)
+                setState(STATE_FAIL);
                 self.isLoading = false;
                 self.onRefreshPageButton();
             })
