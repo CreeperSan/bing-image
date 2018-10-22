@@ -21,7 +21,7 @@
     <div class="view-div" id="view-app">
         <div class="view-top-div"></div>
         <div class="view-action-div">
-            <button id="viewBackButton" onclick="onBackClick()" style="padding: 8px 36px;border-radius: 100px;background-color: white;border: 0;color:#018000;outline: none;cursor: pointer;">关闭</button>
+            <button id="viewBackButton" onclick="onBackClick()" style="padding: 8px 36px;border-radius: 100px;background-color: white;border: 0;color:#018000;outline: none;cursor: pointer;z-index: 9999999;">关闭</button>
         </div>
         <div class="view-content-div">
             <div class="view-content-text-div">

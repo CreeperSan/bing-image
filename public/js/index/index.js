@@ -67,7 +67,7 @@ const imgApp = new Vue({
         },
         onImageItemDivClick(image){
             this.bigImageID = image.id;
-            window.open('/view/'+image.id);
+            window.open('/view/'+image.date);
         },
         async getAndRefreshData(){
             const self = this;

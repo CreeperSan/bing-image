@@ -20,7 +20,7 @@
                     <span class="img-item-text-title">{% raw %} {{ image.title }} {% endraw %}</span>
                     <span class="img-item-text-location">{% raw %} {{ image.location }} {% endraw %}</span>
                     {#<span class="img-item-text-time">{% raw %} {{ getTimeFromImage(image) }} {% endraw %}</span>#}
-                    <span class="img-item-text-time">{% raw %} {{ image.img_url }} {% endraw %}</span>
+                    <span class="img-item-text-time">{% raw %} {{ image.author }} {% endraw %}</span>
                 </div>
             </div>
 
