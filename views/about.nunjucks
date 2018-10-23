@@ -10,7 +10,7 @@
 {% block body %}
     <div class="content-div">
         <img class="content-logo" src="/images/logo_header.png">
-        <span>Beta 0.1.0</span>
+        <span>Beta 0.2.0</span>
         <p class="content-p">练习写的一个简单的获取Bing每天的背景图片</p>
         <p class="content-p">一开始是想练手写一个天气的App，使用每天的Bing的壁纸作为App的背景图片，但是发现Bing没提供这样的API，后来是在一个<a href="https://www.dujin.org/">缙哥哥的博客</a>上发现了用php写的一个API，就拿来用了</p>
         <p class="content-p">再后来，一个偶然的机会发现了Bing壁纸的API，于是就手痒了想鼓捣了一下，于是乎这个网站就出来了</p>
@@ -19,6 +19,11 @@
         <hr/>
         <span class="version-title">更新日志</span>
         <div class="version-div">
+            <span>Beta 0.2.1 <span class="version-time">2018.10.21</span> </span>
+            <ul>
+                <li>修正一处分辨率错误</li>
+            </ul>
+
             <span>Beta 0.2.0 <span class="version-time">2018.10.21</span> </span>
             <ul>
                 <li>独立图片查看页面</li>

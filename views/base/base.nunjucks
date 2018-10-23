@@ -28,14 +28,10 @@
         {% block body %}{% endblock %}
     </div>
     <div class="footer-div">
-        <span class="footer-text">本站所有壁纸均来自 <a style="color:#ccc;" href="https://cn.bing.com" target="_blank">Bing搜索</a> </span>
+        <span class="footer-text">本站所有壁纸均来自 <a style="color:#ccc;" href="https://www.bing.com" target="_blank">Bing搜索</a> </span>
+        <span class="footer-text">服务器运行于日本东京</span>
         <img class="footer-bing-logo" src="/images/logo_bing_yellow.png"/>
         <span class="footer-text-small">Copyright © 2018 <a style="color: #ccc;" href="http://creepersan.com">CreeperSan</a></span>
     </div>
-
-    <script>
-        window.onresize = () => {}
-    </script>
-    {% block global %}{% endblock %}
 </body>
 </html>
