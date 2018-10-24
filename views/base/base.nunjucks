@@ -24,6 +24,11 @@
             <a href="/about" class="header-desktop-page-text">关于</a>
         </div>
     </div>
+    <div class="header-phone-root-div">
+        <a href="/"><img class="header-phone-icon" src="/icon/ic_home_blue.png"/></a>
+        <a href="/random"><img class="header-phone-icon" src="/icon/ic_random_blue.png"/></a>
+        <a href="/about"><img class="header-phone-icon" src="/icon/ic_about_blue.png"/></a>
+    </div>
     <div id="bodyRootDiv" style="background: #eee;width: 100%;">
         {% block body %}{% endblock %}
     </div>

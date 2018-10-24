@@ -1,4 +1,13 @@
 .header-desktop-div{ width:92%;height:4em;display:flex;flex-direction:row;align-items:center;justify-content:space-between;background:white;padding:0 4%;box-shadow:0 0 6px #999;z-index: 999; }
 .header-desktop-logo{ height:90%;padding: 5% 0; }
 .header-desktop-page-div{ display:flex;flex-direction:row;align-items:center; }
-.header-desktop-page-text{ padding:1em;text-decoration:none;color:gray; }
+.header-desktop-page-text{ padding:1em;text-decoration:none;color:gray;max-lines: 1; }
+
+.header-phone-root-div{display: none;}
+.header-phone-icon{ height: 32px;padding: 12px 12px;cursor: pointer }
+
+@media (max-width: 767px) {
+    .header-phone-root-div{display: flex;position: fixed;bottom: 0;z-index: 9999999;background-color: white;box-shadow: gray 0 0 6px;flex-direction: row;align-items: center;justify-content: space-around;width: 100%;}
+    .header-desktop-div{ display: none; }
+}
+
