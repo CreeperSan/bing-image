@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{% block title %}{% endblock %}</title>
+    <title>Bing壁纸{% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/base/base.css"/>
     <link rel="stylesheet" href="/css/base/header.css"/>
@@ -22,14 +22,10 @@
             <a href="/random" class="header-desktop-page-text">随便看看</a>
             <a href="/document" class="header-desktop-page-text">API文档</a>
             <a href="/about" class="header-desktop-page-text">关于</a>
+            <a href="/me" class="header-desktop-page-text">我</a>
         </div>
     </div>
-    <div class="header-phone-root-div">
-        <a href="/"><img class="header-phone-icon" src="/icon/ic_home_blue.png"/></a>
-        <a href="/random"><img class="header-phone-icon" src="/icon/ic_random_blue.png"/></a>
-        <a href="/about"><img class="header-phone-icon" src="/icon/ic_about_blue.png"/></a>
-    </div>
-    <div id="bodyRootDiv" style="background: #eee;width: 100%;">
+    <div id="bodyRootDiv" class="body-root-div">
         {% block body %}{% endblock %}
     </div>
     <div class="footer-div">
@@ -37,6 +33,13 @@
         <span class="footer-text">服务器运行于日本东京</span>
         <img class="footer-bing-logo" src="/images/logo_bing_yellow.png"/>
         <span class="footer-text-small">Copyright © 2018 <a style="color: #ccc;" href="http://creepersan.com">CreeperSan</a></span>
+    </div>
+    <div class="header-phone-root-div">
+        <a href="/"><img class="header-phone-icon" src="/icon/ic_home_blue.png"/></a>
+        <a href="/random"><img class="header-phone-icon" src="/icon/ic_random_blue.png"/></a>
+        <a href="/about"><img class="header-phone-icon" src="/icon/ic_about_blue.png"/></a>
+        {#<a href="/about"><img class="header-phone-icon" src="/icon/ic_rank_blue.png"/></a>#}
+        <a href="/me"><img class="header-phone-icon" src="/icon/ic_me_blue.png"/></a>
     </div>
 </body>
 </html>

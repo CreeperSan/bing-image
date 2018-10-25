@@ -1,6 +1,6 @@
 {% extends 'views/base/base.nunjucks' %}
 
-{% block title %}必应壁纸 - 随便看看{% endblock %}
+{% block title %} - 随便看看{% endblock %}
 
 {% block head_res %}
     <link rel="stylesheet" href="/css/random/random.css" />

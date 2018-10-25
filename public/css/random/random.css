@@ -12,3 +12,7 @@
 .body-content-download-title{ text-align: center; }
 .body-content-download-item-div{ display: flex;flex-direction: row;justify-content: center;align-items: center;max-width: 80%;flex-wrap: wrap;margin: auto; }
 .body-content-download-item{ margin: 6px 12px;text-decoration: none;border: 1px solid;padding: 3px 12px;border-radius: 100em;  }
+
+@media (max-width: 767px) {
+    .body-content-img-div{ max-width:1280px;width:100%;margin:0 0 3em 0;padding:0;position:relative;display:block;height: 440px; }
+}

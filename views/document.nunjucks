@@ -1,6 +1,6 @@
 {% extends 'views/base/base.nunjucks' %}
 
-{% block title %}必应壁纸 - API文档{% endblock %}
+{% block title %} - API文档{% endblock %}
 
 {% block head_res %}
     <link rel="stylesheet" href="/css/document/document.css" />

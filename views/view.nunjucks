@@ -1,6 +1,6 @@
 {% extends 'views/base/base_view.nunjucks' %}
 
-{% block title %}必应壁纸 - {{ title }}{% endblock %}
+{% block title %} - {{ title }}{% endblock %}
 
 {% block head_res %}
     <link rel="stylesheet" href="/css/view/view.css" />

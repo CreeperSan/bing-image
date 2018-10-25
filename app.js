@@ -19,6 +19,7 @@ const router_document = require('./routes/document');
 const router_rank = require('./routes/rank');
 const router_about = require('./routes/about');
 const router_view = require('./routes/view');
+const router_me = require('./routes/me');
 
 // error handler
 onerror(app);
@@ -52,6 +53,7 @@ app.use(router_document.routes(), router_document.allowedMethods());
 app.use(router_rank.routes(), router_rank.allowedMethods());
 app.use(router_about.routes(), router_about.allowedMethods());
 app.use(router_view.routes(), router_view.allowedMethods());
+app.use(router_me.routes(), router_me.allowedMethods());
 
 /**
  *  定时任务

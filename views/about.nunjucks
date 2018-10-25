@@ -1,6 +1,6 @@
 {% extends 'views/base/base.nunjucks' %}
 
-{% block title %}必应壁纸 - 关于{% endblock %}
+{% block title %} - 关于{% endblock %}
 
 
 {% block head_res %}

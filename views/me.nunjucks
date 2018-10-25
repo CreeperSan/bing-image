@@ -1,0 +1,11 @@
+{% extends 'views/base/base.nunjucks' %}
+
+{% block title %} - Me{% endblock %}
+
+{% block head_res %}
+
+{% endblock %}
+
+{% block body %}
+    Me
+{% endblock %}
