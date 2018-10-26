@@ -3,9 +3,15 @@
 {% block title %} - Me{% endblock %}
 
 {% block head_res %}
-
+    <script src="/js/lib/cookie.js"></script>
 {% endblock %}
 
 {% block body %}
     Me
+    <script>
+        function log(content){ console.log(content) }
+
+
+
+    </script>
 {% endblock %}

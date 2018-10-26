@@ -37,9 +37,9 @@
     <div class="header-phone-root-div">
         <a href="/"><img class="header-phone-icon" src="/icon/ic_home_blue.png"/></a>
         <a href="/random"><img class="header-phone-icon" src="/icon/ic_random_blue.png"/></a>
-        <a href="/about"><img class="header-phone-icon" src="/icon/ic_about_blue.png"/></a>
         {#<a href="/about"><img class="header-phone-icon" src="/icon/ic_rank_blue.png"/></a>#}
-        <a href="/me"><img class="header-phone-icon" src="/icon/ic_me_blue.png"/></a>
+        <a href="/document"><img class="header-phone-icon" src="/icon/ic_document_blue.png"/></a>
+        <a href="/about"><img class="header-phone-icon" src="/icon/ic_about_blue.png"/></a>
     </div>
 </body>
 </html>

@@ -6,3 +6,9 @@
 .version-title{ font-size: 3em;margin-top: 3em;font-weight: 300; }
 .version-div{ width: 60%;margin-bottom: 3em; }
 .version-time{ color: lightgray;font-size: 0.8em; }
+
+@media (max-width: 767px) {
+    .content-logo{ width: 42%;background-color: white;box-shadow: 0 0 1em lightgray;border-radius: 26em;padding: 2em;margin: 2em; }
+    .content-p{ width: 100%;max-width: 86%; }
+    .version-div{ width: 86%;margin-bottom: 3em; }
+}
