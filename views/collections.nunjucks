@@ -1,0 +1,17 @@
+{% extends 'views/base/base.nunjucks' %}
+
+{% block title %} - 我的收藏{% endblock %}
+
+{% block head_res %}
+    <script src="/js/lib/cookie.js"></script>
+{% endblock %}
+
+{% block body %}
+
+
+
+
+    <script>
+
+    </script>
+{% endblock %}

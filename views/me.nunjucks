@@ -7,11 +7,169 @@
 {% endblock %}
 
 {% block body %}
-    Me
+
+    <style>
+        
+        .me-root-div{ width: 80%;margin: 3em 0;display: flex;flex-direction: column;padding: 0 10%;justify-content: center;}
+        .me-title{ font-size: 48px;font-weight: 200;margin-bottom: 1em; }
+
+        .me-section-title{ margin: 8px 16px;color:#02CC01;font-size: 1.2em;font-weight: 300;align-self: flex-start;margin-left: 36px;margin-top: 12px; }
+        .me-section-div{ display: flex;flex-direction: column;justify-content: center;align-items: center;border-radius: 16px;background: white;box-shadow:lightgray 0 0 12px;width: 100%;max-width: 1280px;align-self: center;padding:12px 0;margin-top: 2em; }
+        .me-section-item-div{ display: flex;flex-direction: row;justify-content: space-between;align-items: center;width: 90%;padding: 1em 5%;cursor: pointer;background:white;transition:0.3s;  }
+        .me-section-item-div:hover{ display: flex;flex-direction: row;justify-content: space-between;align-items: center;width: 90%;padding: 1em 5%;cursor: pointer;background:#e0e0e0;transition:0.3s;  }
+        .me-section-content-div{ display: flex;flex-direction: column;flex: 1; }
+        .me-section-content-title{ color: #333333 }
+        .me-section-content-description{ color: gray }
+        .me-section-operation-div{  }
+        .me-section-operation-icon{ width: 36px;height: 36px; }
+        .me-section-operation-button{ border-radius: 16px;border: gray 1px solid;padding: 4px 24px;outline: none;cursor: pointer; }
+
+        .me-dialog-background{ position: fixed;background-color: rgba(0,0,0,0.5);z-index: 10000;top: 0;width: 100%;height: 100%;display: none;flex-direction: column;justify-content: center;align-items: center; }
+        .me-dialog-div{ width: 80%;background-color: white;max-height: 90%;border-radius: 36px;padding: 2em 3%;display: flex;flex-direction: column; }
+        .me-dialog-title{ font-size: 2.5em;font-weight: 400; }
+        .me-dialog-content-div{ margin: 1em 0;display: flex;flex-direction: column; }
+        .me-dialog-action-button-div{ display: flex;flex-direction: row;justify-content: flex-end; }
+        .me-dialog-action-button{ margin: 0 6px;padding: 12px 24px;font-size: 1.2em;background: none;border: none;cursor: pointer; }
+
+    </style>
+
+    <div class="me-root-div">
+        <span class="me-title">你好啊</span>
+
+        <div class="me-section-div">
+            <span class="me-section-title">收藏设置</span>
+            <div class="me-section-item-div" onclick="onCheckboxCollectionClick()" style="cursor: pointer;">
+                <div class="me-section-content-div">
+                    <span class="me-section-content-title">启用我的收藏</span>
+                    <span class="me-section-content-description">当前为状态为 : 正在启用</span>
+                </div>
+                <div class="me-section-operation-div">
+                    <input type="checkbox" id="checkboxCollection" onclick="onCheckboxCollectionClick()">
+                </div>
+            </div>
+            <div class="me-section-item-div" onclick="location.href='/me/collections' ">
+                <div class="me-section-content-div">
+                    <span class="me-section-content-title">我的收藏</span>
+                    <span class="me-section-content-description">查看我的收藏</span>
+                </div>
+                <div class="me-section-operation-div">
+                    <img class="me-section-operation-icon" src="/icon/ic_right_deep_gray.png"/>
+                </div>
+            </div>
+            <div class="me-section-item-div" onclick="onClearCollectionClick()">
+                <div class="me-section-content-div">
+                    <span class="me-section-content-title">重置收藏</span>
+                    <span class="me-section-content-description">清空所有收藏的结果</span>
+                </div>
+                <div class="me-section-operation-div">
+                    <button class="me-section-operation-button">清空</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="me-section-div">
+            <span class="me-section-title">赞设置</span>
+            <div class="me-section-item-div" onclick="onCheckboxLikeClick()">
+                <div class="me-section-content-div">
+                    <span class="me-section-content-title">启用赞</span>
+                    <span class="me-section-content-description">当前为状态为 : 正在启用</span>
+                </div>
+                <div class="me-section-operation-div">
+                    <input type="checkbox" id="checkboxLike" onclick="onCheckboxLikeClick()">
+                </div>
+            </div>
+            <div class="me-section-item-div" onclick="location.href='/me/likes'" >
+                <div class="me-section-content-div">
+                    <span class="me-section-content-title">我的点赞</span>
+                    <span class="me-section-content-description">查看我的点赞</span>
+                </div>
+                <div class="me-section-operation-div">
+                    <img class="me-section-operation-icon" src="/icon/ic_right_deep_gray.png"/>
+                </div>
+            </div>
+            <div class="me-section-item-div" onclick="onClearLikeClick()">
+                <div class="me-section-content-div">
+                    <span class="me-section-content-title">重置点赞</span>
+                    <span class="me-section-content-description">清空所有点赞过的壁纸</span>
+                </div>
+                <div class="me-section-operation-div">
+                    <button class="me-section-operation-button">清空</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="me-section-div">
+            <span class="me-section-title">下载设置</span>
+            <div class="me-section-item-div" onclick="location.href='/me/downloads'" >
+                <div class="me-section-content-div">
+                    <span class="me-section-content-title">我的下载历史</span>
+                    <span class="me-section-content-description">查看我的下载历史</span>
+                </div>
+                <div class="me-section-operation-div">
+                    <img class="me-section-operation-icon" src="/icon/ic_right_deep_gray.png"/>
+                </div>
+            </div>
+            <div class="me-section-item-div" onclick="onClearDownloadClick()">
+                <div class="me-section-content-div">
+                    <span class="me-section-content-title">重置下载</span>
+                    <span class="me-section-content-description">清空所有下载历史记录</span>
+                </div>
+                <div class="me-section-operation-div">
+                    <button class="me-section-operation-button">清空</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="me-section-div">
+            <span class="me-section-title">浏览设置</span>
+            <div class="me-section-item-div" onclick="onPageItemCountClick()">
+                <div class="me-section-content-div">
+                    <span class="me-section-content-title">单页加载数量</span>
+                    <span class="me-section-content-description">设置主页下每一页加载的壁纸数量</span>
+                </div>
+                <div class="me-section-operation-div">
+                    <button class="me-section-operation-button">12</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="me-section-div">
+            <span class="me-section-title">其他设置</span>
+            <div class="me-section-item-div" onclick="onNameClick()">
+                <div class="me-section-content-div">
+                    <span class="me-section-content-title">设置昵称</span>
+                    <span class="me-section-content-description">暂时没什么用</span>
+                </div>
+                <div class="me-section-operation-div">
+                    <button class="me-section-operation-button">尚未设置</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="me-dialog-background" id="dialogRootDiv">
+        <div class="me-dialog-div">
+            <span class="me-dialog-title" id="dialogTitle">标题</span>
+            <div class="me-dialog-content-div">
+                <span id="dialogContentText"></span>
+                <input type="text" id="dialogContentEditText">
+                <div id="dialogContentPageItemCount" style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;align-items: center;">
+                    <button>9</button>
+                    <button>12</button>
+                    <button>15</button>
+                </div>
+            </div>
+            <div class="me-dialog-action-button-div" id="dialogActionDiv">
+                <button class="me-dialog-action-button" onclick="onDialogCancelClick()">取消</button>
+                <button class="me-dialog-action-button" onclick="onDialogConfirmClick()" style="color: #02CC01;">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/me/me.js"></script>
     <script>
         function log(content){ console.log(content) }
-
-
 
     </script>
 {% endblock %}

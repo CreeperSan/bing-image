@@ -14,16 +14,22 @@ function setCookie(cname,cvalue,exdays=365*100)
     document.cookie = cname + "=" + cvalue + "; " + expires;
 }
 
-function getCookie(cname)
+function getCookie(cname, defaultValue=undefined)
 {
     var name = cname + "=";
     var ca = document.cookie.split(';');
     for(var i=0; i<ca.length; i++)
     {
         var c = ca[i].trim();
-        if (c.indexOf(name)===0) return c.substring(name.length,c.length);
+        if (c.indexOf(name)===0){
+            let tmpValue = c.substring(name.length,c.length);
+            if (tmpValue === undefined && defaultValue !== undefined){
+                return defaultValue
+            }
+            return tmpValue === 'true'
+        }
     }
-    return "";
+    return defaultValue;
 }
 
 /* 其他跟cookie操作函数 */
@@ -33,22 +39,23 @@ const _COOKIE_OPERATION_SPLIT = ',';            // 列表的分隔符
 const _COOKIE_KEY_COLLECTION = 'collections';   // 收藏
 const _COOKIE_KEY_IS_ENABLE_LIKE = 'is_likes_enable';   // 收藏
 
-const _COOKIE_KEY_LIKE = 'likes';   // 收藏
-const _COOKIE_KEY_IS_ENABLE_COLLECTION = 'is_collections_enable';   // 收藏
+const _COOKIE_KEY_LIKE = 'likes';   // 喜欢
+const _COOKIE_KEY_IS_ENABLE_COLLECTION = 'is_collections_enable';   // 喜欢
 
 const _COOKIE_KEY_DOWNLOAD = 'downloads';       // 下载
-const _COOKIE_KEY_IS_ENABLE_DOWNLOAD = 'is_downloads_enable';       // 下载
 
 const _COOKIE_KEY_PAGE_ITEM_COUNT = 'page_item_count';  // 每页的加载数量
 const _COOKIE_KEY_NAME = 'name';                        // 名称（其实没什么卵用)）
 
 
-function isCollectionEnableCookie() {
-    getCookie(_COOKIE_KEY_IS_ENABLE_COLLECTION)
-}
+
 
 function setCollectionEnableCookie(isEnable) {
     setCookie(_COOKIE_KEY_IS_ENABLE_COLLECTION, isEnable)
+}
+
+function isCollectionEnableCookie() {
+    return getCookie(_COOKIE_KEY_IS_ENABLE_COLLECTION, true)
 }
 
 function getCollectionCookie() {
@@ -76,15 +83,6 @@ function clearCollectionCookie() {
 
 
 
-
-
-function isDownloadEnableCookie(isEnable) {
-    setCookie(_COOKIE_KEY_IS_ENABLE_DOWNLOAD, isEnable)
-}
-
-function getDownloadEnableCookie() {
-    getCookie(_COOKIE_KEY_IS_ENABLE_DOWNLOAD)
-}
 
 function getDownloadListCookie() {
     return getCookie(_COOKIE_KEY_DOWNLOAD).split(_COOKIE_OPERATION_SPLIT)
@@ -114,12 +112,12 @@ function clearDownloadCookie() {
 
 
 
-function isLikeEnableCookie(isEnable) {
+function setLikeEnableCookie(isEnable) {
     setCookie(_COOKIE_KEY_IS_ENABLE_LIKE, isEnable)
 }
 
-function getLikeEnabledCookie() {
-    getCookie(_COOKIE_KEY_IS_ENABLE_LIKE)
+function isLikeEnabledCookie() {
+    return getCookie(_COOKIE_KEY_IS_ENABLE_LIKE, true)
 }
 
 function getLikesCookie() {
