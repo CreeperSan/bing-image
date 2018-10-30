@@ -30,11 +30,19 @@
         .me-dialog-content-div{ margin: 1em 0;display: flex;flex-direction: column; }
         .me-dialog-action-button-div{ display: flex;flex-direction: row;justify-content: flex-end; }
         .me-dialog-action-button{ margin: 0 6px;padding: 12px 24px;font-size: 1.2em;background: none;border: none;cursor: pointer; }
+        .me-dialog-page-count-item-selection-button{ padding: 8px 16px;margin: 8px 16px;border: gray 1px solid;border-radius: 8px;outline: none;font-size: 1.5em;background: none;cursor: pointer; }
+        .me-dialog-input{ border-top: none;border-left: none;border-right: none;outline: none;border-bottom: 2px gray solid;font-size: 1.2em; }
+        .me-dialog-input:focus{ border-top: none;border-left: none;border-right: none;outline: none;border-bottom: 2px #02CC01 solid;font-size: 1.2em; }
+
+        @media (max-width: 767px) {
+            .me-dialog-title{ font-size: 1.5em;font-weight: 400; }
+            .me-dialog-page-count-item-selection-button{ padding: 8px 16px;margin: 8px 16px;border: gray 1px solid;border-radius: 8px;outline: none;font-size: 1.2em;background: none;cursor: pointer; }
+        }
 
     </style>
 
     <div class="me-root-div">
-        <span class="me-title">你好啊</span>
+        <span class="me-title">你好啊<span id="meNickName"></span></span>
 
         <div class="me-section-div">
             <span class="me-section-title">收藏设置</span>
@@ -128,7 +136,7 @@
                     <span class="me-section-content-description">设置主页下每一页加载的壁纸数量</span>
                 </div>
                 <div class="me-section-operation-div">
-                    <button class="me-section-operation-button">12</button>
+                    <button class="me-section-operation-button" id="dialogPageItemCountButton">12</button>
                 </div>
             </div>
         </div>
@@ -141,7 +149,7 @@
                     <span class="me-section-content-description">暂时没什么用</span>
                 </div>
                 <div class="me-section-operation-div">
-                    <button class="me-section-operation-button">尚未设置</button>
+                    <button class="me-section-operation-button" id="meNicknameOption">尚未设置</button>
                 </div>
             </div>
         </div>
@@ -153,11 +161,11 @@
             <span class="me-dialog-title" id="dialogTitle">标题</span>
             <div class="me-dialog-content-div">
                 <span id="dialogContentText"></span>
-                <input type="text" id="dialogContentEditText">
+                <input type="text" class="me-dialog-input" id="dialogContentEditText" placeholder="尚未设置昵称，来设置个昵称吧">
                 <div id="dialogContentPageItemCount" style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;align-items: center;">
-                    <button>9</button>
-                    <button>12</button>
-                    <button>15</button>
+                    <button class="me-dialog-page-count-item-selection-button" onclick="onDialogItemClick(9)">9</button>
+                    <button class="me-dialog-page-count-item-selection-button" onclick="onDialogItemClick(12)">12</button>
+                    <button class="me-dialog-page-count-item-selection-button" onclick="onDialogItemClick(15)">15</button>
                 </div>
             </div>
             <div class="me-dialog-action-button-div" id="dialogActionDiv">

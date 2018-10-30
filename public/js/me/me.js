@@ -16,6 +16,9 @@ const dialogContentSimpleText = document.getElementById('dialogContentText');
 const dialogContentEditText = document.getElementById('dialogContentEditText');
 const dialogContentPageItemCount = document.getElementById('dialogContentPageItemCount');
 const dialogActionDiv = document.getElementById('dialogActionDiv');
+const sectionViewPageItemCountOption = document.getElementById('dialogPageItemCountButton');
+const nicknameSpan = document.getElementById('meNickName');
+const nicknameOption = document.getElementById('meNicknameOption');
 
 function showDialog(isShow) {
     if (isShow){
@@ -64,6 +67,7 @@ function initDialog() {
             dialogActionDiv.style.display = 'flex';
             dialogContentSimpleText.style.display = 'flex';
             dialogTitle.innerText = '设置昵称';
+            dialogContentEditText.value = getNameCookie();
             break;
     }
 }
@@ -99,22 +103,22 @@ function onNameClick() {
 }
 
 function onDialogCancelClick() {
+    onDialogClose(false);
     showDialog(false);
     dialogFlag = DIALOG_FLAG_NONE;
-    initDialog();
 }
 
 function onDialogConfirmClick() {
+    onDialogClose(true);
     showDialog(false);
     dialogFlag = DIALOG_FLAG_NONE;
-    initDialog();
 }
 
-
-
-
-
-
+function onDialogItemClick(itemCounts) {
+    setPageItemCountCookie(itemCounts);
+    sectionViewPageItemCountOption.innerText = getPageItemCountCookie();
+    showDialog(false)
+}
 
 function onCheckboxCollectionClick() {
     checkboxCollection.checked = !checkboxCollection.checked;
@@ -127,15 +131,48 @@ function onCheckboxLikeClick() {
 }
 
 
+function onDialogClose(isPositive) {
+    if (isPositive){
+        switch (dialogFlag) {
+            case DIALOG_FLAG_CLEAR_COLLECTION:
+                clearCollectionCookie();
+                break;
+            case DIALOG_FLAG_CLEAR_LIKE:
+                clearLikesCookie();
+                break;
+            case DIALOG_FLAG_CLEAR_DOWNLOAD:
+                clearDownloadCookie();
+                break;
+            case DIALOG_FLAG_NAME:
+                setNameCookie(dialogContentEditText.value);
+                refreshNickname();
+                break;
+        }
+    }
+}
 
 
 
+function refreshNickname() {
+    const tmpNickname = getNameCookie();
+    if (tmpNickname !== ''){
+        nicknameSpan.innerText = ',' + tmpNickname;
+        nicknameOption.innerText = tmpNickname;
+    }else{
+        nicknameSpan.innerText = '';
+        nicknameOption.innerText = '尚未设置';
+    }
+}
 
 
 function initSelection() {
     checkboxCollection.checked = isCollectionEnableCookie();
     checkboxLike.checked = isLikeEnabledCookie();
+    sectionViewPageItemCountOption.innerText = getPageItemCountCookie();
+
+    refreshNickname();
 
 }
 
 initSelection();
+

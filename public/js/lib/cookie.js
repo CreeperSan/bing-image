@@ -26,7 +26,7 @@ function getCookie(cname, defaultValue=undefined)
             if (tmpValue === undefined && defaultValue !== undefined){
                 return defaultValue
             }
-            return tmpValue === 'true'
+            return tmpValue
         }
     }
     return defaultValue;
@@ -55,7 +55,7 @@ function setCollectionEnableCookie(isEnable) {
 }
 
 function isCollectionEnableCookie() {
-    return getCookie(_COOKIE_KEY_IS_ENABLE_COLLECTION, true)
+    return getCookie(_COOKIE_KEY_IS_ENABLE_COLLECTION, true).toString() === 'true';
 }
 
 function getCollectionCookie() {
@@ -117,7 +117,7 @@ function setLikeEnableCookie(isEnable) {
 }
 
 function isLikeEnabledCookie() {
-    return getCookie(_COOKIE_KEY_IS_ENABLE_LIKE, true)
+    return getCookie(_COOKIE_KEY_IS_ENABLE_LIKE, true).toString() === 'true'
 }
 
 function getLikesCookie() {
@@ -148,21 +148,21 @@ function clearLikesCookie() {
 
 
 function setPageItemCountCookie(pageItemCount) {
-    setCookie(_COOKIE_KEY_PAGE_ITEM_COUNT, isEnable)
+    setCookie(_COOKIE_KEY_PAGE_ITEM_COUNT, pageItemCount);
 }
 
 function getPageItemCountCookie() {
-    getCookie(_COOKIE_KEY_PAGE_ITEM_COUNT)
+    return getCookie(_COOKIE_KEY_PAGE_ITEM_COUNT, 12);
 }
 
 
 
 
 function setNameCookie(name) {
-    setCookie(_COOKIE_KEY_NAME, isEnable)
+    setCookie(_COOKIE_KEY_NAME, name)
 }
 
 function getNameCookie() {
-    getCookie(_COOKIE_KEY_NAME)
+    return getCookie(_COOKIE_KEY_NAME, '')
 }
 
