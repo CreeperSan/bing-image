@@ -13,37 +13,6 @@
         <span class="me-title">你好啊<span id="meNickName"></span></span>
 
         <div class="me-section-div">
-            <span class="me-section-title">收藏设置</span>
-            <div class="me-section-item-div" onclick="onCheckboxCollectionClick()" style="cursor: pointer;">
-                <div class="me-section-content-div">
-                    <span class="me-section-content-title">启用我的收藏</span>
-                    <span class="me-section-content-description">当前为状态为 : 正在启用</span>
-                </div>
-                <div class="me-section-operation-div">
-                    <input type="checkbox" id="checkboxCollection" onclick="onCheckboxCollectionClick()">
-                </div>
-            </div>
-            <div class="me-section-item-div" onclick="location.href='/me/collections' ">
-                <div class="me-section-content-div">
-                    <span class="me-section-content-title">我的收藏</span>
-                    <span class="me-section-content-description">查看我的收藏</span>
-                </div>
-                <div class="me-section-operation-div">
-                    <img class="me-section-operation-icon" src="/icon/ic_right_deep_gray.png"/>
-                </div>
-            </div>
-            <div class="me-section-item-div" onclick="onClearCollectionClick()">
-                <div class="me-section-content-div">
-                    <span class="me-section-content-title">重置收藏</span>
-                    <span class="me-section-content-description">清空所有收藏的结果</span>
-                </div>
-                <div class="me-section-operation-div">
-                    <button class="me-section-operation-button">清空</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="me-section-div">
             <span class="me-section-title">赞设置</span>
             <div class="me-section-item-div" onclick="onCheckboxLikeClick()">
                 <div class="me-section-content-div">
@@ -145,7 +114,7 @@
 
     <script src="/js/me/me.js"></script>
     <script>
-        function log(content){ console.log(content) }
 
+        console.log(document.cookie)
     </script>
 {% endblock %}

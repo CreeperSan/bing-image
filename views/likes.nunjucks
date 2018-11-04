@@ -10,26 +10,154 @@
 {% block body %}
 
     <style>
-        .collection-root-div{ width: 80%;padding: 16px 10%;display: flex;flex-direction: column;justify-content: center;align-items: center; }
-        .collection-title{ font-weight: 300;font-size: 48px;width: 100%; }
-        .collection-items-div{  }
-        .collection-items-thumbnail{  }
-        .collection-items-title{  }
-        .collection-hint-text{}
-        .collection-load-more{}
+        .like-root-div{ width: 80%;padding: 16px 10%;display: flex;flex-direction: column;justify-content: center;align-items: center; }
+        .like-title{ font-weight: 300;font-size: 48px;width: 100%; }
+        .like-items-root-div{ display: flex;flex-direction: column;width: 100%;align-items: flex-start;justify-content: center;background: white;border-radius: 36px;padding: 26px 5%; }
+        .like-items-div{ display: flex;flex-direction: row;justify-content: space-between;align-items: center;width: 100%;padding: 16px 0; }
+        .like-items-thumbnail{ width: auto; height: 28px; }
+        .like-items-title{ flex: 1; }
+        .like-items-date{  }
+        .like-hint-text{ margin: 24px 0;line-height: 2em;text-align: center; }
+        .like-load-more{ background: none;border-radius: 1000px;padding: 8px 32px;border: #03CC01 solid 1px;outline: none;cursor: pointer;font-size: 16px;font-weight: 300;color: #03CC01; }
     </style>
 
-    <div class="collection-root-div">
-        <p class="collection-title">我的收藏</p>
-        <div class="collection-items-div">
-            <img class="collection-items-thumbnail" src="" />
-            <span class="collection-items-title"></span>
+    <div class="like-root-div" id="likeApp">
+        <p class="like-title">我的点赞</p>
+        <div class="like-items-root-div" id="likeItemListDiv">
+            <div class="like-items-div" v-for="(tmpLike, index) in likeDateList">
+                <img class="like-items-thumbnail" src="/images/logo_header.png" />
+                <span class="like-items-title">{% raw %}{{ tmpLike.title }}{% endraw %}</span>
+                <span class="like-items-date">{% raw %}{{ tmpLike.date }}{% endraw %}</span>
+            </div>
         </div>
-        <div class="collection-hint-text">暂时没有收藏</div>
-        <button class="collection-load-more">加载更多</button>
+
+        <span class="like-hint-text" id="likeHintText">还没有点过赞哦😯</span>
+
+        <img id="likeProgressBar" src="/icon/ic_loading_gray.gif" style="height: 36px;width: 36px;margin: 16px 0;"/>
+
+        <button class="like-load-more" id="likeLoadMore" v-on:click="loadMoreImage()">加载更多</button>
     </div>
 
     <script>
+        const STATE_DISABLE = 1;
+        const STATE_LOADING = 2;
+        const STATE_EMPTY = 3;
+        const STATE_LOAD_IDLE = 4;
+        const STATE_LOAD_FINISH = 5;
+        const STATE_LOAD_FAIL = 6;
+
+        function setLikeListState(state) {
+            const likeListItemDiv = document.getElementById('likeItemListDiv');
+            const likeHintTextSpan = document.getElementById('likeHintText');
+            const likeLoadMoreButton = document.getElementById('likeLoadMore');
+            const likeProgressBar = document.getElementById('likeProgressBar');
+            switch (state) {
+                case STATE_DISABLE:
+                    likeListItemDiv.style.display = 'none';
+                    likeHintTextSpan.style.display = 'flex';
+                    likeLoadMoreButton.style.display = 'none';
+                    likeProgressBar.style.display = 'none';
+                    likeHintTextSpan.innerHTML = '点赞功能关闭了😯<br>你可以前往“<a href=\'/me/\'>我</a>”页面重新打开';
+                    break;
+                case STATE_LOADING:
+                    likeListItemDiv.style.display = 'flex';
+                    likeHintTextSpan.style.display = 'none';
+                    likeLoadMoreButton.style.display = 'none';
+                    likeProgressBar.style.display = 'box';
+                    likeHintTextSpan.innerHTML = '加载中';
+                    break;
+                case STATE_EMPTY:
+                    likeListItemDiv.style.display = 'none';
+                    likeHintTextSpan.style.display = 'flex';
+                    likeLoadMoreButton.style.display = 'none';
+                    likeProgressBar.style.display = 'none';
+                    likeHintTextSpan.innerHTML = '还没有点过赞哦';
+                    break;
+                case STATE_LOAD_IDLE:
+                    likeListItemDiv.style.display = 'flex';
+                    likeHintTextSpan.style.display = 'none';
+                    likeLoadMoreButton.style.display = 'flex';
+                    likeProgressBar.style.display = 'none';
+                    break;
+                case STATE_LOAD_FINISH:
+                    likeListItemDiv.style.display = 'flex';
+                    likeHintTextSpan.style.display = 'none';
+                    likeLoadMoreButton.style.display = 'none';
+                    likeProgressBar.style.display = 'none';
+                    break;
+                case STATE_LOAD_FAIL:
+                    likeListItemDiv.style.display = 'flex';
+                    likeHintTextSpan.style.display = 'flex';
+                    likeLoadMoreButton.style.display = 'flex';
+                    likeProgressBar.style.display = 'none';
+                    likeHintTextSpan.innerHTML = '刷新失败了 ❌';
+                    break;
+            }
+        }
+
+        var likeApp = new Vue({
+            el : '#likeApp',
+            data : {
+                LOAD_SIZE : 3,
+
+                likeDateList : [], // 应该至包含少以下几个信息 title:名称 date:日期 image_thumbnail:缩略图
+                likeDateRawList : [],
+                currentLoadPos : 0,
+            },
+            mounted : function () {
+                const self = this;
+                // self.refreshLikeState();
+                self.likeDateRawList = self.getLikeJsonArray();
+                self.loadMoreImage()
+            },
+            methods : {
+                refreshLikeState() {
+                    const self = this;
+                    if (isLikeEnabledCookie()){
+                        const tmpLikeRawList = getLikesCookie();
+                        if (tmpLikeRawList.length > 0){
+                            setLikeListState(STATE_LOADING);
+                        } else{ // 没有点过赞
+                            setLikeListState(STATE_EMPTY);
+                        }
+                    } else { // 关闭了点赞
+                        setLikeListState(STATE_DISABLE);
+                    }
+                },
+                getLikeJsonArray(){
+                    let tmpResult = [];
+                    getLikesCookie().forEach((value,index,array) => {
+                        if (value.length === 8){
+                            tmpResult.push(value)
+                        }
+                    });
+                    return tmpResult;
+                },
+                loadMoreImage(){
+                    const self = this;
+                    setLikeListState(STATE_LOADING);
+                    // TODO:发送请求
+                    let tmpLoadSize = self.LOAD_SIZE;
+                    if (self.likeDateRawList.length - self.currentLoadPos  self.LOAD_SIZE)
+                    for (let i=0;i<tmpLoadSize;i++){
+                        self.likeDateList.push({
+                            title : '名称'+(self.currentLoadPos+i),
+                            date : self.likeDateRawList[self.currentLoadPos+i],
+                            image_thumbnail : ''
+                        })
+                    }
+                    self.currentLoadPos += self.LOAD_SIZE;
+                    if (self.currentLoadPos >= self.likeDateRawList.length){
+                        setLikeListState(STATE_LOAD_FINISH);
+                    } else{
+                        setLikeListState(STATE_LOAD_IDLE);
+                    }
+                }
+
+            }
+        });
+
+        console.log(document.cookie)
 
     </script>
 {% endblock %}

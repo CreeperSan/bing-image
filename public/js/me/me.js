@@ -1,6 +1,5 @@
 
 const DIALOG_FLAG_NONE = 0;
-const DIALOG_FLAG_CLEAR_COLLECTION = 1;
 const DIALOG_FLAG_CLEAR_LIKE = 2;
 const DIALOG_FLAG_CLEAR_DOWNLOAD = 3;
 const DIALOG_FLAG_PAGE_ITEM_COUNT = 4;
@@ -8,7 +7,6 @@ const DIALOG_FLAG_NAME = 5;
 
 let dialogFlag = DIALOG_FLAG_NONE;
 
-const checkboxCollection = document.getElementById('checkboxCollection');
 const checkboxLike = document.getElementById('checkboxLike');
 
 const dialogTitle = document.getElementById('dialogTitle');
@@ -30,14 +28,6 @@ function showDialog(isShow) {
 
 function initDialog() {
     switch (dialogFlag) {
-        case DIALOG_FLAG_CLEAR_COLLECTION:
-            dialogContentEditText.style.display = 'none';
-            dialogContentPageItemCount.style.display = 'none';
-            dialogActionDiv.style.display = 'flex';
-            dialogContentSimpleText.style.display = 'flex';
-            dialogTitle.innerText = '重置收藏记录';
-            dialogContentSimpleText.innerText = '您确定要删除所有的收藏记录吗？此操作不可逆';
-            break;
         case DIALOG_FLAG_CLEAR_LIKE:
             dialogContentEditText.style.display = 'none';
             dialogContentPageItemCount.style.display = 'none';
@@ -65,17 +55,11 @@ function initDialog() {
             dialogContentEditText.style.display = 'flex';
             dialogContentPageItemCount.style.display = 'none';
             dialogActionDiv.style.display = 'flex';
-            dialogContentSimpleText.style.display = 'flex';
+            dialogContentSimpleText.style.display = 'none';
             dialogTitle.innerText = '设置昵称';
             dialogContentEditText.value = getNameCookie();
             break;
     }
-}
-
-function onClearCollectionClick() {
-    dialogFlag = DIALOG_FLAG_CLEAR_COLLECTION;
-    initDialog();
-    showDialog(true);
 }
 
 function onClearLikeClick() {
@@ -120,11 +104,6 @@ function onDialogItemClick(itemCounts) {
     showDialog(false)
 }
 
-function onCheckboxCollectionClick() {
-    checkboxCollection.checked = !checkboxCollection.checked;
-    setCollectionEnableCookie(checkboxCollection.checked);
-}
-
 function onCheckboxLikeClick() {
     checkboxLike.checked = !checkboxLike.checked;
     setLikeEnableCookie(checkboxLike.checked)
@@ -134,9 +113,6 @@ function onCheckboxLikeClick() {
 function onDialogClose(isPositive) {
     if (isPositive){
         switch (dialogFlag) {
-            case DIALOG_FLAG_CLEAR_COLLECTION:
-                clearCollectionCookie();
-                break;
             case DIALOG_FLAG_CLEAR_LIKE:
                 clearLikesCookie();
                 break;
@@ -166,7 +142,6 @@ function refreshNickname() {
 
 
 function initSelection() {
-    checkboxCollection.checked = isCollectionEnableCookie();
     checkboxLike.checked = isLikeEnabledCookie();
     sectionViewPageItemCountOption.innerText = getPageItemCountCookie();
 

@@ -7,7 +7,7 @@
 .body-content-img-info-location{ color:lightgray; }
 .body-content-img-info-extra{ color:lightgray; }
 .body-content-action-div{ display:flex;flex-direction:row;align-items:center;justify-content:center;margin-bottom:3em; }
-.body-content-action-button{ width:3em;height:3em;border-radius:3em;background:#018000;margin:0 3em;padding: 1em;cursor: pointer; }
+.body-content-action-button{ width:3em;height:3em;border-radius:3em;background:#009AFF;margin:0 3em;padding: 1em;cursor: pointer; }
 .body-content-download-div{ margin: 16px 0; }
 .body-content-download-title{ text-align: center; }
 .body-content-download-item-div{ display: flex;flex-direction: row;justify-content: center;align-items: center;max-width: 80%;flex-wrap: wrap;margin: auto; }
