@@ -11,31 +11,42 @@
 
     <style>
         .like-root-div{ width: 80%;padding: 16px 10%;display: flex;flex-direction: column;justify-content: center;align-items: center; }
-        .like-title{ font-weight: 300;font-size: 48px;width: 100%; }
-        .like-items-root-div{ display: flex;flex-direction: column;width: 100%;align-items: flex-start;justify-content: center;background: white;border-radius: 36px;padding: 26px 5%; }
-        .like-items-div{ display: flex;flex-direction: row;justify-content: space-between;align-items: center;width: 100%;padding: 16px 0; }
-        .like-items-thumbnail{ width: auto; height: 28px; }
-        .like-items-title{ flex: 1; }
-        .like-items-date{  }
+        .like-title{ font-weight: 300;font-size: 48px;width: 100%;margin-left: 2em; }
+        .like-items-root-div{ display: flex;flex-direction: column;width: 100%;align-items: flex-start;justify-content: center;background: white;border-radius: 36px;padding: 26px 0;box-shadow: lightgray 0 0 12px; }
+        .like-items-div{ display: flex;flex-direction: row;justify-content: space-between;align-items: center;width: 90%;padding: 16px 5%;background: none;transition: 0.3s;cursor: pointer; }
+        .like-items-div:hover{ display: flex;flex-direction: row;justify-content: space-between;align-items: center;width: 90%;padding: 16px 5%;background: #e0e0e0;transition: 0.3s;cursor: pointer; }
+        .like-items-thumbnail{ width: auto; height: 82px;border-radius: 8px;margin-right: 16px; }
+        .like-items-text-content{ flex: 1;display: flex;flex-direction: column; }
+        .like-items-title{ color: #333333;font-size: 16px; }
+        .like-items-date{ color: gray;font-size: 14px; }
         .like-hint-text{ margin: 24px 0;line-height: 2em;text-align: center; }
-        .like-load-more{ background: none;border-radius: 1000px;padding: 8px 32px;border: #03CC01 solid 1px;outline: none;cursor: pointer;font-size: 16px;font-weight: 300;color: #03CC01; }
+        .like-load-more{ background: white;border-radius: 1000px;padding: 8px 32px;border: #03CC01 solid 1px;outline: none;cursor: pointer;font-size: 16px;font-weight: 300;color: #03CC01;align-self: center;margin-top: 16px;transition: 0.3s; }
+        .like-load-more:hover{ background: #03CC01;border-radius: 1000px;padding: 8px 32px;border: white solid 1px;outline: none;cursor: pointer;font-size: 16px;font-weight: 300;color: white;align-self: center;margin-top: 16px;transition: 0.3s; }
+
+        @media (max-width: 767px) {
+            .like-root-div{ width: 100%;padding: 16px 0;display: flex;flex-direction: column;justify-content: center;align-items: center; }
+            .like-items-root-div{ display: flex;flex-direction: column;width: 100%;align-items: flex-start;justify-content: center;background: white;border-radius: 0;padding: 26px 0;box-shadow: lightgray 0 0 12px; }
+        }
     </style>
 
     <div class="like-root-div" id="likeApp">
         <p class="like-title">我的点赞</p>
         <div class="like-items-root-div" id="likeItemListDiv">
-            <div class="like-items-div" v-for="(tmpLike, index) in likeDateList">
-                <img class="like-items-thumbnail" src="/images/logo_header.png" />
-                <span class="like-items-title">{% raw %}{{ tmpLike.title }}{% endraw %}</span>
-                <span class="like-items-date">{% raw %}{{ tmpLike.date }}{% endraw %}</span>
+            <div class="like-items-div" v-for="(tmpLike, index) in likeDateList" v-on:click="onItemClick(tmpLike)">
+                <img class="like-items-thumbnail" v-bind:src="tmpLike.image_thumbnail" />
+                <div class="like-items-text-content">
+                    <span class="like-items-title">{% raw %}{{ tmpLike.title }}{% endraw %}</span>
+                    <span class="like-items-date">{% raw %}{{ tmpLike.date }}{% endraw %}</span>
+                </div>
             </div>
+
+            <button class="like-load-more" id="likeLoadMore" v-on:click="loadMoreImage()">加载更多</button>
         </div>
 
         <span class="like-hint-text" id="likeHintText">还没有点过赞哦😯</span>
 
         <img id="likeProgressBar" src="/icon/ic_loading_gray.gif" style="height: 36px;width: 36px;margin: 16px 0;"/>
 
-        <button class="like-load-more" id="likeLoadMore" v-on:click="loadMoreImage()">加载更多</button>
     </div>
 
     <script>
@@ -137,21 +148,32 @@
                     const self = this;
                     setLikeListState(STATE_LOADING);
                     // TODO:发送请求
-                    let tmpLoadSize = self.LOAD_SIZE;
-                    if (self.likeDateRawList.length - self.currentLoadPos  self.LOAD_SIZE)
+                    let tmpLoadSize = 0;
+                    if (self.currentLoadPos >= self.likeDateRawList.length){ // 已经加载完了
+                        tmpLoadSize = 0;
+                        setLikeListState(STATE_LOAD_FINISH);
+                    } else if( self.likeDateRawList.length - self.currentLoadPos > self.LOAD_SIZE ) { // 还有超过SIZE条要加载，也就是说这次加载SIZE条
+                        tmpLoadSize = self.LOAD_SIZE;
+                        setLikeListState(STATE_LOAD_IDLE);
+                    } else { // 还有不到SIZE条需要加载
+                        tmpLoadSize = self.likeDateRawList.length - self.currentLoadPos;
+                        setLikeListState(STATE_LOAD_FINISH);
+                    }
                     for (let i=0;i<tmpLoadSize;i++){
+                        const tmpDate = self.likeDateRawList[self.currentLoadPos+i];
+                        const tmpYear = tmpDate.substring(0,4);
+                        const tmpMonth = tmpDate.substring(4,6);
+                        const tmpDay = tmpDate.substring(6,8);
                         self.likeDateList.push({
                             title : '名称'+(self.currentLoadPos+i),
-                            date : self.likeDateRawList[self.currentLoadPos+i],
-                            image_thumbnail : ''
+                            date : tmpDate,
+                            image_thumbnail : '/bing-image/'+tmpYear+'/'+tmpMonth+'/'+tmpDay+'/400x240.jpg'
                         })
                     }
-                    self.currentLoadPos += self.LOAD_SIZE;
-                    if (self.currentLoadPos >= self.likeDateRawList.length){
-                        setLikeListState(STATE_LOAD_FINISH);
-                    } else{
-                        setLikeListState(STATE_LOAD_IDLE);
-                    }
+                    self.currentLoadPos += tmpLoadSize;
+                },
+                onItemClick(image){
+                    window.open('/view/'+image.date)
                 }
 
             }
