@@ -30,7 +30,7 @@
     </style>
 
     <div class="like-root-div" id="likeApp">
-        <p class="like-title">我的点赞</p>
+        <p class="like-title"><img onclick="history.back()" src="/icon/ic_back_gray.png" style="height: 0.75em;margin-right: 16px;"/>我的点赞</p>
         <div class="like-items-root-div" id="likeItemListDiv">
             <div class="like-items-div" v-for="(tmpLike, index) in likeDateList" v-on:click="onItemClick(tmpLike)">
                 <img class="like-items-thumbnail" v-bind:src="tmpLike.image_thumbnail" />

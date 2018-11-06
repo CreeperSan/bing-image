@@ -9,6 +9,7 @@ router.prefix('/api/v1');
 
 const CODE_SUCCESS = 200;
 const CODE_SERVER_ERROR = 500;
+const CODE_PARAMS_ERROR = 502;
 
 const URL_BING_IMAGE = 'http://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1';
 const URL_BING_PREFIX = 'http://cn.bing.com';
@@ -93,20 +94,27 @@ router.get('/img',async (ctx, next) => {
  */
 router.get('/url', async (ctx, next) => {
     let returnObject = {};
-    const requestParam = ctx.request.query;
-    console.log(requestParam);
-    if (!requestParam.count){ requestParam.count = 12 }
-    if (!requestParam.page){ requestParam.page = 1; }
-    if (!requestParam.size){ requestParam.size = ScreenResoluction.SIZE_1920x1080.toString()+','+ScreenResoluction.SIZE_320x240.toString(); }
-    const queryData = await database.getBingInfo( requestParam.page, requestParam.count );
-    let tmpLineCount = await database.getBingImageCount();
-    if (tmpLineCount.success){
-        tmpLineCount = tmpLineCount.result[0]['count(_id)'];
-        returnObject.itemCount = tmpLineCount;
+    const requestParam = ctx.request.query; // 请求的内容
+    if (requestParam.id){ // 如果是获取指定的图片ID
+        returnObject = await database.getBingImageByIDs(requestParam.id);
+        if (returnObject === false){
+            ctx.body = createResponse(CODE_PARAMS_ERROR, {})
+        } else{
+            ctx.body = createResponse(CODE_SUCCESS, returnObject);
+        }
+    } else{ // 如果是获取指定页码的图片
+        if (!requestParam.count){ requestParam.count = 12 }
+        if (!requestParam.page){ requestParam.page = 1; }
+        if (!requestParam.size){ requestParam.size = ScreenResoluction.SIZE_1920x1080.toString()+','+ScreenResoluction.SIZE_320x240.toString(); }
+        const queryData = await database.getBingInfo( requestParam.page, requestParam.count );
+        let tmpLineCount = await database.getBingImageCount();
+        if (tmpLineCount.success){
+            tmpLineCount = tmpLineCount.result[0]['count(_id)'];
+            returnObject.itemCount = tmpLineCount;
+        }
+        returnObject.imgList = queryData;
+        ctx.body = createResponse(CODE_SUCCESS, returnObject);
     }
-    returnObject.imgList = queryData;
-    ctx.body = createResponse(CODE_SUCCESS, returnObject)
-
 });
 
 /**
