@@ -143,7 +143,7 @@ function setupViewContent(imgUrl, title, loaction, extra) {
 function downloadBigImage() {
     let tmpSize = document.getElementById('imageSizeSelect').value
     try {
-        tmpSize = parseInt(tmpSize)
+        tmpSize = parseInt(tmpSize);
         if (tmpSize >= 0 && tmpSize <18){ location.href = '/api/v1/download/'+imgApp.bigImageID+'.jpg?size='+tmpSize }
         return
     }catch (e) {}

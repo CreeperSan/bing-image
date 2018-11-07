@@ -5,6 +5,7 @@
 {% block head_res %}
     <script src="/js/lib/cookie.js"></script>
     <script src="/lib/vue/vue.js"></script>
+    <script src="/lib/axios/axios.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -30,7 +31,7 @@
     </style>
 
     <div class="like-root-div" id="likeApp">
-        <p class="like-title"><img onclick="history.back()" src="/icon/ic_back_gray.png" style="height: 0.75em;margin-right: 16px;"/>我的点赞</p>
+        <p class="like-title"><img onclick="history.back()" src="/icon/ic_back_gray.png" style="height: 0.75em;margin-right: 16px;cursor:pointer;"/>我的点赞</p>
         <div class="like-items-root-div" id="likeItemListDiv">
             <div class="like-items-div" v-for="(tmpLike, index) in likeDateList" v-on:click="onItemClick(tmpLike)">
                 <img class="like-items-thumbnail" v-bind:src="tmpLike.image_thumbnail" />
@@ -159,21 +160,46 @@
                         tmpLoadSize = self.likeDateRawList.length - self.currentLoadPos;
                         setLikeListState(STATE_LOAD_FINISH);
                     }
+
+
+                    let idStringSet = '';
                     for (let i=0;i<tmpLoadSize;i++){
-                        const tmpDate = self.likeDateRawList[self.currentLoadPos+i];
-                        const tmpYear = tmpDate.substring(0,4);
-                        const tmpMonth = tmpDate.substring(4,6);
-                        const tmpDay = tmpDate.substring(6,8);
-                        self.likeDateList.push({
-                            title : '名称'+(self.currentLoadPos+i),
-                            date : tmpDate,
-                            image_thumbnail : '/bing-image/'+tmpYear+'/'+tmpMonth+'/'+tmpDay+'/400x240.jpg'
-                        })
+                        const tmpID = self.likeDateRawList[self.currentLoadPos+i];
+                        idStringSet = idStringSet + tmpID + ','
                     }
-                    self.currentLoadPos += tmpLoadSize;
+                    if (tmpLoadSize > 0){
+                        idStringSet = idStringSet.substring(0, idStringSet.length-1)
+                    }
+
+
+                    axios.get('/api/v1/url?id='+idStringSet).then((response) => {
+                        if (response.status === 200){ // 获取成功
+                            if (response.data.flag === 200){// 服务器处理成功
+                                const tmpResult = response.data.data;
+                                for (let i=0; i<tmpResult.length; i++){
+                                    const tmpItem = tmpResult[i];
+                                    self.likeDateList.push({
+                                        title : tmpItem.title,
+                                        date : tmpItem.year+'-'+tmpItem.month+'-'+tmpItem.day,
+                                        image_thumbnail : tmpItem.img_url_thumbnail,
+                                        id : tmpItem.date
+                                    });
+                                }
+                                self.currentLoadPos += tmpLoadSize;
+                            } else{ // 服务器处理失败
+                                alert('服务器处理失败')
+                            }
+                        } else{ // 获取失败
+                            alert('获取失败，请检查您的网络连接稍后再试');
+                        }
+                        console.log()
+                    }).catch((err)=>{
+                        console.log('error');
+                        console.log(err)
+                    });
                 },
                 onItemClick(image){
-                    window.open('/view/'+image.date)
+                    window.open('/view/'+image.id)
                 }
 
             }
