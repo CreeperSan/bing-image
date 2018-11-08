@@ -9,20 +9,29 @@
 {% endblock %}
 
 {% block body %}
-
     <div class="content-div" id="app">
 
         <div class="img-div" id="actionImageList">
 
-            <div class="img-item-div" v-for="image in imageList" v-on:click="onImageItemDivClick(image)">
-                <img class="img-item-img" {% raw %} v-bind:src="image.img_url_thumbnail" {% endraw %} />
-                <div class="img-item-text-div">
-                    <span class="img-item-text-title">{% raw %} {{ image.title }} {% endraw %}</span>
-                    <span class="img-item-text-location">{% raw %} {{ image.location }} {% endraw %}</span>
-                    {#<span class="img-item-text-time">{% raw %} {{ getTimeFromImage(image) }} {% endraw %}</span>#}
-                    <span class="img-item-text-time">{% raw %} {{ image.author }} {% endraw %}</span>
+
+            <div v-for="image in imageList" v-on:click="onImageItemDivClick(image)" class="img-card" v-bind:style="{background:'url('+image.img_url_thumbnail+') center center / cover no-repeat'}">
+                <div class="img-card-statistic-div">
+                    <div class="img-card-statistic-item-div">
+                        <img class="img-card-statistic-item-icon" src="/icon/ic_download_white.png"/>
+                        <span class="img-card-statistic-item-text">{% raw %}{{ image.download }}{% endraw %}</span>
+                    </div>
+                    <div class="img-card-statistic-item-div">
+                        <img class="img-card-statistic-item-icon" src="/icon/ic_like_white.png"/>
+                        <span class="img-card-statistic-item-text">{% raw %}{{ image.like }}{% endraw %}</span>
+                    </div>
+                </div>
+                <div class="img-card-text-div">
+                    <span class="img-card-text-title">{% raw %} {{ image.title }} {% endraw %}</span>
+                    <span class="img-card-text-time">{% raw %} {{ getTimeFromImage(image) }} {% endraw %}</span>
+                    <span class="img-card-text-author">{% raw %} {{ image.author }} {% endraw %}</span>
                 </div>
             </div>
+
 
         </div>
 

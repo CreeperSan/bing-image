@@ -1,7 +1,8 @@
 .header-desktop-div{ width:92%;height:4em;display:flex;flex-direction:row;align-items:center;justify-content:space-between;background:white;padding:0 4%;box-shadow:0 0 6px #999;z-index: 999; }
 .header-desktop-logo{ height:90%;padding: 5% 0; }
 .header-desktop-page-div{ display:flex;flex-direction:row;align-items:center; }
-.header-desktop-page-text{ padding:1em;text-decoration:none;color:gray;max-lines: 1; }
+.header-desktop-page-text{ padding:0.3em 1em;text-decoration:none;color:gray;max-lines: 1;margin-bottom: 0;transition: 0.3s; }
+.header-desktop-page-text:hover{ padding:0.3em 1em;text-decoration:none;color:#03CC01;max-lines: 1;margin-bottom: 0.2em;transition: 0.3s; }
 
 .header-phone-root-div{display: none;position: fixed;bottom: 0;z-index: 9999999;background-color: white;box-shadow: gray 0 0 6px;flex-direction: row;align-items: center;justify-content: space-around;width: 100%;padding-bottom: 0;}
 .header-phone-icon{ height: 32px;padding: 12px 12px 0 12px;cursor: pointer }
