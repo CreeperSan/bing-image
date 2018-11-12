@@ -11,40 +11,6 @@ function setCookie(cname,cvalue,exdays=365*100) {
     d.setTime(d.getTime()+(exdays*24*60*60*1000));
     var expires = "expires="+d.toGMTString();
     document.cookie = cname + "=" + cvalue + "; " + expires;
-
-
-    // let tmpSaveCookieObject = {};
-    // let tmpRawCookie = document.cookie;
-    // let tmpCookie = tmpRawCookie.split(';');
-    // // 统计编辑cookie
-    // for (let i=0; i<tmpCookie.length; i++){
-    //     const tmpCookieItemStr = tmpCookie[i].replace(' ', '');
-    //     const tmpCookieItemSplit = tmpCookieItemStr.split('=');
-    //     if (tmpCookieItemSplit.length = 2){ // 如果键值对合法
-    //         const tmpKey = tmpCookieItemSplit[0];
-    //         const tmpValue = tmpCookieItemSplit[1];
-    //         if (tmpKey == cname){ // 如果这个Key已经存在了
-    //             tmpSaveCookieObject[tmpKey] = cvalue;
-    //         } else { // 如果这个 Key 不存在
-    //             tmpSaveCookieObject[tmpKey] = tmpValue;
-    //         }
-    //         console.log('key=> '+tmpKey+'        value=>'+tmpValue)
-    //     }
-    // }
-    // // 输出格式化的cookie
-    // let cookieStr = '';
-    // console.log('格式化输出');
-    // const resultKeys = Object.keys(tmpSaveCookieObject);
-    // resultKeys.forEach(((value, index, array) => {
-    //     cookieStr = cookieStr + value + '='+tmpSaveCookieObject[value]+';';
-    //     console.log(value + ' : ' + tmpSaveCookieObject[value]);
-    // }));
-    // if (resultKeys.length > 0){
-    //     cookieStr.substring(0, cookieStr.length - 1)
-    // }
-    // // 保存cookie
-    // // console.log(cookieStr)
-    // document.cookie = cookieStr;
 }
 
 function getCookie(cname, defaultValue='') {
@@ -70,6 +36,7 @@ function getCookie(cname, defaultValue='') {
 const _COOKIE_OPERATION_SPLIT = ',';            // 列表的分隔符
 
 const _COOKIE_KEY_LIKE = 'like';   // 喜欢
+const _COOKIE_KEY_LIKE_HIDDEN = 'like_hidden';   // 喜欢用于记录喜欢过的，防止重复喜欢的时候重复发送喜欢的请求
 const _COOKIE_KEY_IS_ENABLE_LIKE = 'is_like_enable';   // 喜欢
 
 const _COOKIE_KEY_DOWNLOAD = 'downloads';       // 下载
@@ -77,6 +44,10 @@ const _COOKIE_KEY_DOWNLOAD = 'downloads';       // 下载
 const _COOKIE_KEY_PAGE_ITEM_COUNT = 'page_item_count';  // 每页的加载数量
 const _COOKIE_KEY_NAME = 'name';                        // 名称（其实没什么卵用)）
 
+
+/***********************
+ *  下载部分
+ */
 
 function getDownloadListCookie() {
     return getCookie(_COOKIE_KEY_DOWNLOAD, '').split(_COOKIE_OPERATION_SPLIT)
@@ -104,6 +75,9 @@ function clearDownloadCookie() {
 
 
 
+/***********************
+ *  喜欢部分
+ */
 
 
 function setLikeEnableCookie(isEnable) {
@@ -115,7 +89,13 @@ function isLikeEnabledCookie() {
 }
 
 function getLikesCookie() {
-    return getCookie(_COOKIE_KEY_LIKE, '').split(_COOKIE_OPERATION_SPLIT)
+    let tmpResult = [];
+    getCookie(_COOKIE_KEY_LIKE, '').split(_COOKIE_OPERATION_SPLIT).forEach(((value) => {
+        if (value.toString().length===8 && !isNaN(value) && value>20000000 && value<30000000){
+            tmpResult.push(value);
+        }
+    }));
+    return tmpResult;
 }
 
 function setLikesListCookie(itemDates) {
@@ -129,14 +109,35 @@ function setLikesListCookie(itemDates) {
     setCookie(_COOKIE_KEY_LIKE, tmpResultStr);
 }
 
-function setLikesRawCookie(itemRawString) {
-    setCookie(_COOKIE_KEY_LIKE, itemRawString);
-}
-
 function addLikesCookie(itemDate) {
     let a = getLikesCookie();
+    for (let i=0;i<a.length;i++){
+        let tmpItemData = a[i];
+        if (tmpItemData == itemDate){
+            return;
+        }
+    }
     a.push(itemDate);
     setLikesListCookie(a);
+    // 顺手也给隐藏的也添加了
+    addHiddenLikesCookie(itemDate);
+}
+
+function removeLikesCookie(itemData) {
+    let a = getLikesCookie();
+    a.forEach((value, index, array) => {
+       if (value == itemData){
+           delete array[index];
+       }
+    });
+    let b = [];
+    a.forEach(((value, index, array) => {
+        if (value.toString().length===8 && !isNaN(value) && value>20000000 && value<30000000){
+            b.push(value);
+        }
+    }));
+    setLikesListCookie(b);
+    // 这里就不remove隐藏的了
 }
 
 function clearLikesCookie() {
@@ -146,6 +147,84 @@ function clearLikesCookie() {
 
 
 
+
+/***********************
+ *  隐藏的喜欢部分，用于区分是否需要发送喜欢+1到服务器
+ */
+
+function _getHiddenLikesCookie() {
+    let tmpResult = [];
+    getCookie(_COOKIE_KEY_LIKE_HIDDEN, '').split(_COOKIE_OPERATION_SPLIT).forEach(((value) => {
+        if (value.toString().length===8 && !isNaN(value) && value>20000000 && value<30000000){
+            tmpResult.push(value);
+        }
+    }));
+    return tmpResult;
+}
+
+function _setHiddenLikesListCookie(itemDates) {
+    let tmpResultStr = '';
+    if (itemDates.length > 0){
+        itemDates.forEach((value, index, array) => {
+            tmpResultStr = tmpResultStr+value+','
+        });
+    }
+    tmpResultStr = tmpResultStr.substring(0, tmpResultStr.length - 1);
+    setCookie(_COOKIE_KEY_LIKE_HIDDEN, tmpResultStr);
+}
+
+function addHiddenLikesCookie(itemDate) {
+    let a = _getHiddenLikesCookie();
+    for (let i=0;i<a.length;i++){
+        let tmpItemData = a[i];
+        if (tmpItemData == itemDate){
+            return;
+        }
+    }
+    a.push(itemDate);
+    _setHiddenLikesListCookie(a);
+}
+
+function removeHiddenLikesCookie(itemData) {
+    let a = _getHiddenLikesCookie();
+    a.forEach((value, index, array) => {
+       if (value == itemData){
+           delete array[index];
+       }
+    });
+    let b = [];
+    a.forEach(((value, index, array) => {
+        if (value.toString().length===8 && !isNaN(value) && value>20000000 && value<30000000){
+            b.push(value);
+        }
+    }));
+    _setHiddenLikesListCookie(b);
+}
+
+function clearLikesCookie() {
+    setCookie(_COOKIE_KEY_LIKE_HIDDEN, '');
+}
+
+function isNeedSendLikeRequestToServerCookie(itemData) {
+    if (value.toString().length!==8 || isNaN(value) || value<20000000 || value>30000000){
+        return false;
+    }
+    let tmpHiddenLikeList = _getHiddenLikesCookie();
+    for(let i=0;i<tmpHiddenLikeList.length;i++){
+        let tmpItem = tmpHiddenLikeList[i];
+        if (tmpItem == itemData){
+            return false
+        }
+    }
+    return true;
+}
+
+
+
+
+/***********************
+ *  每页数量部分
+ */
 
 
 function setPageItemCountCookie(pageItemCount) {
@@ -157,6 +236,9 @@ function getPageItemCountCookie() {
 }
 
 
+/***********************
+ *  名称部分
+ */
 
 
 function setNameCookie(name) {

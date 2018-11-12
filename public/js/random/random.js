@@ -110,14 +110,7 @@ let randomApp = new Vue({
                     for (let i=0; i<tmpLikeArray.length; i++){
                         const currentItem = tmpLikeArray[i];
                         if (currentItem == self.imgID){ // 如果已经喜欢了这张图片
-                            delete tmpLikeArray[i];
-                            let tmpLikeArraySave = [];
-                            for (let j=0; j<tmpLikeArray.length; j++){
-                                if (tmpLikeArray[j] != undefined) {
-                                    tmpLikeArraySave.push(tmpLikeArray[j]);
-                                }
-                            }
-                            setLikesListCookie(tmpLikeArraySave);
+                            removeLikesCookie(currentItem);
                             self.refreshLikeState();
                             return;
                         }
