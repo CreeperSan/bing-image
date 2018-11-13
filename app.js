@@ -63,7 +63,6 @@ if (!bingAction.isInit()){
     bingAction.init()
 }
 // 设置为每天 00:00:05 获取一次必应壁纸
-// const getBindImageSchedule = nodeSchedule.scheduleJob('20 * * * * *', () => {
 const getBindImageSchedule = nodeSchedule.scheduleJob('5 0 0,12 * * *', () => {
     bingAction.refreshTodayBingImage();
 });
