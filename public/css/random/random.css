@@ -7,12 +7,8 @@
 .body-content-img-info-location{ color:lightgray; }
 .body-content-img-info-extra{ color:lightgray; }
 .body-content-action-div{ display:flex;flex-direction:row;align-items:center;justify-content:center;margin-bottom:3em; }
-.body-content-action-button{ width:3em;height:3em;border-radius:3em;background:#009AFF;margin:0 3em;padding: 1em;cursor: pointer; }
+.body-content-action-button{ width:3em;height:3em;border-radius:3em;background:#018000;margin:0 3em;padding: 1em;cursor: pointer; }
 .body-content-download-div{ margin: 16px 0; }
 .body-content-download-title{ text-align: center; }
 .body-content-download-item-div{ display: flex;flex-direction: row;justify-content: center;align-items: center;max-width: 80%;flex-wrap: wrap;margin: auto; }
 .body-content-download-item{ margin: 6px 12px;text-decoration: none;border: 1px solid;padding: 3px 12px;border-radius: 100em;  }
-
-@media (max-width: 767px) {
-    .body-content-img-div{ max-width:1280px;width:100%;margin:0 0 3em 0;padding:0;position:relative;display:block;height: 440px; }
-}

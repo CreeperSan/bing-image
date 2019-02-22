@@ -1,23 +1,28 @@
 {% extends 'views/base/base.nunjucks' %}
 
-{% block title %} - APP{% endblock %}
+{% block title %}必应壁纸 - APP{% endblock %}
 
 {% block head_res %}
     <link rel="stylesheet" href="/css/app/app.css"/>
 {% endblock %}
 
 {% block body %}
-
     <div class="content-div">
-        <img class="content-img-phone" src="/images/app_phone_1.png"/>
-        <div class="content-description-div">
-            <span class="content-text-title">Bing壁纸</span>
-            <span class="content-text-subtitle">就只是Bing壁纸</span>
-            <div class="content-button-group">
-                <img src="">
-                <button class="content-button-download content-button-android">敬请期待</button>
-                <button class="content-button-download content-button-ios">敬请期待</button>
+        <img class="content-img" src="images/app_phone_01.png"/>
+        <span class="content-title">必应壁纸</span>
+        <span class="content-subtitle">٩(๑˃́ꇴ˂̀๑) 每天新壁纸</span>
+        <div class="content-download-root-div">
+            <div class="content-download-item-div">
+                <span class="content-download-platform">Android</span>
+                <span class="content-download-version">当前版本0.1.0</span>
+                <a href="extra/android-v1.0.0.apk" class="content-download-button">立即下载</a>
+            </div>
+            <div class="content-download-item-div">
+                <span class="content-download-platform">iOS</span>
+                <span class="content-download-version">敬请期待</span>
+                <span class="content-download-button-disable">敬请期待</span>
             </div>
         </div>
     </div>
+
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'views/base/base.nunjucks' %}
 
-{% block title %} - 排行榜{% endblock %}
+{% block title %}必应壁纸 - 排行榜{% endblock %}
 
 {% block head_res %}
     <link rel="stylesheet" href="/css/rank/rank.css"/>

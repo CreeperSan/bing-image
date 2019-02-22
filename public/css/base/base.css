@@ -7,5 +7,3 @@ html,body{
     flex-direction: column;
     align-items: center;
 }
-
-*::selection{ background: #03CC01;color: white; }

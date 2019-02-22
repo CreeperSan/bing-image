@@ -1,12 +1,11 @@
 {% extends 'views/base/base.nunjucks' %}
 
-{% block title %} - 随便看看{% endblock %}
+{% block title %}必应壁纸 - 试试手气{% endblock %}
 
 {% block head_res %}
     <link rel="stylesheet" href="/css/random/random.css" />
     <script src="/lib/axios/axios.js"></script>
     <script src="/lib/vue/vue.js"></script>
-    <script src="/js/lib/cookie.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -24,10 +23,6 @@
             <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
                 <img onclick="location.href=randomApp.getImageDownloadLink()" class="body-content-action-button" src="/icon/ic_download_white.png"/>
                 <span style="margin-top: 6px;">下载</span>
-            </div>
-            <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;" id="randomLikeDiv">
-                <img class="body-content-action-button" src="/icon/ic_like_white.png" id="randomLikeButton" onclick="randomApp.likeImage()"/>
-                <span style="margin-top: 6px;">喜欢</span>
             </div>
             <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
                 <img class="body-content-action-button" src="/icon/ic_refresh_white.png" onclick="randomApp.getAndLoadRandomImage()"/>

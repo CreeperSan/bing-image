@@ -1,10 +1,18 @@
 
-.content-div{ display: flex;flex-direction: row;justify-content: center;align-items: center;width: 90%;height: 100%;padding: 5%;background-color: #eee; }
-.content-img-phone{ margin-top: 3em;width: 30%; }
-.content-description-div{ display: flex;flex-direction: column;align-items: center;margin-left:1em;padding: 1em;width: 60%; }
-.content-text-title{ font-size: 3em;margin: 2em 0 0 0;font-weight: 200; }
-.content-text-subtitle{ font-size: 2em;margin: 8px 0 0 0;font-weight: 200; }
-.content-button-group{ display: flex;flex-direction: row;justify-content: center;align-items: center;padding: 1em }
-.content-button-download{ margin: 1em;padding: 1em 3em;border-radius: 6em;outline: none;font-size: 1em }
-.content-button-android{ background-color: limegreen;color: white; }
-.content-button-ios{ background-color: azure;color: black; }
+.content-div{ display: flex;flex-direction: column;align-items: center;padding: 32px 12%;width: 76% }
+.content-img{ width: 300px }
+.content-title{ font-size: 3em;margin: 1em 0 0 0;font-weight: 200; }
+.content-subtitle{ font-size: 2em;margin: 8px 0 0 0;font-weight: 200; }
+.content-download-root-div{ display: flex;flex-direction: row;align-items: center;margin-top: 16px; }
+.content-download-item-div{ display: flex;flex-direction: column;align-items: center;margin: 16px 30px; }
+.content-download-platform{ font-size: 1.2em; }
+.content-download-version{ font-size: 0.7em;margin-top: 8px; }
+.content-download-button{ padding: 10px 46px;background-color: white;border-radius: 100px;margin-top: 16px;color: #03CC01;cursor: pointer;box-shadow: rgba(0,0,0,0.3) 0 0 6px;text-decoration: none; }
+.content-download-button:hover{ padding: 10px 46px;background-color: white;border-radius: 100px;margin-top: 16px;color: #03CC01;cursor: pointer;box-shadow: rgba(0,0,0,0.3) 0 0 18px;text-decoration: none; }
+.content-download-button-disable{ padding: 10px 46px;background-color: white;border-radius: 100px;margin-top: 16px;color: gray;cursor: default;box-shadow: rgba(0,0,0,0.3) 0 0 6px;text-decoration: none; }
+
+
+
+
+
+

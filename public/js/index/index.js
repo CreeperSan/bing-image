@@ -74,13 +74,9 @@ const imgApp = new Vue({
             self.isLoading = true;
             setState(STATE_LOADING);
             axios.get('/api/v1/url?page='+this.page+'&count='+this.pageCount).then((response) => {
-                if (response.data.flag === 200){
+                if (response.data.flag == 200){
                     const tmpData = response.data.data;
                     self.imageList = tmpData.imgList;
-                    self.imageList.forEach((value,index,array) => { // TODO: 这里需要修改服务器增加喜欢和下载字段
-                        value.download = Math.ceil(Math.random()*100)+300;
-                        value.like = Math.ceil(Math.random()*30)
-                    });
                     self.pageTotal = Math.ceil(tmpData.itemCount / self.pageCount);
                     setState(STATE_LOADABLE);
                 } else {
@@ -137,18 +133,18 @@ const imgApp = new Vue({
     }
 });
 
-function setupViewContent(imgUrl, title, location, extra) {
+function setupViewContent(imgUrl, title, loaction, extra) {
     document.getElementById('viewRootDiv').style.background = 'url('+imgUrl+') center';
     document.getElementById('viewTitle').innerText = title;
-    document.getElementById('viewLocation').innerText = location;
+    document.getElementById('viewLocation').innerText = loaction;
     document.getElementById('viewExtra').innerText = extra;
 }
 
 function downloadBigImage() {
-    let tmpSize = document.getElementById('imageSizeSelect').value;
+    let tmpSize = document.getElementById('imageSizeSelect').value
     try {
-        tmpSize = parseInt(tmpSize);
-        if (tmpSize >= 0 && tmpSize <18){ location.href = '/api/v1/download/'+imgApp.bigImageID+'.jpg?size='+tmpSize; }
+        tmpSize = parseInt(tmpSize)
+        if (tmpSize >= 0 && tmpSize <18){ location.href = '/api/v1/download/'+imgApp.bigImageID+'.jpg?size='+tmpSize }
         return
     }catch (e) {}
     location.href = '/api/v1/download/'+imgApp.bigImageID+'.jpg?size='+tmpSize

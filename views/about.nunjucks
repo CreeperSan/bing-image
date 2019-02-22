@@ -1,6 +1,6 @@
 {% extends 'views/base/base.nunjucks' %}
 
-{% block title %} - 关于{% endblock %}
+{% block title %}必应壁纸 - 关于{% endblock %}
 
 
 {% block head_res %}
@@ -10,25 +10,28 @@
 {% block body %}
     <div class="content-div">
         <img class="content-logo" src="/images/logo_header.png">
-        <span>Beta 0.2.1</span>
-        <p class="content-p">练习写的一个简单的获取Bing每天的背景图片</p>
-        <p class="content-p">一开始是想练手写一个天气的App，使用每天的Bing的壁纸作为App的背景图片，但是发现Bing没提供这样的API，后来是在一个<a href="https://www.dujin.org/">缙哥哥的博客</a>上发现了用php写的一个API，就拿来用了</p>
-        <p class="content-p">再后来，一个偶然的机会发现了Bing壁纸的API，于是就手痒了想鼓捣了一下，于是乎这个网站就出来了</p>
+        <span>Beta 0.3.0</span>
+        <p class="content-p">练习写的一个简单的获取Bing每天的背景图片的网站</p>
+        <p class="content-p">一开始是想练手写一个天气的App，使用每天的Bing的壁纸作为App的背景图片，但是发现Bing没提供这样的API</p>
+        <p class="content-p">后来是在一个<a href="https://www.dujin.org/">缙哥哥的博客</a>上发现了用php写的一个API，就拿来用了</p>
+        <p class="content-p">再后来，一个偶然的机会试出来了Bing壁纸的API，于是就手痒了想鼓捣了一下，于是乎这个网站就出来了</p>
         <p class="content-p">😆</p>
-
         <hr/>
         <span class="version-title">更新日志</span>
         <div class="version-div">
-            <span>Beta 0.2.1 <span class="version-time">2018.10.21</span> </span>
+            <span>Beta 0.3.0 <span class="version-time">2019.02.22</span> </span>
             <ul>
-                <li>修正一处分辨率错误</li>
+                <li>增加App标签，提供Android客户端下载</li>
+                <li>修复主页样式底部留空的小问题</li>
+                <li>修改顶部标签样式，增加动画效果</li>
+                <li>完善 Api文档 页面</li>
+                <li>轻微调整 关于 页面</li>
             </ul>
-
             <span>Beta 0.2.0 <span class="version-time">2018.10.21</span> </span>
             <ul>
                 <li>独立图片查看页面</li>
                 <li>修复长时间空闲时数据库连接断开导致的崩溃问题</li>
-                <li>修复获取随机图片有几率会返回重复图片的Bug</li>
+                <li>修复获取随机图片有几率会返回和上一张一样图片的Bug</li>
                 <li>修复获取随机图片API的一个Bug</li>
                 <li>修复日本地区下获取图片信息出错的问题</li>
                 <li>修改部分内部API实现</li>

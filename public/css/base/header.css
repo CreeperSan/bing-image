@@ -3,16 +3,3 @@
 .header-desktop-page-div{ display:flex;flex-direction:row;align-items:center; }
 .header-desktop-page-text{ padding:0.3em 1em;text-decoration:none;color:gray;max-lines: 1;margin-bottom: 0;transition: 0.3s; }
 .header-desktop-page-text:hover{ padding:0.3em 1em;text-decoration:none;color:#03CC01;max-lines: 1;margin-bottom: 0.2em;transition: 0.3s; }
-
-.header-phone-root-div{display: none;position: fixed;bottom: 0;z-index: 9999999;background-color: white;box-shadow: gray 0 0 6px;flex-direction: row;align-items: center;justify-content: space-around;width: 100%;padding-bottom: 0;}
-.header-phone-icon{ height: 32px;padding: 12px 12px 0 12px;cursor: pointer }
-
-.body-root-div{ background: #eee;width: 100%; }
-
-@media (max-width: 767px) {
-    .header-phone-root-div{display:flex;position: fixed;bottom: 0;z-index: 9999999;background-color: white;box-shadow: gray 0 0 6px;flex-direction: row;align-items: center;justify-content: space-around;width: 100%;padding-bottom: 3px;}
-    .header-desktop-div{ display: none; }
-
-    .body-root-div{ background: #eee;width: 100%;padding-bottom: 56px; }
-}
-
