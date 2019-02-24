@@ -8,7 +8,7 @@ let randomApp = new Vue({
             // 常量
             SIZE_1920X1200  :0  ,
             SIZE_1920x1080  :1  ,
-            SIZE_1366x726   :2  ,
+            SIZE_1366x768   :2  ,
             SIZE_1280x720   :3  ,
             SIZE_1024x768   :4  ,
             SIZE_800x600    :6  ,

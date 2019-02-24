@@ -15,7 +15,7 @@
             <div class="content-download-item-div">
                 <span class="content-download-platform">Android</span>
                 <span class="content-download-version">当前版本0.1.0</span>
-                <a href="extra/android-v1.0.0.apk" class="content-download-button">立即下载</a>
+                <a href="extra/android-v0.1.0.apk" class="content-download-button">立即下载</a>
             </div>
             <div class="content-download-item-div">
                 <span class="content-download-platform">iOS</span>
