@@ -67,19 +67,6 @@
             <span class="doc-part-content">随机获取获取必应图片相关信息</span>
             <div class="doc-part-diver"></div>
             <span class="doc-part-title-sec">参数说明 :</span>
-            <span class="doc-part-content">size : 图片尺寸</span>
-            <div class="doc-part-diver"></div>
-            <span class="doc-part-title-sec">返回数据 ： </span>
-            <span class="doc-part-content">指定大小的图片文件</span>
-        </div>
-
-        <div class="doc-part-div">
-            <span class="doc-part-title">api/v1/download/对应图片的date.jpg </span>
-            <div class="doc-part-diver"></div>
-            <span class="doc-part-title-sec"> 请求说明 : </span>
-            <span class="doc-part-content">随机获取获取必应图片相关信息</span>
-            <div class="doc-part-diver"></div>
-            <span class="doc-part-title-sec">参数说明 :</span>
             <span class="doc-part-content">size : 图片尺寸(<a href="#doc_resolution">分辨率代码</a>)</span>
             <div class="doc-part-diver"></div>
             <span class="doc-part-title-sec">返回数据 ： </span>

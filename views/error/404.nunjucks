@@ -1,0 +1,16 @@
+{% extends 'views/base/base.nunjucks' %}
+
+{% block title %}必应壁纸 - (๑˃́ꇴ˂̀๑)每天新壁纸{% endblock %}
+
+{% block head_res %}
+    <link rel="stylesheet" href="/css/404/404.css"/>
+{% endblock %}
+
+{% block body %}
+    <div class="err-div">
+        <img class="err-404-img" src="/images/404.png"/>
+        <h1 class="err-404-title">404 Not Found</h1>
+        <p class="err-404-content">你要找的页面藏起来了，我们也找不到它..</p>
+        <button class="err-404-button" onclick="location.href = '/'">返回首页</button>
+    </div>
+{% endblock %}

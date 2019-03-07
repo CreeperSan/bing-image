@@ -10,7 +10,7 @@
 {% block body %}
     <div class="content-div">
         <img class="content-logo" src="/images/logo_header.png">
-        <span>Beta 0.3.1</span>
+        <span>Beta 0.3.2</span>
         <p class="content-p">练习写的一个简单的获取Bing每天的背景图片的网站</p>
         <p class="content-p">一开始是想练手写一个天气的App，使用每天的Bing的壁纸作为App的背景图片，但是发现Bing没提供这样的API</p>
         <p class="content-p">后来是在一个<a href="https://www.dujin.org/">缙哥哥的博客</a>上发现了用php写的一个API，就拿来用了</p>
@@ -19,6 +19,13 @@
         <hr/>
         <span class="version-title">更新日志</span>
         <div class="version-div">
+            <span>Beta 0.3.2 <span class="version-time">2019.03.07</span> </span>
+            <ul>
+                <li>增加404、500页面提醒</li>
+                <li>增加浏览器兼容提醒页面</li>
+                <li>修正主页标题与其他页面不一致的小问题</li>
+                <li>删除文档页面一处文本重复的小问题</li>
+            </ul>
             <span>Beta 0.3.1 <span class="version-time">2019.02.23</span> </span>
             <ul>
                 <li>修正下载Api部分不正确的问题</li>

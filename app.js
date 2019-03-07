@@ -19,6 +19,7 @@ const router_document = require('./routes/document');
 const router_rank = require('./routes/rank');
 const router_about = require('./routes/about');
 const router_view = require('./routes/view');
+const router_error = require('./routes/error');
 
 // error handler
 onerror(app);
@@ -52,6 +53,31 @@ app.use(router_document.routes(), router_document.allowedMethods());
 app.use(router_rank.routes(), router_rank.allowedMethods());
 app.use(router_about.routes(), router_about.allowedMethods());
 app.use(router_view.routes(), router_view.allowedMethods());
+app.use(router_error.routes(), router_error.allowedMethods());
+// 处理404与500页面
+app.use(async (ctx, next) => {
+    try {
+        await next();
+        if (ctx.status === 404) {
+            ctx.throw(404);
+        }
+    } catch (err) {
+        console.error(err.stack);
+        const status = err.status || 500;
+        ctx.status = status;
+        switch (status) {
+            case 404:
+                await ctx.render("error/404");
+                break;
+            case 500:
+                await ctx.render("error/500");
+                break;
+            default:
+                await ctx.render("error/404");
+                break;
+        }
+    }
+});
 
 /**
  *  定时任务

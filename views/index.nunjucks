@@ -1,6 +1,6 @@
 {% extends 'views/base/base.nunjucks' %}
 
-{% block title %}Bing 壁纸{% endblock %}
+{% block title %}必应壁纸 - (๑˃́ꇴ˂̀๑)每天新壁纸{% endblock %}
 
 {% block head_res %}
     <link rel="stylesheet" href="/css/index/index.css"/>

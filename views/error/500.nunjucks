@@ -1,0 +1,16 @@
+{% extends 'views/base/base.nunjucks' %}
+
+{% block title %}必应壁纸 - (๑˃́ꇴ˂̀๑)每天新壁纸{% endblock %}
+
+{% block head_res %}
+    <link rel="stylesheet" href="/css/500/500.css"/>
+{% endblock %}
+
+{% block body %}
+    <div class="err-div">
+        <img class="err-500-img" src="/images/500.png"/>
+        <h1 class="err-500-title">500 Server internal error</h1>
+        <p class="err-500-content">服务器发生内部错误</p>
+        <button class="err-500-button" onclick="location.href = '/'">返回首页</button>
+    </div>
+{% endblock %}

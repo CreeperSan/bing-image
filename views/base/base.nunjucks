@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/js/base/check-ie.js"></script>
     <link rel="stylesheet" href="/css/base/base.css"/>
     <link rel="stylesheet" href="/css/base/header.css"/>
     <link rel="stylesheet" href="/css/base/footer.css"/>
@@ -32,10 +33,6 @@
         <img class="footer-bing-logo" src="/images/logo_bing_yellow.png"/>
         <span class="footer-text-small">Copyright © 2018-2019 <a style="color: #ccc;" href="http://creepersan.com">CreeperSan</a></span>
     </div>
-
-    <script>
-        window.onresize = () => {}
-    </script>
     {% block global %}{% endblock %}
 </body>
 </html>
