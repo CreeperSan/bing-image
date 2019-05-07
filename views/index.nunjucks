@@ -21,8 +21,6 @@
                     <span class="img-card-text-author">{% raw %} {{ image.author }} {% endraw %}</span>
                 </div>
             </div>
-
-
         </div>
 
         <div class="action-div">
@@ -31,17 +29,25 @@
 
             <div id="actionJump" class="action-jump-div">
 
-                <div class="index-jump-page-div">
-                    <div class="index-jump-button-div clickable" v-on:click="onPrevPageClick()" id="indexJumpPrev">
-                        <img src="/icon/ic_prev_white.png" style="width: 60%;height: 60%;">
+                <div class="index-jump-page-div" >
+                    <div  v-if="page>1" class="index-jump-button-div clickable" v-on:click="onPrevPageClick()" id="indexJumpPrev">
+                        <img src="/icon/ic_prev_white.png" style="width: 40%;height: 40%;">
                     </div>
-                    <div class="index-jump-button-div" style="width: 82px">
-                        <span >{% raw %}{{ page }} / {{ pageTotal }}{% endraw %}</span>
+
+                    <div v-for="currentPage in pageArray">
+                        <div v-if="page != currentPage" class="index-jump-button-div clickable" v-on:click="onPageNumClick(currentPage)" >
+                            <span>{% raw %}{{ currentPage }}{% endraw %}</span>
+                        </div>
+                        <div v-else class="index-jump-button-div clickable" style="background-color:#3AB54A;" v-on:click="onPageInputClick()">
+                            <span>{% raw %}{{ currentPage }}{% endraw %}</span>
+                        </div>
                     </div>
-                    <div class="index-jump-button-div clickable" v-on:click="onNextPageClick()" id="indexJumpNext">
-                        <img src="/icon/ic_right_white.png" style="width: 60%;height: 60%;">
+
+                    <div v-if="page+1<=pageTotal" class="index-jump-button-div clickable" v-on:click="onNextPageClick()" id="indexJumpNext">
+                        <img src="/icon/ic_right_white.png" style="width: 40%;height: 40%;">
                     </div>
                 </div>
+
             </div>
 
             <div id="actionFinish" class="action-bottom-div">

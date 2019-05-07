@@ -1,2 +1,4 @@
-/public/bing-image/*
+public/bing-image/*
 bing-image/*
+./node_modules
+.DS_Store

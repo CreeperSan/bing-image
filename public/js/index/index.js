@@ -31,21 +31,7 @@ function setState(state){
     }
 }
 
-function showPrevButton(isShow){
-    if (isShow){
-        document.getElementById('indexJumpPrev').style.display = 'flex'
-    } else {
-        document.getElementById('indexJumpPrev').style.display = 'none'
-    }
-}
 
-function showNextButton(isShow){
-    if (isShow){
-        document.getElementById('indexJumpNext').style.display = 'flex'
-    } else {
-        document.getElementById('indexJumpNext').style.display = 'none'
-    }
-}
 
 const imgApp = new Vue({
     el : '#app',
@@ -53,9 +39,11 @@ const imgApp = new Vue({
         bigImageID : '',
         imageList : [],
         page : 1,
-        pageCount : 12,
-        pageTotal : 1,
-        isLoading : false
+        pageCount : 12, // 每页的图片数
+        pageTotal : 1,  // 页数
+        isLoading : false,
+        pageArray : [],
+        _focusPage : ''
     },
     mounted : function(){
         this.getAndRefreshData();
@@ -79,6 +67,27 @@ const imgApp = new Vue({
                     self.imageList = tmpData.imgList;
                     self.pageTotal = Math.ceil(tmpData.itemCount / self.pageCount);
                     setState(STATE_LOADABLE);
+                    // 计算页码
+                    self.pageArray = [];
+                    let tmpPage;
+                    tmpPage = self.page - 2
+                    if(tmpPage > 0){
+                        self.pageArray.push(tmpPage);
+                    }
+                    tmpPage = self.page - 1
+                    if(tmpPage > 0){
+                        self.pageArray.push(tmpPage);
+                    }
+                    tmpPage = self.page
+                    self.pageArray.push(tmpPage);
+                    tmpPage = self.page + 1
+                    if(tmpPage <= self.pageTotal){
+                        self.pageArray.push(tmpPage);
+                    }
+                    tmpPage = self.page + 2
+                    if(tmpPage <= self.pageTotal){
+                        self.pageArray.push(tmpPage);
+                    }
                 } else {
                     setState(STATE_FAIL);
                 }
@@ -89,6 +98,13 @@ const imgApp = new Vue({
                 self.isLoading = false;
                 self.onRefreshPageButton();
             })
+        },
+        onPageNumClick(pageNum){
+            if (pageNum <= this.pageTotal && pageNum > 0){
+                this.page = pageNum;
+                this.onRefreshPageButton();
+                this.getAndRefreshData();
+            }
         },
         onNextPageClick(){
             if (this.page < this.pageTotal && this.page > 0){
@@ -105,8 +121,6 @@ const imgApp = new Vue({
             }
         },
         onRefreshPageButton(){
-            showPrevButton(this.page > 1);
-            showNextButton(this.page < this.pageTotal);
             if (this.page < 1){
                 this.page = 1;
             }
@@ -129,6 +143,15 @@ const imgApp = new Vue({
             if (tmpDay < 10){ tmpDay='0'+tmpDay.toString() }
 
             return '/bing-image/'+image.year+'/'+tmpMonth+'/'+tmpDay+'/1920x1080.jpg'
+        },
+        onPageInputClick(){
+            const self = this;
+            let target = parseInt(prompt('请输入目标页码(1~'+self.pageTotal+')', self.page));
+            if(isInteger(target)){ // 判断是否整数
+                self.page = target;
+                this.onRefreshPageButton();
+                this.getAndRefreshData();
+            }
         }
     }
 });
@@ -160,4 +183,8 @@ function showView(state) {
 
 function onViewCloseClick() {
     showView(false)
+}
+
+function isInteger(obj) {
+    return (obj | 0) === obj;
 }
