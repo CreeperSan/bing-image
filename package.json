@@ -1,6 +1,6 @@
 {
-  "name": "bing",
-  "version": "0.3.2",
+  "name": "bing-iamge",
+  "version": "0.3.3",
   "private": true,
   "scripts": {
     "start": "node bin/www",
