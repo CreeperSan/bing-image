@@ -1,5 +1,6 @@
 const LOCATION_CHINA_MAINLAND   = 'zh-cn';
 const LOCATION_JAPAN            = 'ja-jp';
+const LOCATION_ENGLAND          = 'en-en';
 
 module.exports = {
     // Const
