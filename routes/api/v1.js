@@ -74,16 +74,6 @@ router.get('/img-current', async (ctx, next) => {
     ctx.body = request(tmpImgUrl)
 });
 
-
-/**
- * 请求地址:   /img
- * 链接功能:   获取服务器中最新的必应背景图片文件， 可以直接用在img标签里面
- * 请求参数:   无
- */
-router.get('/img',async (ctx, next) => {
-
-});
-
 /**
  * 请求地址:   /url
  * 链接功能:   获取服务器中必应背景图片URL（ 瀑布流 ）
@@ -107,82 +97,6 @@ router.get('/url', async (ctx, next) => {
     returnObject.imgList = queryData;
     ctx.body = createResponse(CODE_SUCCESS, returnObject)
 
-});
-
-/**
- * 请求地址:   /rank_name
- * 链接功能:   获取服务器中排行榜名称列表
- * 请求参数:   无
- */
-router.get('/rank_name', async (ctx, next) => {
-    ctx.body = createResponse(CODE_SUCCESS, {
-        rank_infos : [{
-            key : 'download',
-            name : '下载排行榜'
-        },{
-            key : 'editor',
-            name : '编辑推荐排行榜'
-        }]
-    })
-});
-
-/**
- * 请求地址:   /rank
- * 链接功能:   获取服务器中排行榜
- * 请求参数:   无
- */
-function rankCreateRankObject(key, title, itemList){
-    return {key: key, title: title, items: itemList }
-}
-
-router.get('/rank', async (ctx, next) => {
-    let returnRanks = [];
-    const requestParam = ctx.request.query;
-    if (requestParam.rank == undefined || requestParam.rank==null || requestParam.rank=="") {
-        requestParam.rank = 'download,editor'
-    }
-    if (requestParam.rank != null){
-        const requestRankKeyList = requestParam.rank.toString().split(',');
-        requestRankKeyList.forEach(((value, index, array) => {
-            switch (value) {
-                case 'download' : {
-                    const tmpItemList = [];
-                    let i=0;
-                    for (i=0;i<10;i++){
-                        tmpItemList.push({
-                            id : '20181009',
-                            copyright : '盐泉岛上的苹果树，加拿大不列颠哥伦比亚省 (© Radius Images/Offset)',
-                            title : '第26届叠人塔大赛的选手们',
-                            location : '美国缅因州',
-                            img : 'https://cn.bing.com/az/hprichbg/rb/SaltApple_ZH-CN14543908140_1920x1080.jpg',
-                            img_thumbnail : 'https://cn.bing.com/az/hprichbg/rb/SaltApple_ZH-CN14543908140_1920x1080.jpg',
-                        })
-                    }
-                    returnRanks.push(rankCreateRankObject('download', '下载排行榜', tmpItemList));
-                    break;
-                }
-                case 'editor' : {
-                    const tmpItemList = [];
-                    let i=0;
-                    for (i=0;i<10;i++){
-                        tmpItemList.push({
-                            id : '20181008',
-                            copyright : '冉冉升起的热气球，美国新墨西哥州 (© Blaine Harrington III/Alamy)',
-                            title : '无法真正微笑的章鱼',
-                            location : '墨西哥米却肯州',
-                            img : 'https://cn.bing.com/az/hprichbg/rb/MonarchSky_ZH-CN12318525605_1920x1080.jpg',
-                            img_thumbnail : 'https://cn.bing.com/az/hprichbg/rb/MonarchSky_ZH-CN12318525605_1920x1080.jpg',
-                        })
-                    }
-                    returnRanks.push(rankCreateRankObject('editor', '编辑推荐排行榜', tmpItemList));
-                    break;
-                }
-            }
-        }))
-    }
-    ctx.body = createResponse(CODE_SUCCESS, {
-        ranks : returnRanks
-    });
 });
 
 /**

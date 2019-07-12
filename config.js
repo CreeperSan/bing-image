@@ -6,6 +6,7 @@ module.exports = {
     // Const
     LOCATION_CHINA_MAINLAND     : LOCATION_CHINA_MAINLAND,
     LOCATION_JAPAN              : LOCATION_JAPAN,
+    LOCATION_ENGLAND            : LOCATION_ENGLAND,
 
     // Database Config
     database_host               : 'localhost',
