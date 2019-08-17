@@ -18,6 +18,7 @@ const router_app = require('./routes/app');
 const router_document = require('./routes/document');
 const router_rank = require('./routes/rank');
 const router_about = require('./routes/about');
+const router_versions = require('./routes/versions');
 const router_view = require('./routes/view');
 const router_error = require('./routes/error');
 
@@ -52,6 +53,7 @@ app.use(router_app.routes(), router_app.allowedMethods());
 app.use(router_document.routes(), router_document.allowedMethods());
 app.use(router_rank.routes(), router_rank.allowedMethods());
 app.use(router_about.routes(), router_about.allowedMethods());
+app.use(router_versions.routes(), router_versions.allowedMethods());
 app.use(router_view.routes(), router_view.allowedMethods());
 app.use(router_error.routes(), router_error.allowedMethods());
 // 处理404与500页面

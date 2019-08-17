@@ -25,12 +25,11 @@
             <a href="/about" class="header-desktop-page-text">关于</a>
         </div>
     </div>
-    <div id="bodyRootDiv" style="background: #eee;width: 100%;">
+    <div id="bodyRootDiv" style="background: #f9f9f9;width: 100%;">
         {% block body %}{% endblock %}
     </div>
     <div class="footer-div">
         <span class="footer-text">本站所有壁纸均来自 <a style="color:#ccc;" href="https://cn.bing.com" target="_blank">Bing搜索</a> </span>
-        <img class="footer-bing-logo" src="/images/logo_bing_yellow.png"/>
         <span class="footer-text-small">Copyright © 2018-2019 <a style="color: #ccc;" href="http://creepersan.com">CreeperSan</a></span>
     </div>
     {% block global %}{% endblock %}

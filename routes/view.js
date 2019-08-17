@@ -27,7 +27,6 @@ router.get('/:id', async (ctx, next) => {
 
     if (queryResult.success && queryResult.result.length === 1){
         const item = queryResult.result[0];
-        console.log(item);
 
         let tmpYear;
         let tmpMonth;

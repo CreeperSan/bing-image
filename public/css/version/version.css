@@ -1,0 +1,54 @@
+
+.update-root-div{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    margin: 0 0 auto;
+}
+
+.update-title{
+    font-size: 300;
+    font-size: 2em;
+    margin: 26px 0;
+}
+
+.update-item-div{
+    min-width:60%;
+    margin: 26px 0;
+}
+
+.update-item-title{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.update-item-time{
+    font-size: 0.8em;
+    color: gray;
+}
+
+.tag-alpha{
+    font-size: 0.5em;
+    color: gray;
+    padding: 2px 2px;
+    border-radius: 6px;
+    border: 1px solid gray;
+}
+
+.tag-beta{
+    font-size: 0.5em;
+    color: #007acc;
+    padding: 2px 2px;
+    border-radius: 6px;
+    border: 1px solid #007acc;
+}
+
+.tag-release{
+    font-size: 0.5em;
+    color: #00cc00;
+    padding: 2px 2px;
+    border-radius: 6px;
+    border: 1px solid #00cc00;
+}

@@ -34,22 +34,22 @@
             <div class="body-content-download-item-div">
                 <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 00 )">1920 × 1200</a>
                 <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 01 )">1920 × 1080</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 02 )">1366 × 768</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 03 )">1280 × 720</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 04 )">1024 × 768</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 05 )">800 × 600</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 06 )">800 × 480</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 07 )">640 × 480</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 08 )">400 × 240</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 09 )">320 × 240</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 02 )">1366 × 768 </a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 03 )">1280 × 720 </a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 04 )">1024 × 768 </a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 05 )">800 × 600  </a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 06 )">800 × 480  </a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 07 )">640 × 480  </a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 08 )">400 × 240  </a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 09 )">320 × 240  </a>
                 <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 10 )">1080 × 1920</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 11 )">768 × 1366</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 12 )">768 × 1280</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 13 )">720 × 1280</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 14 )">480 × 800</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 15 )">480 × 640</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 16 )">240 × 400</a>
-                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 17 )">240 × 320</a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 11 )">768 × 1366 </a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 12 )">768 × 1280 </a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 13 )">720 × 1280 </a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 14 )">480 × 800  </a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 15 )">480 × 640  </a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 16 )">240 × 400  </a>
+                <a class="body-content-download-item" v-bind:href="getImageDownloadLink( 17 )">240 × 320  </a>
             </div>
         </div>
 

@@ -84,7 +84,6 @@ router.get('/img-current', async (ctx, next) => {
 router.get('/url', async (ctx, next) => {
     let returnObject = {};
     const requestParam = ctx.request.query;
-    console.log(requestParam);
     if (!requestParam.count){ requestParam.count = 12 }
     if (!requestParam.page){ requestParam.page = 1; }
     if (!requestParam.size){ requestParam.size = ScreenResoluction.SIZE_1920x1080.toString()+','+ScreenResoluction.SIZE_320x240.toString(); }
@@ -122,8 +121,6 @@ router.get('/random', async (ctx, next) => {
 
     const databaseResult = await database.getRandomImage(requestCount, requestID);
 
-    console.log(databaseResult);
-
     ctx.body = createResponse(CODE_SUCCESS, databaseResult);
 });
 
@@ -139,7 +136,6 @@ router.get('/download/:imgID', async (ctx, next) => {
     let tmpSize = requestParam.size;
 
     if (tmpDate.endsWith('.jpg')){ tmpDate = tmpDate.substr(0, tmpDate.indexOf('.jpg')) }
-    console.log(tmpDate+'  '+tmpDate.length+'   '+ScreenResoluction.isSizeLegal(tmpSize));
 
     if (!tmpSize) { tmpSize = ScreenResoluction.SIZE_1920x1080 }
 

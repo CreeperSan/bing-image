@@ -7,8 +7,10 @@
 .body-content-img-info-location{ color:lightgray; }
 .body-content-img-info-extra{ color:lightgray; }
 .body-content-action-div{ display:flex;flex-direction:row;align-items:center;justify-content:center;margin-bottom:3em; }
-.body-content-action-button{ width:3em;height:3em;border-radius:3em;background:#018000;margin:0 3em;padding: 1em;cursor: pointer; }
+.body-content-action-button{ width:3em;height:3em;border-radius:3em;background:#0099ff;margin:0 3em;padding: 1em;cursor: pointer;transition-duration: 300ms; }
+.body-content-action-button:hover{ box-shadow: gray 0 0 12px;transition-duration: 300ms; }
 .body-content-download-div{ margin: 16px 0; }
 .body-content-download-title{ text-align: center; }
 .body-content-download-item-div{ display: flex;flex-direction: row;justify-content: center;align-items: center;max-width: 80%;flex-wrap: wrap;margin: auto; }
-.body-content-download-item{ margin: 6px 12px;text-decoration: none;border: 1px solid;padding: 3px 12px;border-radius: 100em;  }
+.body-content-download-item{ margin: 6px 12px;text-decoration: none;border: 1px solid;padding: 3px 12px;border-radius: 100em;background-color: #0099ff;color:#fff;border: 0px;transition-duration: 300ms; }
+.body-content-download-item:hover{ box-shadow: gray 0 0 12px;transition-duration: 300ms; }

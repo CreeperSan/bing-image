@@ -11,8 +11,8 @@ module.exports = {
     // Database Config
     database_host               : 'localhost',
     database_user               : 'creepersan',
-    database_password           : '12345678',
-    database_name               : 'BingImage',
+    database_password           : '1024',
+    database_name               : 'bing_image',
 
     // Application Config
     app_location                : LOCATION_CHINA_MAINLAND

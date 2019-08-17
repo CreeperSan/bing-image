@@ -37,7 +37,6 @@ let randomApp = new Vue({
             const self = this;
             axios.get('/api/v1/random?id='+self.imgID).then((response) => {
                 if (response.status === 200) {
-                    console.log(response.data);
                     const tmpRandomData = response.data.data[0];
                     if (tmpRandomData) {
                         self.imgTitle = tmpRandomData.title;
