@@ -11,6 +11,21 @@
     <div class="doc-div">
 
         <div class="doc-part-div">
+            <span class="doc-part-title">api/v1/img-current</span>
+            <div class="doc-part-diver"></div>
+            <span class="doc-part-title-sec">请求说明</span>
+            <span class="doc-part-content">获取服务器上最新的图片文件，分辨率为 1920 × 1080</span>
+            <span class="doc-part-content">当然你也可以直接应用到img标签上显示服务器上最新的图片，就像这样子</span>
+            <span class="doc-part-content">&lt;img src=&quot;http://bing.creepersan.com/api/v1/img-current&quot; /&gt;</span>
+            <div class="doc-part-diver"></div>
+            <span class="doc-part-title-sec">参数说明 :</span>
+            <span class="doc-part-content">无需参数</span>
+            <div class="doc-part-diver"></div>
+            <span class="doc-part-title-sec">返回数据 ： </span>
+            <span class="doc-part-content">服务器上最新的图片文件，分辨率为 1920 × 1080</span>
+        </div>
+
+        <div class="doc-part-div">
             <span class="doc-part-title">api/v1/url </span>
             <div class="doc-part-diver"></div>
             <span class="doc-part-title-sec"> 请求说明 : </span>

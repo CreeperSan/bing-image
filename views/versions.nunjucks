@@ -11,6 +11,13 @@
     <div class="update-root-div">
         <span class="update-title">更新日志</span>
         <div class="update-item-div">
+            <span class="update-item-title"><span class="tag-release">Release</span> 1.0.1</span>
+            <span class="update-item-time">2019.08.16</span>
+            <ul>
+                <li>补充一处Api说明</li>
+            </ul>
+        </div>
+        <div class="update-item-div">
             <span class="update-item-title"><span class="tag-release">Release</span> 1.0.0</span>
             <span class="update-item-time">2019.08.16</span>
             <ul>
