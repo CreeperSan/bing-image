@@ -20,12 +20,15 @@ MySQL
 
 1. Create a database to save wallpaper informations
 2. Download the latest [release](https://github.com/CreeperSan/bing-image/releases) and prepare a database that used to save some data.
-
 3. Unzip the packet and `cd` into the folder you get
-
 4. Run `npm install`
 5. Run `npm run init` to run initialize wizard
 6. Run `npm start` , then the server will start at `localhost:3000`
+
+## Other Command
+
++ `npm run backup` Backup data and export as a single file ( beta )
++ `npm run restore <path>`  Restore data from a single file
 
 ## Screenshot
 
