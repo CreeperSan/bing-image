@@ -42,6 +42,14 @@ function delete_folder(path) {
     }
 }
 
+async function delay(time) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve()
+        }, time)
+    })
+}
+
 /* 逻辑本体 */
 const datetime = new Date()
 const restore_directory_path = './restore_'+datetime.getTime().toString()   // 解压出来的数据的总文件夹
@@ -64,6 +72,10 @@ async function main(){
 
     // 初始化数据库连接
     database.init()
+
+    // 等待数据库连接成功
+    // TODO 延时处理不太好，应该根据毁掉判断的，这里后面再优化
+    await delay(5000)
 
     // 遍历里面的每一个文件夹
     let item_directory_name_list = fs.readdirSync(restore_directory_path)
